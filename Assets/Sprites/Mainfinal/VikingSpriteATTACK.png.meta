@@ -1,0 +1,186 @@
+fileFormatVersion: 2
+guid: de63201a69c2e42ba81de97fd4c9517f
+timeCreated: 1484876102
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: VikingSpriteATTACK_0
+    21300002: VikingSpriteATTACK_1
+    21300004: VikingSpriteATTACK_2
+    21300006: VikingSpriteATTACK_3
+    21300008: VikingSpriteATTACK_4
+    21300010: VikingSpriteATTACK_5
+    21300012: VikingSpriteATTACK_6
+    21300014: VikingSpriteATTACK_7
+    21300016: VikingSpriteATTACK_8
+    21300018: VikingSpriteATTACK_9
+    21300020: VikingSpriteATTACK_10
+    21300022: VikingSpriteATTACK_11
+    21300024: VikingSpriteATTACK_12
+    21300026: VikingSpriteATTACK_13
+    21300028: VikingSpriteATTACK_14
+    21300030: VikingSpriteATTACK_15
+    21300032: VikingSpriteATTACK_16
+    21300034: VikingSpriteATTACK_17
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: iPhone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Tizen
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: WebGL
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Samsung TV
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: VikingSpriteATTACK_1
+      rect:
+        serializedVersion: 2
+        x: 716
+        y: 1706.6666
+        width: 666
+        height: 341.33337
+      alignment: 9
+      pivot: {x: 0.29547623, y: 0.4530515}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: VikingSpriteATTACK_2
+      rect:
+        serializedVersion: 2
+        x: 1382
+        y: 1706.6666
+        width: 666
+        height: 341.33334
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: VikingSpriteATTACK_4
+      rect:
+        serializedVersion: 2
+        x: 716
+        y: 1365.6666
+        width: 666
+        height: 341.33337
+      alignment: 9
+      pivot: {x: 0.29547623, y: 0.4765255}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: VikingSpriteATTACK_7
+      rect:
+        serializedVersion: 2
+        x: 712
+        y: 1025
+        width: 670
+        height: 341
+      alignment: 9
+      pivot: {x: 0.32061532, y: 0.49999964}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

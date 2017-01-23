@@ -1,0 +1,466 @@
+fileFormatVersion: 2
+guid: bbda44ad2498d4521874bf880f6c5b4e
+timeCreated: 1484872210
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: VikingSpritexcf1_0
+    21300002: VikingSpritexcf1_1
+    21300004: VikingSpritexcf1_2
+    21300006: VikingSpritexcf1_3
+    21300008: VikingSpritexcf1_4
+    21300010: VikingSpritexcf1_5
+    21300012: VikingSpritexcf1_6
+    21300014: VikingSpritexcf1_7
+    21300016: VikingSpritexcf1_8
+    21300018: VikingSpritexcf1_9
+    21300020: VikingSpritexcf1_10
+    21300022: VikingSpritexcf1_11
+    21300024: VikingSpritexcf1_12
+    21300026: VikingSpritexcf1_13
+    21300028: VikingSpritexcf1_14
+    21300030: VikingSpritexcf1_15
+    21300032: VikingSpritexcf1_16
+    21300034: VikingSpritexcf1_17
+    21300036: VikingSpritexcf1_18
+    21300038: VikingSpritexcf1_19
+    21300040: VikingSpritexcf1_20
+    21300042: VikingSpritexcf1_21
+    21300044: VikingSpritexcf1_22
+    21300046: VikingSpritexcf1_23
+    21300048: VikingSpritexcf1_24
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: iPhone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Tizen
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: WebGL
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Samsung TV
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: VikingSpritexcf1_0
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 1768
+        width: 300
+        height: 239
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: VikingSpritexcf1_1
+      rect:
+        serializedVersion: 2
+        x: 334
+        y: 1782
+        width: 314
+        height: 218
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: VikingSpritexcf1_2
+      rect:
+        serializedVersion: 2
+        x: 676
+        y: 1775
+        width: 307
+        height: 225
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: VikingSpritexcf1_3
+      rect:
+        serializedVersion: 2
+        x: 1010
+        y: 1775
+        width: 300
+        height: 239
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: VikingSpritexcf1_4
+      rect:
+        serializedVersion: 2
+        x: 1358
+        y: 1762
+        width: 314
+        height: 218
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: VikingSpritexcf1_5
+      rect:
+        serializedVersion: 2
+        x: 1672
+        y: 1768
+        width: 267
+        height: 259
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: VikingSpritexcf1_6
+      rect:
+        serializedVersion: 2
+        x: 1687
+        y: 1714
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: VikingSpritexcf1_7
+      rect:
+        serializedVersion: 2
+        x: 382
+        y: 1455
+        width: 267
+        height: 252
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: VikingSpritexcf1_8
+      rect:
+        serializedVersion: 2
+        x: 717
+        y: 1448
+        width: 259
+        height: 252
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: VikingSpritexcf1_9
+      rect:
+        serializedVersion: 2
+        x: 1051
+        y: 1461
+        width: 267
+        height: 252
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: VikingSpritexcf1_10
+      rect:
+        serializedVersion: 2
+        x: 1489
+        y: 1447
+        width: 211
+        height: 260
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: VikingSpritexcf1_11
+      rect:
+        serializedVersion: 2
+        x: 1707
+        y: 1693
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: VikingSpritexcf1_12
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 1427
+        width: 267
+        height: 252
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: VikingSpritexcf1_13
+      rect:
+        serializedVersion: 2
+        x: 1707
+        y: 1645
+        width: 7
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: VikingSpritexcf1_14
+      rect:
+        serializedVersion: 2
+        x: 1707
+        y: 1632
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: VikingSpritexcf1_15
+      rect:
+        serializedVersion: 2
+        x: 1269
+        y: 1120
+        width: 355
+        height: 218
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: VikingSpritexcf1_16
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 771
+        width: 137
+        height: 233
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: VikingSpritexcf1_17
+      rect:
+        serializedVersion: 2
+        x: 348
+        y: 771
+        width: 137
+        height: 233
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: VikingSpritexcf1_18
+      rect:
+        serializedVersion: 2
+        x: 621
+        y: 771
+        width: 137
+        height: 233
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: VikingSpritexcf1_19
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 505
+        width: 137
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: VikingSpritexcf1_20
+      rect:
+        serializedVersion: 2
+        x: 362
+        y: 484
+        width: 137
+        height: 233
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: VikingSpritexcf1_21
+      rect:
+        serializedVersion: 2
+        x: 594
+        y: 491
+        width: 137
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: VikingSpritexcf1_22
+      rect:
+        serializedVersion: 2
+        x: 956
+        y: 676
+        width: 75
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: VikingSpritexcf1_23
+      rect:
+        serializedVersion: 2
+        x: 963
+        y: 471
+        width: 75
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: VikingSpritexcf1_24
+      rect:
+        serializedVersion: 2
+        x: 947
+        y: 858
+        width: 129
+        height: 79
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

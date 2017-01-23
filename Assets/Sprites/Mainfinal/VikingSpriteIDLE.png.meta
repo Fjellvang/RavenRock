@@ -1,0 +1,242 @@
+fileFormatVersion: 2
+guid: 948c5ac3484144be9bf3e3b94d9358c7
+timeCreated: 1484876754
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: VikingSpriteIDLE_0
+    21300002: VikingSpriteIDLE_1
+    21300004: VikingSpriteIDLE_2
+    21300006: VikingSpriteIDLE_4
+    21300008: VikingSpriteIDLE_5
+    21300010: VikingSpriteIDLE_7
+    21300012: VikingSpriteIDLE_10
+    21300014: VikingSpriteIDLE_13
+    21300016: VikingSpriteIDLE_3
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: iPhone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Tizen
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: WebGL
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Samsung TV
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: VikingSpriteIDLE_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1690
+        width: 682.6667
+        height: 338
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: VikingSpriteIDLE_1
+      rect:
+        serializedVersion: 2
+        x: 677
+        y: 1690
+        width: 683
+        height: 338
+      alignment: 9
+      pivot: {x: 0.5499323, y: 0.31261954}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: VikingSpriteIDLE_2
+      rect:
+        serializedVersion: 2
+        x: 1364
+        y: 1685
+        width: 683
+        height: 338
+      alignment: 9
+      pivot: {x: 0.4215356, y: 0.34144655}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: VikingSpriteIDLE_4
+      rect:
+        serializedVersion: 2
+        x: 692
+        y: 1357
+        width: 683
+        height: 338
+      alignment: 9
+      pivot: {x: 0.5213995, y: 0.34144655}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: VikingSpriteIDLE_5
+      rect:
+        serializedVersion: 2
+        x: 1364
+        y: 1352
+        width: 682.66675
+        height: 338
+      alignment: 9
+      pivot: {x: 0.43577075, y: 0.3270325}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: VikingSpriteIDLE_7
+      rect:
+        serializedVersion: 2
+        x: 711
+        y: 1004
+        width: 683
+        height: 338
+      alignment: 9
+      pivot: {x: 0.5011656, y: 0.31884295}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: VikingSpriteIDLE_10
+      rect:
+        serializedVersion: 2
+        x: 698
+        y: 670
+        width: 683
+        height: 338
+      alignment: 9
+      pivot: {x: 0.51548326, y: 0.3435631}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: VikingSpriteIDLE_13
+      rect:
+        serializedVersion: 2
+        x: 677
+        y: 328
+        width: 683
+        height: 338
+      alignment: 9
+      pivot: {x: 0.54279876, y: 0.34144637}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: VikingSpriteIDLE_3
+      rect:
+        serializedVersion: 2
+        x: 1868
+        y: 926
+        width: 54
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
