@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Controller : MonoBehaviour {
-	public float friction = 0.5f;
 	public float acceleration = 10f;
     public float jumpspeed = 10;
-	float velocity = 0;
     Physics2D ray;
     bool grounded = false;
     float axis = 0;
@@ -25,9 +23,12 @@ public class Controller : MonoBehaviour {
     public bool Blocking;
     public bool carrying;
     AudioSource audio;
-    
-	// Use this for initialization
-	void Start () {
+	private Vector3 m_Velocity = Vector3.zero;
+    [Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;  // How much to smooth out the movement
+    private bool m_FacingRight;
+
+    // Use this for initialization
+    void Start () {
 		anim = GetComponent<Animator> ();
         rig = GetComponent<Rigidbody2D>();
         dame = FindObjectOfType<Lady>();
@@ -36,6 +37,8 @@ public class Controller : MonoBehaviour {
 	}
 
 
+    private static readonly Vector3 right = new Vector3(1, 1, 1);
+    private static readonly Vector3 left = new Vector3(-1, 1, 1);
 
     // Update is called once per frame
     void Update() {
@@ -43,24 +46,10 @@ public class Controller : MonoBehaviour {
         if (grounded) { tripleJump = 1; }
         axis = Input.GetAxis("Horizontal");
 
+        Move(axis * acceleration * Time.deltaTime, grounded, false);
 
-        Vector3 pos = transform.position;
-
-
-        if (axis != 0 && !anim.GetBool("blockButton")) {
-            velocity += acceleration * Time.deltaTime * axis;
-        }
-        if (velocity != 0) {
-            velocity -= velocity * friction * Time.deltaTime;
-            this.transform.position += new Vector3(velocity, 0, 0);
+        if (Mathf.Abs(m_Velocity.x) <= 0.01f) {
             anim.SetBool("isMoving", true);
-        }
-
-        if (axis < 0) {
-            transform.localScale = new Vector3(-1, 1, 1);
-        } else if (axis > 0) {
-            transform.localScale = new Vector3(1, 1, 1);
-
         }
         else
         {
@@ -120,5 +109,41 @@ public class Controller : MonoBehaviour {
        
 	}
 
-    
+    public void Move(float move,bool grounded, bool jump)
+    {
+
+        //only control the player if grounded or airControl is turned on
+        if (grounded)
+        {
+
+            // Move the character by finding the target velocity
+            Vector3 targetVelocity = new Vector2(move * 10f, rig.velocity.y);
+            // And then smoothing it out and applying it to the character
+            rig.velocity = Vector3.SmoothDamp(rig.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
+
+            // If the input is moving the player right and the player is facing left...
+            if (move > 0 && !m_FacingRight)
+            {
+                // ... flip the player.
+                m_FacingRight = true;
+				transform.localScale = right;
+            }
+            // Otherwise if the input is moving the player left and the player is facing right...
+            else if (move < 0 && m_FacingRight)
+            {
+                // ... flip the player.
+                m_FacingRight = false;
+				transform.localScale = left;
+            }
+        }
+        // If the player should jump...
+        //if (m_Grounded && jump)
+        //{
+        //    // Add a vertical force to the player.
+        //    m_Grounded = false;
+        //    rig.AddForce(new Vector2(0f, m_JumpForce));
+        //}
+    }
+
+
 }
