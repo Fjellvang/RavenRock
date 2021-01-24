@@ -16,6 +16,10 @@ public class Paralaxhax : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (!player)
+		{
+			return;
+		}
         Vector3 pos = player.transform.position;
         Vector3 tmp = -pos / divosor;
         tmp.y = transform.position.y;

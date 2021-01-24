@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Wingirl : MonoBehaviour {
 
-    Controller controls;
+    PlayerController controls;
 
 	// Use this for initialization
 	void Start () {
-        controls = FindObjectOfType<Controller>();
+        controls = FindObjectOfType<PlayerController>();
 	}
 	
 	// Update is called once per frame

@@ -20,6 +20,7 @@ public class HealthBar : MonoBehaviour {
 
     public void SetPicture(int x)
     {
-        sprite.sprite = listOfSprites[x];
+        return;
+        //sprite.sprite = listOfSprites[x];
     }
 }

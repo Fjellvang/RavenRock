@@ -31,7 +31,7 @@ public class PlayerHealth : MonoBehaviour {
             Application.LoadLevel("dead");
         }
         if(health < 6 && health > 0) { 
-            hb.SetPicture((int)health);
+            hb.SetPicture(((int)health)-1);
         }
     }
 }

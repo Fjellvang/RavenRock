@@ -5,7 +5,7 @@ using UnityEngine;
 public class Attack : MonoBehaviour {
 
     GameObject player;
-    Controller pController;
+    PlayerController pController;
     Animator anim;
     PlayerHealth playerHealth;
     AI ai;
@@ -17,7 +17,7 @@ public class Attack : MonoBehaviour {
     // Use this for initialization
     void Start () {
         anim = GetComponentInParent<Animator>();
-        pController = FindObjectOfType<Controller>();
+        pController = FindObjectOfType<PlayerController>();
         playerHealth = FindObjectOfType<PlayerHealth>();
         orig = secs;
         ai = FindObjectOfType<AI>();
