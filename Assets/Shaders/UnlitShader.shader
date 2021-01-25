@@ -5,6 +5,7 @@ Shader "Unlit/UnlitShader"
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {} // white er default når ingen texture
+        _Alpha("Alpha", Float) = 1
     }
     SubShader
     {
@@ -39,6 +40,7 @@ Shader "Unlit/UnlitShader"
             };
 
             sampler2D _MainTex; // skal defineres for at det virker
+            float _Alpha;
             float4 _MainTex_ST;
 
             v2f vert (appdata v)
@@ -56,7 +58,7 @@ Shader "Unlit/UnlitShader"
                 // apply fog
                 //UNITY_APPLY_FOG(i.fogCoord, col);
                 //float4 col = float4(i.uv.x, i.uv.y, 1,1);
-                //col.a *= 0.5f;
+                col.a *= _Alpha;
                 return col;
             }
             ENDCG
