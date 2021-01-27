@@ -2,28 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(CharacterController2D))]
 public class AI : MonoBehaviour{
 
     public float moveSpeed = 10f;
-    public float velocityLim = 10f;
 
     GameObject player;
-    Vector3 delta;
-    Rigidbody2D rig;
+    Vector3 vectorTowardsPlayer;
     bool facingRight;
     Visible playerVision;
     Attack atck;
+    //public float Ai;
 
-    public float Ai;
+    public bool witinRange = false;
+
+    CharacterController2D controller;
 
     
 
 	// Use this for initialization
 	void Start () {
         player = GameObject.FindWithTag("Player");
-        rig = GetComponent<Rigidbody2D>();
         playerVision = FindObjectOfType<Visible>();
         atck = FindObjectOfType<Attack>();
+
+        controller = GetComponent<CharacterController2D>();
         
     }
 	
@@ -31,61 +34,29 @@ public class AI : MonoBehaviour{
 	void Update () {
         if (atck)
         {
-            if (playerVision.visibleList.Contains(gameObject) && !atck.withinRange)
+            if (witinRange && !atck.withinRange)
             {
                 // Only move if the enemy is within range of the player
-                delta = player.transform.position - transform.position;
-                delta.Normalize();
-                //we dont want them to fly
-                delta.y = 0;
+                vectorTowardsPlayer = player.transform.position - transform.position;
+				Debug.DrawRay(transform.position, vectorTowardsPlayer, Color.blue);
             }
         }
-        else
-        {
-            if(playerVision.visibleList.Contains(gameObject) && !atck.withinRange)
-            {
-                // Only move if the enemy is within range of the player
-                delta = player.transform.position - transform.position;
-                delta.Normalize();
-                //we dont want them to fly
-                delta.y = 0;
-            }
-        }
-        if(rig.velocity.x < 0 && !facingRight)
-        {
-            facingRight = true;
-            Flip();
-        } else if(rig.velocity.x > 0 && facingRight)
-        {
-            facingRight = false;
-            Flip();
-        }
-        
 
-        if (rig.velocity.x < velocityLim)
-        {
-            if (gameObject.tag == "Enemy")
-            {
-                rig.AddForce(delta * moveSpeed);
-            }
-            else
-            {
-                rig.AddForce(delta * -moveSpeed);
-            }
-        }
+		bool weAreAggressiveAI = gameObject.tag == "Enemy";
+        var direction = vectorTowardsPlayer.x > 0 ? 1 : -1;
+        var directionionalForce = direction * moveSpeed * Time.deltaTime;
+        Debug.DrawRay(transform.position, new Vector3(direction, 0), Color.red);
+		if (weAreAggressiveAI)
+		{
+            controller.Move(directionionalForce, false, false);
+		}
+		else
+		{
+            controller.Move(-directionionalForce, false, false);
+		}
         
 	}
 
-    void Flip()
-    {
-        Vector3 scale = transform.localScale;
-        scale.x *= -1;
-        transform.localScale = scale;
-    }
-    public void StopMoving()
-    {
-        rig.velocity *= 0;
-    }
     //private void OnCollisionEnter2D(Collision2D collision)
     //{
     //    if (collision.gameObject.tag == "Player" && !pController.Blocking)

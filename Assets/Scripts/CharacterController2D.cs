@@ -43,6 +43,12 @@ public class CharacterController2D : MonoBehaviour
 
 	private void FixedUpdate()
 	{
+		if (m_GroundCheck == null)
+		{
+			//then we dont care about the checks and assume grounded
+			m_Grounded = true;
+			return;
+		}
 		bool wasGrounded = m_Grounded;
 		m_Grounded = false;
 
@@ -64,7 +70,7 @@ public class CharacterController2D : MonoBehaviour
 	public void Move(float move, bool crouch, bool jump)
 	{
 		// If crouching, check to see if the character can stand up
-		if (!crouch)
+		if (!crouch && (m_CeilingCheck != null))
 		{
 			// If the character has a ceiling preventing them from standing up, keep them crouching
 			if (Physics2D.OverlapCircle(m_CeilingCheck.position, k_CeilingRadius, m_WhatIsGround))

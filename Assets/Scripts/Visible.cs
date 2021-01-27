@@ -4,30 +4,20 @@ using UnityEngine;
 
 public class Visible : MonoBehaviour {
 
-    public List<GameObject> visibleList;
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        
-	}
-
     private void OnTriggerEnter2D(Collider2D collision)
+	{
+		SetWithinRange(collision, true);
+	}
+
+	private void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.tag == "Enemy" || collision.tag == "Monk")
-        {
-            visibleList.Add(collision.gameObject);
-        }
+		SetWithinRange(collision, false);
     }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.tag == "Enemy" || collision.tag == "Monk")
-        {
-            visibleList.Remove(collision.gameObject);
-        }
-    }
+	private static void SetWithinRange(Collider2D collision, bool withinRange)
+	{
+		if ((collision.tag == "Enemy" || collision.tag == "Monk") && collision.gameObject.TryGetComponent<AI>(out var ai))
+		{
+			ai.witinRange = withinRange;
+		}
+	}
 }

@@ -45,7 +45,7 @@ public class Attack : MonoBehaviour {
         {
             withinRange = true;
             anim.SetBool("inRange", true);
-            ai.StopMoving();
+            //ai.StopMoving();
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
