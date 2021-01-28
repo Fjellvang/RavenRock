@@ -9,7 +9,8 @@ namespace Assets.Scripts.Player_States
 {
 	public class PlayerIdleState : PlayerBaseState
 	{
-		public override void OnEnterState(PlayerController controller)
+
+		public override void OnEnterState(PlayerController controller, BaseState<PlayerController> transitionFrom)
 		{
 		}
 

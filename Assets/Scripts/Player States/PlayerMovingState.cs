@@ -9,7 +9,7 @@ namespace Assets.Scripts.Player_States
 {
 	public class PlayerMovingState : PlayerBaseState
 	{
-		public override void OnEnterState(PlayerController controller)
+		public override void OnEnterState(PlayerController controller, BaseState<PlayerController> transitionFrom)
 		{
 			controller.Animator.SetBool("isMoving", true);
 		}

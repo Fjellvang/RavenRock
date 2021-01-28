@@ -29,12 +29,13 @@ public class Lady : MonoBehaviour {
 
     public void DestroyThis()
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
     public void SpawnNew(Transform pos)
     {
+        gameObject.SetActive(true);
         Vector3 yo = pos.position;
         yo.y += 1;
-        Instantiate(lady, yo, pos.rotation);
+        gameObject.transform.position = yo;
     }
 }

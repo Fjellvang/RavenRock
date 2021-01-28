@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour {
 
     public CharacterController2D CharacterController;
 
-    PlayerBaseState currentState = new PlayerIdleState();
+    PlayerBaseState currentState;
 
     public readonly PlayerIdleState idleState = new PlayerIdleState();
     public readonly PlayerMovingState movingState = new PlayerMovingState();
@@ -29,9 +29,9 @@ public class PlayerController : MonoBehaviour {
     public void TransitionState(PlayerBaseState newState)
 	{
         currentState.OnExitState(this);
-        Debug.Log($"Changing state to {newState}");
+        var lastState = currentState;
         currentState = newState;
-        currentState.OnEnterState(this);
+        currentState.OnEnterState(this, lastState);
 	}
 
 
@@ -45,11 +45,11 @@ public class PlayerController : MonoBehaviour {
 
 	private void Awake()
 	{
-        TransitionState(idleState);
-        CharacterController.OnLandEvent.AddListener((x) => {
-            Debug.Log($"Was Grounded: {x}");
-            TransitionState(idleState);
-            });
+        currentState = idleState;
+	}
+	private void FixedUpdate()
+	{
+        currentState.FixedUpdate(this);
 	}
 	// Update is called once per frame
 	void Update() {

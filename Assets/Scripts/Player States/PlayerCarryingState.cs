@@ -8,13 +8,7 @@ using UnityEngine;
 namespace Assets.Scripts.Player_States
 {
 	public class PlayerCarryingState : PlayerBaseState
-	{
-		public override void OnEnterState(PlayerController controller)
 		{
-			controller.KissSound.Play();
-			controller.Animator.SetBool("isCarrying", true);
-			controller.Dame.DestroyThis();
-		}
 
 		public override void Update(PlayerController controller)
 		{
@@ -30,6 +24,13 @@ namespace Assets.Scripts.Player_States
 		{
 			controller.Animator.SetBool("isCarrying", false);
 			controller.Dame.SpawnNew(controller.transform);
+		}
+
+		public override void OnEnterState(PlayerController controller, BaseState<PlayerController> transitionFrom)
+		{
+			controller.KissSound.Play();
+			controller.Animator.SetBool("isCarrying", true);
+			controller.Dame.DestroyThis();
 		}
 	}
 }
