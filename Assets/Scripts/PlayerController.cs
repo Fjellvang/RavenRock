@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.Player_States;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,40 +8,53 @@ public class PlayerController : MonoBehaviour {
 
     public GameObject axeAttack;
     Lady dame;
+    public Lady Dame => dame; //TODO: refacotr
 
     Animator anim;
+    public Animator Animator { get { return anim; } }
     public bool Blocking;
-    public bool carrying;
-    AudioSource audio;
+    AudioSource kissSound;
+    public AudioSource KissSound => kissSound;
 
     public CharacterController2D CharacterController;
+
+    PlayerBaseState currentState = new PlayerIdleState();
+
+    public readonly PlayerIdleState idleState = new PlayerIdleState();
+    public readonly PlayerMovingState movingState = new PlayerMovingState();
+    public readonly PlayerJumpingState jumpingState = new PlayerJumpingState();
+    public readonly PlayerCarryingState playerCarryingState = new PlayerCarryingState();
+
+
+    public void TransitionState(PlayerBaseState newState)
+	{
+        currentState.OnExitState(this);
+        Debug.Log($"Changing state to {newState}");
+        currentState = newState;
+        currentState.OnEnterState(this);
+	}
 
 
     // Use this for initialization
     void Start () {
 		anim = GetComponent<Animator> ();
         dame = FindObjectOfType<Lady>();
-        carrying = anim.GetBool("isCarrying");
-        audio = GetComponent<AudioSource>();
+        kissSound = GetComponent<AudioSource>();
 	}
 
 
 	private void Awake()
 	{
-        CharacterController.OnCrouchEvent.AddListener((crouch) => Debug.Log("CROUCH"));
+        TransitionState(idleState);
+        CharacterController.OnLandEvent.AddListener((x) => {
+            Debug.Log($"Was Grounded: {x}");
+            TransitionState(idleState);
+            });
 	}
 	// Update is called once per frame
 	void Update() {
-        var axis = Input.GetAxis("Horizontal");
+        currentState.Update(this);
 
-
-        //if (Mathf.Abs(m_Velocity.x) <= 0.01f) {
-        //    anim.SetBool("isMoving", true);
-        //}
-        //else
-        //{
-        //    anim.SetBool("isMoving", false);
-        //}
         if ((Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.JoystickButton7)) && !anim.GetBool("blockButton")){
 			//Debug.Log("PRESS R2");
 			//anim.SetBool("shootButton", true);
@@ -50,30 +64,7 @@ public class PlayerController : MonoBehaviour {
 		} else{
             axeAttack.SetActive(false);
 		}
-        var jump = Input.GetKeyDown(KeyCode.JoystickButton1) || Input.GetKeyDown(KeyCode.Space);
 
-
-        CharacterController.Move(axis * acceleration * Time.deltaTime, false, jump);
-
-        if (Input.GetKeyDown(KeyCode.JoystickButton3) || Input.GetKeyDown(KeyCode.E))
-        {
-            carrying = anim.GetBool("isCarrying");
-
-            if (dame.isTouching && !anim.GetBool("isCarrying"))
-            {
-                carrying = true;
-                audio.Play();
-                anim.SetBool("isCarrying", true);
-                dame.DestroyThis();
-            }
-            else if (anim.GetBool("isCarrying"))
-            {
-                anim.SetBool("isCarrying", false);
-                dame.SpawnNew(this.transform);
-            }
-
-
-        }
 
         if (Input.GetKey(KeyCode.JoystickButton2))
         {

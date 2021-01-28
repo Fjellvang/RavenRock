@@ -20,7 +20,7 @@ public class Wingirl : MonoBehaviour {
         
         if (collision.tag == "Player")
         {
-            if (controls.carrying)
+            if (false) //TODO:
             {
                 Application.LoadLevel("YouWon");
                 Debug.Log("YOU WIN");
