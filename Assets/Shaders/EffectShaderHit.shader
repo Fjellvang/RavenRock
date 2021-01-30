@@ -32,7 +32,6 @@ Shader "Unlit/EffectShaderHit"
             };
 
             sampler2D _MainTex; // skal defineres for at det virker
-            sampler2D _DisplaceTex; // skal defineres for at det virker
             float _Magnitude;
 
             v2f vert (appdata v)
@@ -48,7 +47,7 @@ Shader "Unlit/EffectShaderHit"
                 float2 center = (0.5,0.5);
                 float dist = distance(center, i.uv);
                 float4 col = tex2D(_MainTex, i.uv);
-                col.xyz *= 1 - (dist * _Magnitude);
+                col.yz *= 1 - (dist * _Magnitude);
                 return col;
             }
             ENDCG

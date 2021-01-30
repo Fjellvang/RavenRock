@@ -6,22 +6,28 @@ public class PlayerHealth : MonoBehaviour {
 
     public float health = 5;
     HealthBar hb;
+    CustomImageEffect cameraEffect;
 
-    // Use this for initialization
-    void Start () {
+    private void Awake()
+	{
+        cameraEffect = Camera.main.GetComponent<CustomImageEffect>();
+		if (cameraEffect == null)
+		{
+            Debug.LogError("NO EFFECT FOUND ON CAMERA");
+		}
+	}
+
+	// Use this for initialization
+	void Start () {
         hb = FindObjectOfType<HealthBar>();
         int pic = (int)health;
         hb.SetPicture(pic);
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
     public void TakeDmg()
     {
         Debug.Log(health);
+        cameraEffect.DoEffect();
         health--;
         
         if (health < 0)
