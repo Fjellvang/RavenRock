@@ -10,6 +10,12 @@ namespace Assets.Scripts.Player_States
 	public abstract class PlayerBaseState : BaseState<PlayerController>
 	{
 
+
+		public static readonly PlayerIdleState idleState = new PlayerIdleState();
+		public static readonly PlayerMovingState movingState = new PlayerMovingState();
+		public static readonly PlayerJumpingState jumpingState = new PlayerJumpingState();
+		public static readonly PlayerCarryingState playerCarryingState = new PlayerCarryingState();
+
 		float axis = 0;
 		bool jump = false;
 		public override void Update(PlayerController controller)
@@ -20,11 +26,11 @@ namespace Assets.Scripts.Player_States
 			if (jumpPressed)
 			{
 				jump = true;
-				controller.TransitionState(controller.jumpingState);
+				controller.TransitionState(PlayerBaseState.jumpingState);
 			}
 			if (Input.GetKeyDown(KeyCode.JoystickButton3) || Input.GetKeyDown(KeyCode.E) && controller.Dame.isTouching)
 			{
-				controller.TransitionState(controller.playerCarryingState);
+				controller.TransitionState(playerCarryingState);
 			}
 			//controller.CharacterController.Move(axis * controller.acceleration * Time.deltaTime, false, jump);
 		}

@@ -9,7 +9,7 @@ namespace Assets.Scripts.Player_States
 {
 	public class PlayerMovingState : PlayerBaseState
 	{
-		public override void OnEnterState(PlayerController controller, BaseState<PlayerController> transitionFrom)
+		public override void OnEnterState(PlayerController controller)
 		{
 			controller.Animator.SetBool("isMoving", true);
 		}
@@ -24,7 +24,7 @@ namespace Assets.Scripts.Player_States
 			if(Mathf.Abs(controller.CharacterController.Velocity.x) <= 0.01f)
 			{
 				controller.Animator.SetBool("isMoving", false);
-				controller.TransitionState(controller.idleState);
+				controller.TransitionState(idleState);
 			}
 		}
 	}

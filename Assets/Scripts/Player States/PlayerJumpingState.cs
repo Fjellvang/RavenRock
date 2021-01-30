@@ -9,11 +9,9 @@ namespace Assets.Scripts.Player_States
 {
 	public class PlayerJumpingState : PlayerBaseState
 	{
-		PlayerBaseState lastState;
-		public override void OnEnterState(PlayerController controller, BaseState<PlayerController> transitionFrom)
+		public override void OnEnterState(PlayerController controller)
 		{
 			controller.Animator.enabled = false;
-			lastState = transitionFrom as PlayerBaseState;
 		}
 
 		public override void Update(PlayerController controller)
@@ -22,7 +20,7 @@ namespace Assets.Scripts.Player_States
 			if (controller.CharacterController.Grounded)
 			{
 				Debug.Log("GROUNDED");
-				controller.TransitionState(lastState);
+				controller.PoplastState();
 			}
 		}
 

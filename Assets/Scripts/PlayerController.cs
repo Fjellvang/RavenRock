@@ -15,23 +15,26 @@ public class PlayerController : MonoBehaviour {
     public bool Blocking;
     AudioSource kissSound;
     public AudioSource KissSound => kissSound;
+    public readonly Stack<PlayerBaseState> stateStack = new Stack<PlayerBaseState>();
 
     public CharacterController2D CharacterController;
 
     PlayerBaseState currentState;
 
-    public readonly PlayerIdleState idleState = new PlayerIdleState();
-    public readonly PlayerMovingState movingState = new PlayerMovingState();
-    public readonly PlayerJumpingState jumpingState = new PlayerJumpingState();
-    public readonly PlayerCarryingState playerCarryingState = new PlayerCarryingState();
-
-
+    public void PoplastState()//TODO: Get better naming.
+	{
+        currentState.OnExitState(this);
+        currentState = stateStack.Pop();//TODO: nullcheck ?
+        Debug.Log($"popped to: {currentState}");
+        currentState.OnEnterState(this);
+	}
     public void TransitionState(PlayerBaseState newState)
 	{
         currentState.OnExitState(this);
-        var lastState = currentState;
+        stateStack.Push(currentState);
         currentState = newState;
-        currentState.OnEnterState(this, lastState);
+        Debug.Log($"transitioned to: {currentState}");
+        currentState.OnEnterState(this);
 	}
 
 
@@ -45,7 +48,7 @@ public class PlayerController : MonoBehaviour {
 
 	private void Awake()
 	{
-        currentState = idleState;
+        currentState = PlayerBaseState.idleState;
 	}
 	private void FixedUpdate()
 	{

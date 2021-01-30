@@ -15,8 +15,8 @@ namespace Assets.Scripts.Player_States
 			base.Update(controller);
 			if (Input.GetKeyDown(KeyCode.JoystickButton3) || Input.GetKeyDown(KeyCode.E))
 			{
-				//TODO: REFACOR
-				controller.TransitionState(controller.idleState);
+				//TODO: Could pop here, but for now idle should be fine
+				controller.TransitionState(idleState);
 			}
 		}
 
@@ -26,7 +26,7 @@ namespace Assets.Scripts.Player_States
 			controller.Dame.SpawnNew(controller.transform);
 		}
 
-		public override void OnEnterState(PlayerController controller, BaseState<PlayerController> transitionFrom)
+		public override void OnEnterState(PlayerController controller)
 		{
 			controller.KissSound.Play();
 			controller.Animator.SetBool("isCarrying", true);

@@ -10,7 +10,7 @@ namespace Assets.Scripts.Player_States
 	public class PlayerIdleState : PlayerBaseState
 	{
 
-		public override void OnEnterState(PlayerController controller, BaseState<PlayerController> transitionFrom)
+		public override void OnEnterState(PlayerController controller)
 		{
 		}
 
@@ -23,7 +23,7 @@ namespace Assets.Scripts.Player_States
 			base.Update(controller);
 			if(Mathf.Abs(controller.CharacterController.Velocity.x) >= (0.01f))
 			{
-				controller.TransitionState(controller.movingState);
+				controller.TransitionState(movingState);
 			}
 		}
 	}

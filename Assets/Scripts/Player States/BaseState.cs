@@ -8,7 +8,7 @@ namespace Assets.Scripts.Player_States
 {
 	public abstract class BaseState<T>
 	{
-		public abstract void OnEnterState(T controller, BaseState<T> transitionFrom);
+		public abstract void OnEnterState(T controller);
 		public abstract void Update(T controller);
 		public virtual void FixedUpdate(T controller) { }
 
