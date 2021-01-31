@@ -6,7 +6,6 @@ public class Attack : MonoBehaviour {
 
     GameObject player;
     PlayerController pController;
-    Animator anim;
     PlayerHealth playerHealth;
     AI ai;
     public bool withinRange= false;
@@ -16,7 +15,6 @@ public class Attack : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        anim = GetComponentInParent<Animator>();
         pController = FindObjectOfType<PlayerController>();
         playerHealth = FindObjectOfType<PlayerHealth>();
         orig = secs;
@@ -28,13 +26,11 @@ public class Attack : MonoBehaviour {
         
         if (withinRange)
         {
-
             secs -= Time.deltaTime;
             if (secs < 0)
             {
                 playerHealth.TakeDmg();
                 secs = orig;
-                
             }
         }
 	}
@@ -44,15 +40,12 @@ public class Attack : MonoBehaviour {
         if (collision.tag == "Player")
         {
             withinRange = true;
-            anim.SetBool("inRange", true);
-            //ai.StopMoving();
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
-            anim.SetBool("inRange", false);
             withinRange = false;
         }
     }

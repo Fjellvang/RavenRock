@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.Player_States
+namespace Assets.Scripts.States.PlayerStates
 {
-	public class PlayerCarryingState : PlayerBaseState
-		{
+	public class PlayerCarryingLadyState : PlayerLocomotiveBaseState
+	{
 
 		public override void Update(PlayerController controller)
 		{

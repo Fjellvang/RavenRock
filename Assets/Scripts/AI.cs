@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.Player_States;
+using Assets.Scripts.States.EnemyStates;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,64 +9,53 @@ public class AI : MonoBehaviour{
 
     public float moveSpeed = 10f;
 
-    GameObject player;
     Vector3 vectorTowardsPlayer;
-    bool facingRight;
-    Visible playerVision;
-    Attack atck;
     //public float Ai;
 
     public bool witinRange = false;
 
-    CharacterController2D controller;
+    [HideInInspector]
+    public CharacterController2D controller;
+    [HideInInspector]
+    public GameObject player;
+    [HideInInspector]
+    public Attack weapon;
+    [HideInInspector]
+    public Animator Animator;
 
-    
+    EnemyBaseState currentState;
 
-	// Use this for initialization
-	void Start () {
+
+    //States
+    public readonly AttackingState attackingState = new AttackingState();
+    public readonly MovingState movingState = new MovingState();
+
+    // Use this for initialization
+    void Start () {
         player = GameObject.FindWithTag("Player");
-        playerVision = FindObjectOfType<Visible>();
-        atck = FindObjectOfType<Attack>();
+        weapon = FindObjectOfType<Attack>();
+        Animator = GetComponent<Animator>();
 
+        currentState = movingState;
         controller = GetComponent<CharacterController2D>();
-        
     }
 	
-	// Update is called once per frame
-	void Update () {
-        if (atck)
-        {
-            if (witinRange && !atck.withinRange)
-            {
-                // Only move if the enemy is within range of the player
-                vectorTowardsPlayer = player.transform.position - transform.position;
-				Debug.DrawRay(transform.position, vectorTowardsPlayer, Color.blue);
-            }
-        }
 
-		bool weAreAggressiveAI = gameObject.tag == "Enemy";
-        var direction = vectorTowardsPlayer.x > 0 ? 1 : -1;
-        var directionionalForce = direction * moveSpeed * Time.deltaTime;
-        Debug.DrawRay(transform.position, new Vector3(direction, 0), Color.red);
-		if (weAreAggressiveAI)
-		{
-            controller.Move(directionionalForce, false, false);
-		}
-		else
-		{
-            controller.Move(-directionionalForce, false, false);
-		}
-        
+    public void TransitionState(EnemyBaseState newState)
+	{
+        currentState.OnExitState(this);
+        currentState = newState;
+        currentState.OnEnterState(this);
 	}
 
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    if (collision.gameObject.tag == "Player" && !pController.Blocking)
-    //    {
-    //        if (this.tag != "Monk")
-    //        {
-    //            playerHealth.TakeDmg();
-    //        }
-    //    }
-    //}
+	private void FixedUpdate()
+	{
+        currentState.FixedUpdate(this);
+	}
+
+	// Update is called once per frame
+	void Update () {
+        currentState.Update(this);
+	}
+
 }

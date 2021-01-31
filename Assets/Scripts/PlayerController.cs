@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Player_States;
+using Assets.Scripts.States.PlayerStates;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,26 +16,27 @@ public class PlayerController : MonoBehaviour {
     public bool Blocking;
     AudioSource kissSound;
     public AudioSource KissSound => kissSound;
-    public readonly Stack<PlayerBaseState> stateStack = new Stack<PlayerBaseState>();
 
     public CharacterController2D CharacterController;
 
-    PlayerBaseState currentState;
+    public readonly Stack<PlayerLocomotiveBaseState> stateStack = new Stack<PlayerLocomotiveBaseState>();
+    PlayerLocomotiveBaseState currentLocomotiveState;
+    PlayerLocomotiveBaseState currentEquipmentState;
 
     public void PoplastState()//TODO: Get better naming.
 	{
-        currentState.OnExitState(this);
-        currentState = stateStack.Pop();//TODO: nullcheck ?
-        Debug.Log($"popped to: {currentState}");
-        currentState.OnEnterState(this);
+        currentLocomotiveState.OnExitState(this);
+        currentLocomotiveState = stateStack.Pop();//TODO: nullcheck ?
+        Debug.Log($"popped to: {currentLocomotiveState}");
+        currentLocomotiveState.OnEnterState(this);
 	}
-    public void TransitionState(PlayerBaseState newState)
+    public void TransitionState(PlayerLocomotiveBaseState newState)
 	{
-        currentState.OnExitState(this);
-        stateStack.Push(currentState);
-        currentState = newState;
-        Debug.Log($"transitioned to: {currentState}");
-        currentState.OnEnterState(this);
+        currentLocomotiveState.OnExitState(this);
+        stateStack.Push(currentLocomotiveState);
+        currentLocomotiveState = newState;
+        Debug.Log($"transitioned to: {currentLocomotiveState}");
+        currentLocomotiveState.OnEnterState(this);
 	}
 
 
@@ -48,15 +50,15 @@ public class PlayerController : MonoBehaviour {
 
 	private void Awake()
 	{
-        currentState = PlayerBaseState.idleState;
+        currentLocomotiveState = PlayerLocomotiveBaseState.idleState;
 	}
 	private void FixedUpdate()
 	{
-        currentState.FixedUpdate(this);
+        currentLocomotiveState.FixedUpdate(this);
 	}
 	// Update is called once per frame
 	void Update() {
-        currentState.Update(this);
+        currentLocomotiveState.Update(this);
 
         if ((Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.JoystickButton7)) && !anim.GetBool("blockButton")){
 			//Debug.Log("PRESS R2");

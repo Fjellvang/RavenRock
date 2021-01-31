@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.Player_States
+namespace Assets.Scripts.States.PlayerStates
 {
-	public class PlayerJumpingState : PlayerBaseState
+	public class PlayerJumpingState : PlayerLocomotiveBaseState
 	{
 		public override void OnEnterState(PlayerController controller)
 		{

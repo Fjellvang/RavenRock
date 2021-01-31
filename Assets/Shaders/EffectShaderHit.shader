@@ -42,6 +42,11 @@ Shader "Unlit/EffectShaderHit"
                 return o;
             }
 
+            float random (float2 uv)
+            {
+                return frac(sin(dot(uv,float2(12.9898,78.233)))*43758.5453123);
+            }
+
             float4 frag(v2f i) : SV_Target
             {
                 float2 center = (0.5,0.5);
