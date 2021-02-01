@@ -15,7 +15,7 @@ Shader "Unlit/Dissolve"
         Cull Off ZWrite Off ZTest Always
         Pass
         {
-            //Blend SrcAlpha OneMinusSrcAlpha
+            Blend SrcAlpha OneMinusSrcAlpha
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
@@ -51,21 +51,20 @@ Shader "Unlit/Dissolve"
 
             float4 frag(v2f i) : SV_Target
             {
-                float4 col = tex2D(_MainTex, i.uv);
+                float4 originalTexture = tex2D(_MainTex, i.uv);
                 float4 dissolveTexture = tex2D(_DissolveTex, i.uv);
                 float remappedDissolve = _DissolveAmount * (1.01 + _EdgeSize) - _EdgeSize;
                 float4 step1 = step(remappedDissolve, dissolveTexture);
                 float4 step2 = step(remappedDissolve + _EdgeSize, dissolveTexture);
                 float4 edge = step1 - step2;
-                edge.w = 1;
+                edge.a = originalTexture.a;
                 edge *= _Color;
 
-                float4 texAndEdge = col + edge;
-                texAndEdge.w *= step1.r;
-                //texAndEdge.a = 231;
-                
-                //col *= float4(i.uv.x, i.uv.y,0,1);
-                return texAndEdge;
+                originalTexture.a *= step1.r;
+                float4 edgeColorArea = edge * _Color;
+                float4 combinedColor = lerp(originalTexture, edgeColorArea, edge.r);
+
+                return combinedColor;
             }
             ENDCG
         }
