@@ -12,7 +12,15 @@ Shader "Unlit/Dissolve"
     }
     SubShader
     {
-        Cull Off ZWrite Off ZTest Always
+        Tags
+		{ 
+			"Queue"="Transparent" 
+			"IgnoreProjector"="True" 
+			"RenderType"="Transparent" 
+			"PreviewType"="Plane"
+			"CanUseSpriteAtlas"="True"
+		}
+        Cull Off ZWrite Off ZTest Off
         Pass
         {
             Blend SrcAlpha OneMinusSrcAlpha
