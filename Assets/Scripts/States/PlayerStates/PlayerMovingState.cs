@@ -16,6 +16,7 @@ namespace Assets.Scripts.States.PlayerStates
 
 		public override void OnExitState(PlayerController controller)
 		{
+			controller.Animator.SetBool("isMoving", false);
 		}
 
 		public override void Update(PlayerController controller)

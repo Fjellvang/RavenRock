@@ -19,24 +19,23 @@ public class PlayerController : MonoBehaviour {
 
     public CharacterController2D CharacterController;
 
-    public readonly Stack<PlayerLocomotiveBaseState> stateStack = new Stack<PlayerLocomotiveBaseState>();
-    PlayerLocomotiveBaseState currentLocomotiveState;
-    PlayerLocomotiveBaseState currentEquipmentState;
+    public readonly Stack<PlayerBaseState> stateStack = new Stack<PlayerBaseState>();
+    PlayerBaseState currentState;
 
     public void PoplastState()//TODO: Get better naming.
 	{
-        currentLocomotiveState.OnExitState(this);
-        currentLocomotiveState = stateStack.Pop();//TODO: nullcheck ?
-        Debug.Log($"popped to: {currentLocomotiveState}");
-        currentLocomotiveState.OnEnterState(this);
+        currentState.OnExitState(this);
+        currentState = stateStack.Pop();//TODO: nullcheck ?
+        Debug.Log($"popped to: {currentState}");
+        currentState.OnEnterState(this);
 	}
-    public void TransitionState(PlayerLocomotiveBaseState newState)
+    public void TransitionState(PlayerBaseState newState)
 	{
-        currentLocomotiveState.OnExitState(this);
-        stateStack.Push(currentLocomotiveState);
-        currentLocomotiveState = newState;
-        Debug.Log($"transitioned to: {currentLocomotiveState}");
-        currentLocomotiveState.OnEnterState(this);
+        currentState.OnExitState(this);
+        stateStack.Push(currentState);
+        currentState = newState;
+        Debug.Log($"transitioned to: {currentState}");
+        currentState.OnEnterState(this);
 	}
 
 
@@ -50,39 +49,40 @@ public class PlayerController : MonoBehaviour {
 
 	private void Awake()
 	{
-        currentLocomotiveState = PlayerLocomotiveBaseState.idleState;
+        currentState = PlayerBaseState.idleState;
 	}
 	private void FixedUpdate()
 	{
-        currentLocomotiveState.FixedUpdate(this);
+        currentState.FixedUpdate(this);
 	}
 	// Update is called once per frame
 	void Update() {
-        currentLocomotiveState.Update(this);
+        currentState.Update(this);
 
-        if ((Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.JoystickButton7)) && !anim.GetBool("blockButton")){
-			//Debug.Log("PRESS R2");
-			//anim.SetBool("shootButton", true);
-			anim.Play ("Attack");
+  //      if (Input.GetButtonDown("Attack")) 
+  //      { 
+		//	//Debug.Log("PRESS R2");
+		//	//anim.SetBool("shootButton", true);
+		//	anim.Play ("Attack");
            
-            axeAttack.SetActive(true);
-		} else{
-            axeAttack.SetActive(false);
-		}
+  //          axeAttack.SetActive(true);
+		//} else{
+  //          axeAttack.SetActive(false);
+		//}
 
 
-        if (Input.GetKey(KeyCode.JoystickButton2))
-        {
-            // Circle
-            anim.SetBool("blockButton", true);
-            Blocking = true;
-            anim.Play("Blocking");
-        }
-        else
-        {
-            Blocking = false;
-            anim.SetBool("blockButton", false);
-        }
+  //      if (Input.GetButton("Block"))
+  //      {
+  //          // Circle
+  //          anim.SetBool("blockButton", true);
+  //          Blocking = true;
+  //          anim.Play("Blocking");
+  //      }
+  //      else
+  //      {
+  //          Blocking = false;
+  //          anim.SetBool("blockButton", false);
+  //      }
        
 	}
 }
