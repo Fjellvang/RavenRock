@@ -12,7 +12,6 @@ namespace Assets.Scripts.States.PlayerStates
 		{
 			inputAxis = 0;
 			controller.Animator.Play("Attack");
-			controller.axeAttack.SetActive(true);
 		}
 
 		public override void Update(PlayerController controller)
@@ -26,7 +25,6 @@ namespace Assets.Scripts.States.PlayerStates
 
 		public override void OnExitState(PlayerController controller)
 		{
-			controller.axeAttack.SetActive(false);
 		}
 	}
 }

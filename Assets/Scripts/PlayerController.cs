@@ -7,7 +7,9 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 	public float acceleration = 10f;
 
-    public GameObject axeAttack;
+    public Transform axeAttack;
+    public float attackRadius = 0.5f;
+	public LayerMask enemyMask;
     Lady dame;
     public Lady Dame => dame; //TODO: refacotr
 
@@ -26,7 +28,6 @@ public class PlayerController : MonoBehaviour {
 	{
         currentState.OnExitState(this);
         currentState = stateStack.Pop();//TODO: nullcheck ?
-        Debug.Log($"popped to: {currentState}");
         currentState.OnEnterState(this);
 	}
     public void TransitionState(PlayerBaseState newState)
@@ -34,7 +35,6 @@ public class PlayerController : MonoBehaviour {
         currentState.OnExitState(this);
         stateStack.Push(currentState);
         currentState = newState;
-        Debug.Log($"transitioned to: {currentState}");
         currentState.OnEnterState(this);
 	}
 
@@ -58,31 +58,19 @@ public class PlayerController : MonoBehaviour {
 	// Update is called once per frame
 	void Update() {
         currentState.Update(this);
+	}
 
-  //      if (Input.GetButtonDown("Attack")) 
-  //      { 
-		//	//Debug.Log("PRESS R2");
-		//	//anim.SetBool("shootButton", true);
-		//	anim.Play ("Attack");
-           
-  //          axeAttack.SetActive(true);
-		//} else{
-  //          axeAttack.SetActive(false);
-		//}
-
-
-  //      if (Input.GetButton("Block"))
-  //      {
-  //          // Circle
-  //          anim.SetBool("blockButton", true);
-  //          Blocking = true;
-  //          anim.Play("Blocking");
-  //      }
-  //      else
-  //      {
-  //          Blocking = false;
-  //          anim.SetBool("blockButton", false);
-  //      }
-       
+    public void Attack()
+	{
+        var collders = Physics2D.OverlapCircleAll(axeAttack.position, attackRadius, enemyMask);
+		for (int i = 0; i < collders.Length; i++)
+		{
+            var enemy = collders[i];
+            enemy.GetComponent<Health>().TakeDamage(10);
+		}
+	}
+	private void OnDrawGizmosSelected()
+	{
+        Gizmos.DrawSphere(axeAttack.position, attackRadius);
 	}
 }

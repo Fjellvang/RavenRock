@@ -13,12 +13,6 @@ public class ForegroundAsset : MonoBehaviour
         renderer = GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
         Debug.Log($"Ontrigger enter: {collision.name}", this);
