@@ -8,6 +8,7 @@ public class PlayerHealth : MonoBehaviour {
     HealthBar hb;
     CustomImageEffect cameraEffect;
     public AudioClip hitSound;
+    public AudioClip blockedAttackSound;
     AudioSource audioPlayer;
 
     private void Awake()
@@ -29,7 +30,14 @@ public class PlayerHealth : MonoBehaviour {
 	
     public void TakeDmg()
     {
-        Debug.Log(health);
+        //TODO: REFACTOR THIS, move this whole logic into the player... 
+		if (Input.GetButton("Block"))
+		{
+            audioPlayer.PlayOneShot(blockedAttackSound);
+            return;
+		}
+
+
         cameraEffect.DoEffect();
         audioPlayer.PlayOneShot(hitSound);
         health--;

@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour {
 
-    GameObject player;
-    PlayerController pController;
     PlayerHealth playerHealth;
-    AI ai;
     public bool withinRange= false;
 
     public float secs = 0.5f, orig;
@@ -15,10 +12,8 @@ public class Attack : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        pController = FindObjectOfType<PlayerController>();
         playerHealth = FindObjectOfType<PlayerHealth>();
         orig = secs;
-        ai = FindObjectOfType<AI>();
     }
 	
 	// Update is called once per frame
