@@ -7,10 +7,13 @@ public class PlayerHealth : MonoBehaviour {
     public float health = 5;
     HealthBar hb;
     CustomImageEffect cameraEffect;
+    public AudioClip hitSound;
+    AudioSource audioPlayer;
 
     private void Awake()
 	{
         cameraEffect = Camera.main.GetComponent<CustomImageEffect>();
+        audioPlayer = GetComponent<AudioSource>();
 		if (cameraEffect == null)
 		{
             Debug.LogError("NO EFFECT FOUND ON CAMERA");
@@ -28,6 +31,7 @@ public class PlayerHealth : MonoBehaviour {
     {
         Debug.Log(health);
         cameraEffect.DoEffect();
+        audioPlayer.PlayOneShot(hitSound);
         health--;
         
         if (health < 0)
