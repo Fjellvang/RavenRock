@@ -33,7 +33,7 @@ public class AI : MonoBehaviour{
     // Use this for initialization
     void Start () {
         player = GameObject.FindWithTag("Player");
-        weapon = FindObjectOfType<Attack>();
+        weapon = GetComponentInChildren<Attack>();
         Animator = GetComponent<Animator>();
 
         currentState = movingState;
@@ -51,6 +51,13 @@ public class AI : MonoBehaviour{
 	private void FixedUpdate()
 	{
         currentState.FixedUpdate(this);
+	}
+
+    public void Attack()
+	{
+        Debug.Log("Enemy Attacking!");
+        //TODO: this was required to access the method in animator. Investigate why.
+        this.weapon.DoAttack();
 	}
 
 	// Update is called once per frame

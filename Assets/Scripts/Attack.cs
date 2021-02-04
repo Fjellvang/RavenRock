@@ -4,31 +4,26 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour {
 
-    PlayerHealth playerHealth;
     public bool withinRange= false;
 
-    public float secs = 0.5f, orig;
-    
+    public Transform axeAttack;
+    public float attackRadius = 0.5f;
+    public LayerMask enemyMask;
 
-    // Use this for initialization
-    void Start () {
-        playerHealth = FindObjectOfType<PlayerHealth>();
-        orig = secs;
-    }
-	
-	// Update is called once per frame
-	void Update () {
-        
-        if (withinRange)
+
+    public void DoAttack()
+    {
+        var collders = Physics2D.OverlapCircleAll(axeAttack.position, attackRadius, enemyMask);
+        for (int i = 0; i < collders.Length; i++)
         {
-            secs -= Time.deltaTime;
-            if (secs < 0)
-            {
-                playerHealth.TakeDmg();
-                secs = orig;
-            }
+            var enemy = collders[i];
+            enemy.GetComponent<PlayerHealth>().TakeDmg();
         }
-	}
+    }
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawSphere(axeAttack.position, attackRadius);
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

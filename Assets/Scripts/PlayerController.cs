@@ -60,6 +60,7 @@ public class PlayerController : MonoBehaviour {
         currentState.Update(this);
 	}
 
+    //TODO: Refactor - it is too similar to enemy attack
     public void Attack()
 	{
         var collders = Physics2D.OverlapCircleAll(axeAttack.position, attackRadius, enemyMask);
