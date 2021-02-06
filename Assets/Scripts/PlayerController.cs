@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour {
     Lady dame;
     public Lady Dame => dame; //TODO: refacotr
 
-    Animator anim;
+    public Animator anim;
     public Animator Animator { get { return anim; } }
     public bool Blocking;
     AudioSource kissSound;
@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		anim = GetComponent<Animator> ();
+		//anim = GetComponentInChildren<Animator> ();
         dame = FindObjectOfType<Lady>();
         kissSound = GetComponent<AudioSource>();
         health = GetComponent<PlayerHealth>();
