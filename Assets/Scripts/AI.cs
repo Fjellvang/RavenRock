@@ -55,7 +55,6 @@ public class AI : MonoBehaviour{
 
     public void Attack()
 	{
-        Debug.Log("Enemy Attacking!");
         //TODO: this was required to access the method in animator. Investigate why.
         this.weapon.DoAttack();
 	}

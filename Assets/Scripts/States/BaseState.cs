@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Assets.Scripts.Player_States
 {
@@ -13,5 +14,6 @@ namespace Assets.Scripts.Player_States
 		public virtual void FixedUpdate(T controller) { }
 
 		public abstract void OnExitState(T controller);
+		public virtual void OnTakeDamage(T controller, Vector2 attackDirection) { }
 	}
 }

@@ -27,5 +27,19 @@ namespace Assets.Scripts.States.PlayerStates
 		{
 			controller.Animator.SetBool("blockButton", false);
 		}
+
+		public override void OnTakeDamage(PlayerController controller, Vector2 attackDirection)
+		{
+			bool attackFromLeft = attackDirection.x > 0;
+			bool facingRight = controller.CharacterController.FacingRight;
+			if (attackFromLeft && facingRight || !attackFromLeft && !facingRight)
+			{
+				//We are attacked in the back
+				controller.health.TakeDmg();
+				return;
+			}
+			controller.health.Block();
+
+		}
 	}
 }

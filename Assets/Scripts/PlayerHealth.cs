@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -30,14 +31,6 @@ public class PlayerHealth : MonoBehaviour {
 	
     public void TakeDmg()
     {
-        //TODO: REFACTOR THIS, move this whole logic into the player... 
-		if (Input.GetButton("Block"))
-		{
-            audioPlayer.PlayOneShot(blockedAttackSound);
-            return;
-		}
-
-
         cameraEffect.DoEffect();
         audioPlayer.PlayOneShot(hitSound);
         health--;
@@ -52,4 +45,10 @@ public class PlayerHealth : MonoBehaviour {
             hb.SetPicture(((int)health)-1);
         }
     }
+
+	internal void Block()
+	{
+        Debug.Log("block");
+		audioPlayer.PlayOneShot(blockedAttackSound);
+	}
 }

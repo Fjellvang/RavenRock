@@ -9,15 +9,21 @@ public class Attack : MonoBehaviour {
     public Transform axeAttack;
     public float attackRadius = 0.5f;
     public LayerMask enemyMask;
+    private Transform thisTransform;
+	private void Awake()
+	{
+        this.thisTransform = transform;
+	}
 
 
-    public void DoAttack()
+	public void DoAttack()
     {
         var collders = Physics2D.OverlapCircleAll(axeAttack.position, attackRadius, enemyMask);
         for (int i = 0; i < collders.Length; i++)
         {
             var enemy = collders[i];
-            enemy.GetComponent<PlayerHealth>().TakeDmg();
+            var attackDir = enemy.transform.position - thisTransform.position;
+            enemy.GetComponent<PlayerController>().OnTakeDamage(attackDir);
         }
     }
     private void OnDrawGizmosSelected()

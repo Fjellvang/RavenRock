@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour {
     public AudioSource KissSound => kissSound;
 
     public CharacterController2D CharacterController;
+    public PlayerHealth health;
 
     public readonly Stack<PlayerBaseState> stateStack = new Stack<PlayerBaseState>();
     PlayerBaseState currentState;
@@ -44,8 +45,13 @@ public class PlayerController : MonoBehaviour {
 		anim = GetComponent<Animator> ();
         dame = FindObjectOfType<Lady>();
         kissSound = GetComponent<AudioSource>();
+        health = GetComponent<PlayerHealth>();
 	}
 
+    public void OnTakeDamage(Vector2 attackedFrom)
+	{
+        currentState.OnTakeDamage(this, attackedFrom);
+	}
 
 	private void Awake()
 	{
