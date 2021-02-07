@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Assets.Scripts.States.PlayerStates
 {
-	public class PlayerAttackingState : PlayerBaseState
+	public class PlayerAttackingState : PlayerLocomotiveBaseState
 	{
 		public override void OnEnterState(PlayerController controller)
 		{

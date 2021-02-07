@@ -21,16 +21,13 @@ namespace Assets.Scripts.States.PlayerStates
 		public override void Update(PlayerController controller)
 		{
 			var jumpPressed = Input.GetKeyDown(KeyCode.JoystickButton1) || Input.GetKeyDown(KeyCode.Space);
-			var input = Input.GetAxis("Horizontal");
+			inputAxis = Input.GetAxis("Horizontal");
 			if (Input.GetButtonDown("Attack"))
 			{
 				controller.TransitionState(attackingState);
 			} else if (Input.GetButton("Block"))
 			{
 				controller.TransitionState(blockingState);
-			} else if(input != 0)
-			{
-				inputAxis = input;
 			}
 			if (jumpPressed && controller.CharacterController.Grounded)
 			{

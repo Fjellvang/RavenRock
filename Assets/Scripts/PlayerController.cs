@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour {
     Lady dame;
     public Lady Dame => dame; //TODO: refacotr
 
-    Animator anim;
+    public Animator anim;
     public Animator Animator { get { return anim; } }
     public bool Blocking;
     AudioSource kissSound;
@@ -21,6 +21,9 @@ public class PlayerController : MonoBehaviour {
 
     public CharacterController2D CharacterController;
     public PlayerHealth health;
+
+    public float fallMultiplier = 2.5f;
+    public float lowJumpMultiplier = 2f;
 
     public readonly Stack<PlayerBaseState> stateStack = new Stack<PlayerBaseState>();
     PlayerBaseState currentState;
@@ -42,7 +45,7 @@ public class PlayerController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		anim = GetComponent<Animator> ();
+		//anim = GetComponentInChildren<Animator> ();
         dame = FindObjectOfType<Lady>();
         kissSound = GetComponent<AudioSource>();
         health = GetComponent<PlayerHealth>();
@@ -64,6 +67,15 @@ public class PlayerController : MonoBehaviour {
 	// Update is called once per frame
 	void Update() {
         currentState.Update(this);
+        //TODO: Refactor, test with fixed update ??
+        var rb = CharacterController.m_Rigidbody2D;
+		if (rb.velocity.y < 0)
+		{
+            rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+		} else if(rb.velocity.y > 0 && !Input.GetButton("Jump"))
+		{
+            rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+		}
 	}
 
     //TODO: Refactor - it is too similar to enemy attack

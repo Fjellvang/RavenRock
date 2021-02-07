@@ -22,7 +22,7 @@ namespace Assets.Scripts.States.PlayerStates
 		public override void Update(PlayerController controller)
 		{
 			base.Update(controller);
-			if (Mathf.Abs(controller.CharacterController.Velocity.x) <= 0.01f)
+			if (Mathf.Abs(controller.CharacterController.Velocity.x) <= 0.03f)
 			{
 				controller.Animator.SetBool("isMoving", false);
 				controller.TransitionState(idleState);
