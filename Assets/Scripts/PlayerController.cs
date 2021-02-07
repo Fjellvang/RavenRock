@@ -53,6 +53,7 @@ public class PlayerController : EntityController, IAttack {
 
     public void OnTakeDamage(Vector2 attackedFrom)
 	{
+        this.CharacterController.m_Rigidbody2D.AddForce(attackedFrom*4, ForceMode2D.Impulse);
         currentState.OnTakeDamage(this, attackedFrom);
 	}
 
@@ -85,7 +86,8 @@ public class PlayerController : EntityController, IAttack {
 		for (int i = 0; i < collders.Length; i++)
 		{
             var enemy = collders[i];
-            enemy.GetComponent<Health>().TakeDamage(10);
+            var attackDelta = enemy.transform.position - this.transform.position; //could cache transform for micro optimization
+            enemy.GetComponent<Health>().TakeDamage(attackDelta);
 		}
 	}
 	private void OnDrawGizmosSelected()
