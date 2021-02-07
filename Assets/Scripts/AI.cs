@@ -4,8 +4,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public abstract class EntityController : MonoBehaviour { }
+
 [RequireComponent(typeof(CharacterController2D))]
-public class AI : MonoBehaviour{
+public class AI : EntityController, IAttack{
 
     public float moveSpeed = 10f;
 
@@ -34,7 +36,7 @@ public class AI : MonoBehaviour{
     void Start () {
         player = GameObject.FindWithTag("Player");
         weapon = GetComponentInChildren<Attack>();
-        Animator = GetComponent<Animator>();
+        Animator = GetComponentInChildren<Animator>();
 
         currentState = movingState;
         controller = GetComponent<CharacterController2D>();

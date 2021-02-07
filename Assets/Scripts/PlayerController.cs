@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : EntityController, IAttack {
 	public float acceleration = 10f;
 
     public Transform axeAttack;
