@@ -51,10 +51,10 @@ public class PlayerController : EntityController, IAttack {
         health = GetComponent<PlayerHealth>();
 	}
 
-    public void OnTakeDamage(Vector2 attackedFrom)
+    public bool OnTakeDamage(Vector2 attackedFrom)
 	{
         this.CharacterController.m_Rigidbody2D.AddForce(attackedFrom*4, ForceMode2D.Impulse);
-        currentState.OnTakeDamage(this, attackedFrom);
+        return currentState.OnTakeDamage(this, attackedFrom);
 	}
 
 	private void Awake()

@@ -28,7 +28,7 @@ namespace Assets.Scripts.States.PlayerStates
 			controller.Animator.SetBool("blockButton", false);
 		}
 
-		public override void OnTakeDamage(PlayerController controller, Vector2 attackDirection)
+		public override bool OnTakeDamage(PlayerController controller, Vector2 attackDirection)
 		{
 			bool attackFromLeft = attackDirection.x > 0;
 			bool facingRight = controller.CharacterController.FacingRight;
@@ -36,9 +36,10 @@ namespace Assets.Scripts.States.PlayerStates
 			{
 				//We are attacked in the back
 				controller.health.TakeDmg();
-				return;
+				return true;
 			}
 			controller.health.Block();
+			return false;
 
 		}
 	}
