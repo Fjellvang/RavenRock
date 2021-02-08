@@ -22,6 +22,9 @@ public class PlayerController : MonoBehaviour {
     public CharacterController2D CharacterController;
     public PlayerHealth health;
 
+    public float fallMultiplier = 2.5f;
+    public float lowJumpMultiplier = 2f;
+
     public readonly Stack<PlayerBaseState> stateStack = new Stack<PlayerBaseState>();
     PlayerBaseState currentState;
 
@@ -64,6 +67,15 @@ public class PlayerController : MonoBehaviour {
 	// Update is called once per frame
 	void Update() {
         currentState.Update(this);
+        //TODO: Refactor, test with fixed update ??
+        var rb = CharacterController.m_Rigidbody2D;
+		if (rb.velocity.y < 0)
+		{
+            rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+		} else if(rb.velocity.y > 0 && !Input.GetButton("Jump"))
+		{
+            rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+		}
 	}
 
     //TODO: Refactor - it is too similar to enemy attack

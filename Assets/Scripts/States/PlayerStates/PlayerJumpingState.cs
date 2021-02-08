@@ -17,6 +17,7 @@ namespace Assets.Scripts.States.PlayerStates
 		public override void Update(PlayerController controller)
 		{
 			base.Update(controller);
+
 			if (controller.CharacterController.Grounded)
 			{
 				Debug.Log("GROUNDED");
