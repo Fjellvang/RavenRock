@@ -9,6 +9,7 @@ namespace Assets.Scripts.States.EnemyStates
 {
 	public class EnemyBaseState : BaseState<AI>
 	{
+		protected float directionalForce = 0;
 		public override void OnEnterState(AI controller)
 		{
 		}

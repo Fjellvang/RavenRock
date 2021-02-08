@@ -16,15 +16,17 @@ public class Attack : MonoBehaviour {
 	}
 
 
-	public void DoAttack()
+	public bool DoAttack()
     {
         var collders = Physics2D.OverlapCircleAll(axeAttack.position, attackRadius, enemyMask);
+        bool successFull = true;
         for (int i = 0; i < collders.Length; i++)
         {
             var enemy = collders[i];
             var attackDir = enemy.transform.position - thisTransform.position;
-            enemy.GetComponent<PlayerController>().OnTakeDamage(attackDir);
+            successFull = enemy.GetComponent<PlayerController>().OnTakeDamage(attackDir);
         }
+        return successFull;
     }
     private void OnDrawGizmosSelected()
     {

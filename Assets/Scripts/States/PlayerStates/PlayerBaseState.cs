@@ -36,9 +36,10 @@ namespace Assets.Scripts.States.PlayerStates
 			}
 		}
 
-		public override void OnTakeDamage(PlayerController controller, Vector2 attackDirection)
+		public override bool OnTakeDamage(PlayerController controller, Vector2 attackDirection)
 		{
 			controller.health.TakeDmg();
+			return true;
 		}
 	}
 }

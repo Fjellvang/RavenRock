@@ -14,6 +14,12 @@ namespace Assets.Scripts.Player_States
 		public virtual void FixedUpdate(T controller) { }
 
 		public abstract void OnExitState(T controller);
-		public virtual void OnTakeDamage(T controller, Vector2 attackDirection) { }
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="controller"></param>
+		/// <param name="attackDirection"></param>
+		/// <returns>bool indicating whether damage was successfull</returns>
+		public virtual bool OnTakeDamage(T controller, Vector2 attackDirection) { return true; }
 	}
 }
