@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Assets.Scripts.States.PlayerStates
 {
@@ -20,12 +21,12 @@ namespace Assets.Scripts.States.PlayerStates
 		protected bool jump = false;
 		public override void Update(PlayerController controller)
 		{
-			var jumpPressed = Input.GetKeyDown(KeyCode.JoystickButton1) || Input.GetKeyDown(KeyCode.Space);
-			inputAxis = Input.GetAxis("Horizontal");
-			if (Input.GetButtonDown("Attack"))
+			var jumpPressed = controller.InputHandler.JumpPressed();
+			inputAxis = Input.GetAxis("Horizontal") + controller.joystick.Horizontal;
+			if (controller.InputHandler.AttackPressed())
 			{
 				controller.TransitionState(attackingState);
-			} else if (Input.GetButton("Block"))
+			} else if (controller.InputHandler.BlockPressed())
 			{
 				controller.TransitionState(blockingState);
 			}

@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Player_States;
+﻿using Assets.Scripts;
+using Assets.Scripts.Player_States;
 using Assets.Scripts.States.PlayerStates;
 using System.Collections;
 using System.Collections.Generic;
@@ -20,6 +21,8 @@ public class PlayerController : EntityController, IAttack {
     public AudioSource KissSound => kissSound;
 
     public CharacterController2D CharacterController;
+    public InputHandler InputHandler;
+    public Joystick joystick;
     public PlayerHealth health;
 
     public float fallMultiplier = 2.5f;
@@ -60,6 +63,8 @@ public class PlayerController : EntityController, IAttack {
 	private void Awake()
 	{
         currentState = PlayerBaseState.idleState;
+        InputHandler = new PlayerInputDebugHandler();
+        joystick = GameObject.FindGameObjectWithTag("Joystick").GetComponent<Joystick>();
 	}
 	private void FixedUpdate()
 	{
