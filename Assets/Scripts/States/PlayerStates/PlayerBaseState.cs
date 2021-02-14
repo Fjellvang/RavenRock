@@ -21,12 +21,12 @@ namespace Assets.Scripts.States.PlayerStates
 		protected bool jump = false;
 		public override void Update(PlayerController controller)
 		{
-			var jumpPressed = controller.InputHandler.JumpPressed();
+			var jumpPressed = controller.InputHandler.JumpPressed;
 			inputAxis = Input.GetAxis("Horizontal") + controller.joystick.Horizontal;
-			if (controller.InputHandler.AttackPressed())
+			if (controller.InputHandler.AttackPressed)
 			{
 				controller.TransitionState(attackingState);
-			} else if (controller.InputHandler.BlockPressed())
+			} else if (controller.InputHandler.BlockPressed)
 			{
 				controller.TransitionState(blockingState);
 			}

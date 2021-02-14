@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.Android_UI;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -8,10 +9,12 @@ public class JumpButtonHandler : MonoBehaviour, IPointerDownHandler, IPointerUpH
 	public void OnPointerDown(PointerEventData eventData)
 	{
 		Debug.Log("Pressed Jump");
+		AndroidButtonHandler.Instance.JumpPressed = true;
 	}
 
 	public void OnPointerUp(PointerEventData eventData)
 	{
 		Debug.Log("Released Jump");
+		AndroidButtonHandler.Instance.JumpPressed = false;
 	}
 }

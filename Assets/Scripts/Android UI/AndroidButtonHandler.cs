@@ -8,6 +8,10 @@ namespace Assets.Scripts.Android_UI
 {
 	public class AndroidButtonHandler : IInputHandler
 	{
+		private AndroidButtonHandler()
+		{
+
+		}
 		private static AndroidButtonHandler statickInstance;
 		public static AndroidButtonHandler Instance
 		{
@@ -19,20 +23,15 @@ namespace Assets.Scripts.Android_UI
 				return statickInstance;
 			}
 		}
-		public bool AttackPressed()
-		{
-			throw new NotImplementedException();
-		}
 
-		public bool BlockPressed()
-		{
-			throw new NotImplementedException();
+		private bool attack = false;
+		private bool block = false;
+		private bool jump = false;
+		public bool JumpPressed { 
+			get => jump; 
+			set => jump = value;
 		}
-
-
-		public bool JumpPressed()
-		{
-			throw new NotImplementedException();
-		}
+		public bool AttackPressed { get => attack; set => attack = value; }
+		public bool BlockPressed { get => block; set => block = value; }
 	}
 }

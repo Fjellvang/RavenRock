@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.Android_UI;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -7,11 +8,11 @@ public class BlockButtonHandler : MonoBehaviour, IPointerDownHandler, IPointerUp
 {
 	public void OnPointerDown(PointerEventData eventData)
 	{
-		throw new System.NotImplementedException();
+		AndroidButtonHandler.Instance.BlockPressed = true;
 	}
 
 	public void OnPointerUp(PointerEventData eventData)
 	{
-		throw new System.NotImplementedException();
+		AndroidButtonHandler.Instance.BlockPressed = false;
 	}
 }

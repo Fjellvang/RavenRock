@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts;
+using Assets.Scripts.Android_UI;
 using Assets.Scripts.Player_States;
 using Assets.Scripts.States.PlayerStates;
 using System.Collections;
@@ -63,7 +64,7 @@ public class PlayerController : EntityController, IAttack {
 	private void Awake()
 	{
         currentState = PlayerBaseState.idleState;
-        InputHandler = new PlayerInputDebugHandler();
+        InputHandler = AndroidButtonHandler.Instance;
         joystick = GameObject.FindGameObjectWithTag("Joystick").GetComponent<Joystick>();
 	}
 	private void FixedUpdate()
