@@ -8,13 +8,13 @@ using UnityEngine;
 namespace Assets.Scripts
 {
 
-	public interface InputHandler
+	public interface IInputHandler
 	{
 		bool JumpPressed();
 		bool AttackPressed();
 		bool BlockPressed();
 	}
-	public class PlayerInputDebugHandler : InputHandler
+	public class PlayerInputDebugHandler : IInputHandler
 	{
 		public bool AttackPressed()
 		{

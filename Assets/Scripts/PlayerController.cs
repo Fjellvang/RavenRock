@@ -21,7 +21,7 @@ public class PlayerController : EntityController, IAttack {
     public AudioSource KissSound => kissSound;
 
     public CharacterController2D CharacterController;
-    public InputHandler InputHandler;
+    public IInputHandler InputHandler;
     public Joystick joystick;
     public PlayerHealth health;
 
