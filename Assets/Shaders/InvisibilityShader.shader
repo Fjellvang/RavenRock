@@ -59,9 +59,9 @@
                 // sample the texture
                 float2 distortionTextureUV = i.uv * _DistortionTiling + _DistortionOffset;
                 float2 distortionNoiseOffset = tex2D(_NoiseTex, distortionTextureUV).xy * _DistortionStrength;
-                fixed4 col = tex2D(_MainTex, i.uv * _Tiling + _Offset);
-                // apply fog
-                UNITY_APPLY_FOG(i.fogCoord, col);
+                // This shader is unfinished
+                fixed4 col = tex2D(_MainTex, i.uv + distortionNoiseOffset);
+
                 return col;
             }
             ENDCG
