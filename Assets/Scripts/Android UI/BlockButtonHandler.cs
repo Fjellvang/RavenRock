@@ -9,6 +9,7 @@ public class BlockButtonHandler : MonoBehaviour, IPointerDownHandler, IPointerUp
 	public void OnPointerDown(PointerEventData eventData)
 	{
 		AndroidButtonHandler.Instance.BlockPressed = true;
+		Debug.Log("BLOCK");
 	}
 
 	public void OnPointerUp(PointerEventData eventData)

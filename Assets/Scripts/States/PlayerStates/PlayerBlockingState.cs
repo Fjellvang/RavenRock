@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.Android_UI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,7 +18,7 @@ namespace Assets.Scripts.States.PlayerStates
 		public override void Update(PlayerController controller)
 		{
 			inputAxis = 0;
-			if (!Input.GetButton("Block"))
+			if (!AndroidButtonHandler.Instance.BlockPressed)
 			{
 				controller.PoplastState();
 			}
