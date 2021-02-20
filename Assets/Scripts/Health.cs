@@ -9,16 +9,18 @@ public class Health : MonoBehaviour
 	public AudioClip hitSound;
 	public AudioSource audioPlayer;
     public GameObject monkBody;
+	private Rigidbody2D rig;
     public GameObject monkHead;
 
 	private void Awake()
 	{
 		audioPlayer = GetComponent<AudioSource>();
+		rig = GetComponent<Rigidbody2D>();
 	}
-	internal void TakeDamage(int v)
+	internal void TakeDamage(Vector2 delta)
 	{
 		audioPlayer.PlayOneShot(hitSound);
-		Debug.Log("taking dmg!");
+		rig.AddForce(delta * 3, ForceMode2D.Impulse);
         health--;
 		if (health < 0)
 		{

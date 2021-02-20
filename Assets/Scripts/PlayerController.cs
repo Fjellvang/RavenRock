@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : EntityController, IAttack {
 	public float acceleration = 10f;
 
     public Transform axeAttack;
@@ -51,9 +51,10 @@ public class PlayerController : MonoBehaviour {
         health = GetComponent<PlayerHealth>();
 	}
 
-    public void OnTakeDamage(Vector2 attackedFrom)
+    public bool OnTakeDamage(Vector2 attackedFrom)
 	{
-        currentState.OnTakeDamage(this, attackedFrom);
+        this.CharacterController.m_Rigidbody2D.AddForce(attackedFrom*4, ForceMode2D.Impulse);
+        return currentState.OnTakeDamage(this, attackedFrom);
 	}
 
 	private void Awake()
@@ -85,7 +86,8 @@ public class PlayerController : MonoBehaviour {
 		for (int i = 0; i < collders.Length; i++)
 		{
             var enemy = collders[i];
-            enemy.GetComponent<Health>().TakeDamage(10);
+            var attackDelta = enemy.transform.position - this.transform.position; //could cache transform for micro optimization
+            enemy.GetComponent<Health>().TakeDamage(attackDelta);
 		}
 	}
 	private void OnDrawGizmosSelected()
