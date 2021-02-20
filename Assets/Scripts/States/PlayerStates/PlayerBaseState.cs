@@ -21,7 +21,7 @@ namespace Assets.Scripts.States.PlayerStates
 		protected bool jump = false;
 		public override void Update(PlayerController controller)
 		{
-			var jumpPressed = controller.InputHandler.JumpPressed;
+			var jumpPressed = controller.InputHandler.JumpButtonDown;
 			inputAxis = Input.GetAxis("Horizontal") + controller.joystick.Horizontal;
 			if (controller.InputHandler.AttackPressed)
 			{

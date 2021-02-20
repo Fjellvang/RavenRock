@@ -26,12 +26,40 @@ namespace Assets.Scripts.Android_UI
 
 		private bool attack = false;
 		private bool block = false;
-		private bool jump = false;
-		public bool JumpPressed { 
-			get => jump; 
-			set => jump = value;
+		private bool jumpButtonDown = false;
+		public bool JumpButton { 
+			get
+			{
+				return jumpButtonDown;
+			}
+			set {
+				var isJumpDown = value;
+				if (isJumpDown)
+				{
+					returnedJumpButton = false;
+				}
+				else
+				{
+					returnedJumpButtonUp = false;
+				}
+				jumpButtonDown = value; 
+			}
 		}
 		public bool AttackPressed { get => attack; set => attack = value; }
 		public bool BlockPressed { get => block; set => block = value; }
+
+		bool returnedJumpButtonUp = false;
+		bool returnedJumpButton = false;
+		public bool JumpButtonDown { get
+			{
+				var retval = jumpButtonDown;
+				if (!returnedJumpButton && retval)
+				{
+					returnedJumpButton = true;
+					return true;
+				}
+				return false;
+			} 
+		}
 	}
 }

@@ -9,12 +9,12 @@ public class JumpButtonHandler : MonoBehaviour, IPointerDownHandler, IPointerUpH
 	public void OnPointerDown(PointerEventData eventData)
 	{
 		Debug.Log("Pressed Jump");
-		AndroidButtonHandler.Instance.JumpPressed = true;
+		AndroidButtonHandler.Instance.JumpButton = true;
 	}
 
 	public void OnPointerUp(PointerEventData eventData)
 	{
 		Debug.Log("Released Jump");
-		AndroidButtonHandler.Instance.JumpPressed = false;
+		AndroidButtonHandler.Instance.JumpButton = false;
 	}
 }

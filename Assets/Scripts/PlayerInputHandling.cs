@@ -10,14 +10,17 @@ namespace Assets.Scripts
 
 	public interface IInputHandler
 	{
-		bool JumpPressed { get; set; }
+		bool JumpButtonDown { get; }
+		bool JumpButton { get; set; }
 		bool AttackPressed { get; set; }
 		bool BlockPressed { get; set; }
 	}
 	public class PlayerInputDebugHandler : IInputHandler
 	{
-		public bool JumpPressed { get => Input.GetKeyDown(KeyCode.JoystickButton1) || Input.GetKeyDown(KeyCode.Space)	; set { } }
+		public bool JumpButton { get => Input.GetKeyDown(KeyCode.JoystickButton1) || Input.GetKeyDown(KeyCode.Space)	; set { } }
 		public bool AttackPressed { get => Input.GetButtonDown("Attack"); set { } }
 		public bool BlockPressed { get => Input.GetButton("Block"); set { } }
+
+		public bool JumpButtonDown { get => JumpButton; }
 	}
 }
