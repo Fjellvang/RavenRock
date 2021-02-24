@@ -18,6 +18,6 @@ public class ProjectileShooter : MonoBehaviour
 	{
         var spawned = Instantiate(Projectile, gameObject.transform.position, gameObject.transform.rotation, gameObject.transform);
         var spawnedRig = spawned.GetComponent<Rigidbody2D>();
-        spawnedRig.AddForce(gameObject.transform.right * projectTileSpeed);
+        spawnedRig.AddForce(gameObject.transform.right * gameObject.transform.localScale.x * projectTileSpeed);
 	}
 }
