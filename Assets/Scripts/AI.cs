@@ -78,4 +78,8 @@ public class AI : EntityController, IAttack{
         currentState.Update(this);
 	}
 
+	public void PowerFullAttack()
+	{
+		throw new System.NotImplementedException();
+	}
 }

@@ -17,10 +17,16 @@ public class PlayerAnimatorMethods : MonoBehaviour
 	{
 		attack.Attack();
 	}
+
+	public void CriticalAttack()
+	{
+		attack.PowerFullAttack();
+	}
 }
 
 
 interface IAttack
 {
 	void Attack();
+	void PowerFullAttack();
 }
