@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Assets.Scripts.States.EnemyStates
 {
@@ -21,7 +22,9 @@ namespace Assets.Scripts.States.EnemyStates
 
 		public override void Update(AI controller)
 		{
-			if (!controller.weapon.withinRange)
+			//TODO: Fix this. maybe add animation event or something better?
+			var inAttack = controller.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime < .9f;
+			if (!controller.weapon.withinRange && !inAttack)
 			{
 				controller.TransitionState(controller.movingState);
 			}

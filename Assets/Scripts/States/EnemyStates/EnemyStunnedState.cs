@@ -14,7 +14,7 @@ namespace Assets.Scripts.States.EnemyStates
 		public override void OnEnterState(AI controller)
 		{
 			defaultColor = controller.SpriteRenderer.color;
-			controller.SpriteRenderer.color = Color.red;
+			controller.SpriteRenderer.color = Color.yellow;
 			timer = 0;
 		}
 
