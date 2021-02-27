@@ -4,29 +4,31 @@ using UnityEngine;
 
 public class Parallax : MonoBehaviour
 {
-public Camera cam;
+	public Camera cam;
 
-public Transform subject;
+	public Transform subject;
 
-Vector2 startPosition;
+	Vector2 startPosition;
 
-float startZ;
+	float startZ;
 
-Vector2 travel => (Vector2)cam.transform.position - startPosition;
+	Vector2 travel => (Vector2)cam.transform.position - startPosition;
 
-float distanceFromSubject => transform.position.z - subject.position.z;
+	float distanceFromSubject => transform.position.z - subject.position.z;
 
-float clippingPlane => (cam.transform.position.z + (distanceFromSubject > 0 ? cam.farClipPlane : cam.nearClipPlane));
+	float clippingPlane => (cam.transform.position.z + (distanceFromSubject > 0 ? cam.farClipPlane : cam.nearClipPlane));
 
-float parallaxFactor => Mathf.Abs(distanceFromSubject) / clippingPlane;
+	float parallaxFactor => Mathf.Abs(distanceFromSubject) / clippingPlane;
 
 
-public void Start(){
-    startPosition = transform.position;
-    startZ = transform.position.z;
-}
-public void Update(){
-        Vector2 newPos = startPosition + travel * parallaxFactor;
-        transform.position = new Vector3(newPos.x, newPos.y, startZ);
-}
+	public void Start()
+	{
+		startPosition = transform.position;
+		startZ = transform.position.z;
+	}
+	public void Update()
+	{
+		Vector2 newPos = startPosition + travel * parallaxFactor;
+		transform.position = new Vector3(newPos.x, newPos.y, startZ);
+	}
 }
