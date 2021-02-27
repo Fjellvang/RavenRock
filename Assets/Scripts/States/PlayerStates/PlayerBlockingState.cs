@@ -11,7 +11,7 @@ namespace Assets.Scripts.States.PlayerStates
 	{
 		public override void OnEnterState(PlayerController controller)
 		{
-			controller.Animator.SetBool("blockButton", true);
+			controller.Animator.Play("Blocking");
 		}
 
 		public override void Update(PlayerController controller)
@@ -25,7 +25,6 @@ namespace Assets.Scripts.States.PlayerStates
 
 		public override void OnExitState(PlayerController controller)
 		{
-			controller.Animator.SetBool("blockButton", false);
 		}
 
 		public override bool OnTakeDamage(PlayerController controller, Vector2 attackDirection)

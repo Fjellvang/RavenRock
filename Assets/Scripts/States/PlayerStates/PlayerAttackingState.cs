@@ -11,7 +11,8 @@ namespace Assets.Scripts.States.PlayerStates
 	{
 		public override void OnEnterState(PlayerController controller)
 		{
-			controller.Animator.SetBool("shootButton", true);
+			controller.Animator.Play("Attack");
+			//controller.Animator.SetBool("shootButton", true);
 		}
 
 		public override void Update(PlayerController controller)
@@ -26,7 +27,7 @@ namespace Assets.Scripts.States.PlayerStates
 
 		public override void OnExitState(PlayerController controller)
 		{
-			controller.Animator.SetBool("shootButton", false);
+			//controller.Animator.SetBool("shootButton", false);
 		}
 	}
 }
