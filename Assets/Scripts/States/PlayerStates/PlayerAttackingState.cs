@@ -11,20 +11,13 @@ namespace Assets.Scripts.States.PlayerStates
 	{
 		public override void OnEnterState(PlayerController controller)
 		{
-			var diceroll = UnityEngine.Random.Range(0f, 1f);
-			if (diceroll > .6f)
-			{
-				controller.Animator.Play("Attack2");
-				return;
-			}
-			controller.Animator.Play("Attack");
+			controller.Animator.SetBool("shootButton", true);
 		}
 
 		public override void Update(PlayerController controller)
 		{
 			inputAxis = 0;
-			var state = controller.Animator.GetCurrentAnimatorStateInfo(0);
-			var isNotAttacking = !state.IsName("Attack") && !state.IsName("Attack2");
+			var isNotAttacking = !Input.GetButton("Attack");
 			if (isNotAttacking)
 			{
 				controller.PoplastState();
@@ -33,6 +26,7 @@ namespace Assets.Scripts.States.PlayerStates
 
 		public override void OnExitState(PlayerController controller)
 		{
+			controller.Animator.SetBool("shootButton", false);
 		}
 	}
 }
