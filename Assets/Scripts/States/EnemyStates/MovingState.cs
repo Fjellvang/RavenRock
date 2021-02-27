@@ -10,7 +10,7 @@ namespace Assets.Scripts.States.EnemyStates
 {
 	public class MovingState : EnemyBaseState
 	{
-		float directionalForce = 0;
+		//float directionalForce = 0;
 		public override void OnEnterState(AI controller)
 		{
 		}
@@ -37,9 +37,5 @@ namespace Assets.Scripts.States.EnemyStates
 			}
 		}
 
-		public override void FixedUpdate(AI controller)
-		{
-			controller.controller.Move(directionalForce * Time.fixedDeltaTime, false, false);
-		}
 	}
 }

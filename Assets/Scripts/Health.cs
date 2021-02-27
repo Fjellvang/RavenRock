@@ -38,11 +38,13 @@ public class Health : MonoBehaviour
 	{
 		if (health < 0)
 		{
-			Destroy(this.gameObject);
-			if (monkBody)
-				Instantiate(monkBody, transform.position, transform.rotation);
-			if (monkHead)
-				Instantiate(monkHead, transform.position += new Vector3(0, 1f, 0f), transform.rotation);
+			var ai = this.gameObject.GetComponent<AI>();
+			ai.TransitionState(ai.deadState);
+			//Destroy(this.gameObject);
+			//if (monkBody)
+			//	Instantiate(monkBody, transform.position, transform.rotation);
+			//if (monkHead)
+			//	Instantiate(monkHead, transform.position += new Vector3(0, 1f, 0f), transform.rotation);
 		}
 	}
 }
