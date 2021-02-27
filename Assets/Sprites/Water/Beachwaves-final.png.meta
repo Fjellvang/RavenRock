@@ -1,0 +1,550 @@
+fileFormatVersion: 2
+guid: 31a929d86e8a546c2ad1436a0a4c14ac
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 115110230077925434
+    second: Beachwaves-final 0
+  - first:
+      213: 848973361397374015
+    second: Beachwaves-final 1
+  - first:
+      213: -5953919407420884187
+    second: Beachwaves-final 2
+  - first:
+      213: -5582809162718999772
+    second: Beachwaves-final 3
+  - first:
+      213: -3705142796545774056
+    second: Beachwaves-final 4
+  - first:
+      213: 7533880253971898703
+    second: Beachwaves-final 5
+  - first:
+      213: 8475301752178170485
+    second: Beachwaves-final 6
+  - first:
+      213: 277907865229776234
+    second: Beachwaves-final 7
+  - first:
+      213: 7783409932674323867
+    second: Beachwaves-final 8
+  - first:
+      213: 5323614784466977038
+    second: Beachwaves-final 9
+  - first:
+      213: -6821166162037407708
+    second: Beachwaves-final 10
+  - first:
+      213: -759998989349345865
+    second: Beachwaves-final 11
+  - first:
+      213: 8339639591759064234
+    second: Beachwaves-final 12
+  - first:
+      213: -3814249769344043283
+    second: Beachwaves-final 13
+  - first:
+      213: 8348498430023259887
+    second: Beachwaves-final 14
+  - first:
+      213: -7034006027038420492
+    second: Beachwaves-final 15
+  - first:
+      213: 7343561592048727166
+    second: Beachwaves-final 16
+  - first:
+      213: -7856633913933845391
+    second: Beachwaves-final 17
+  - first:
+      213: -8252790423847227227
+    second: Beachwaves-final 18
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 8
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 350
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Beachwaves-final 0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 48
+        width: 70
+        height: 16
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a38eec5f424f89100800000000000000
+      internalID: 115110230077925434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beachwaves-final 1
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 48
+        width: 70
+        height: 16
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3c1cdd26c828cb00800000000000000
+      internalID: 848973361397374015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beachwaves-final 2
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 48
+        width: 70
+        height: 16
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52bbf5b18dd6f5da0800000000000000
+      internalID: -5953919407420884187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beachwaves-final 3
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 48
+        width: 70
+        height: 16
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42b865f35a0e582b0800000000000000
+      internalID: -5582809162718999772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beachwaves-final 4
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 48
+        width: 70
+        height: 16
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81eaac9d140b49cc0800000000000000
+      internalID: -3705142796545774056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beachwaves-final 5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 70
+        height: 16
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f41235ebc28bd8860800000000000000
+      internalID: 7533880253971898703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beachwaves-final 6
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 32
+        width: 70
+        height: 16
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57a53de1a025e9570800000000000000
+      internalID: 8475301752178170485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beachwaves-final 7
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 32
+        width: 70
+        height: 16
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a65de432bb35bd300800000000000000
+      internalID: 277907865229776234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beachwaves-final 8
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 32
+        width: 70
+        height: 16
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b95dc42781a340c60800000000000000
+      internalID: 7783409932674323867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beachwaves-final 9
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 32
+        width: 70
+        height: 16
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e010c25d07741e940800000000000000
+      internalID: 5323614784466977038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beachwaves-final 10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 16
+        width: 70
+        height: 16
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42088d504895651a0800000000000000
+      internalID: -6821166162037407708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beachwaves-final 11
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 16
+        width: 70
+        height: 16
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b52d2222f0f375f0800000000000000
+      internalID: -759998989349345865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beachwaves-final 12
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 16
+        width: 70
+        height: 16
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aac259df50a5cb370800000000000000
+      internalID: 8339639591759064234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beachwaves-final 13
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 16
+        width: 70
+        height: 16
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de6f1a52b00111bc0800000000000000
+      internalID: -3814249769344043283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beachwaves-final 14
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 16
+        width: 70
+        height: 16
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe651710713dbd370800000000000000
+      internalID: 8348498430023259887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beachwaves-final 15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 70
+        height: 16
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f11b6249c0326e90800000000000000
+      internalID: -7034006027038420492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beachwaves-final 16
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 0
+        width: 70
+        height: 16
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7434403c5299e560800000000000000
+      internalID: 7343561592048727166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beachwaves-final 17
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 0
+        width: 70
+        height: 16
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17cafadd411a7f290800000000000000
+      internalID: -7856633913933845391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beachwaves-final 18
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 0
+        width: 70
+        height: 16
+      alignment: 7
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a037dca5d2387d80800000000000000
+      internalID: -8252790423847227227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
