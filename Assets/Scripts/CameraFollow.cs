@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour {
 
-    public float dampTime = 0.15f;
  
     public GameObject target;
     float origY;

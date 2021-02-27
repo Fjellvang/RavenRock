@@ -9,12 +9,10 @@ namespace Assets.Scripts.States.EnemyStates
 {
 	public class EnemyStunnedState : EnemyBaseState
 	{
-		Color defaultColor;
 		float timer = 0;
 		public override void OnEnterState(AI controller)
 		{
-			defaultColor = controller.SpriteRenderer.color;
-			controller.SpriteRenderer.color = Color.yellow;
+			controller.Animator.Play("Stunned");
 			timer = 0;
 		}
 
@@ -25,11 +23,6 @@ namespace Assets.Scripts.States.EnemyStates
 			{
 				controller.TransitionState(controller.movingState);
 			}
-		}
-
-		public override void OnExitState(AI controller)
-		{
-			controller.SpriteRenderer.color = defaultColor;
 		}
 	}
 }

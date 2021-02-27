@@ -11,18 +11,17 @@ namespace Assets.Scripts.States.PlayerStates
 	{
 		public override void OnEnterState(PlayerController controller)
 		{
-			controller.Animator.SetBool("isMoving", true);
+			controller.Animator.Play("Run");
 		}
 
 		public override void OnExitState(PlayerController controller)
 		{
-			controller.Animator.SetBool("isMoving", false);
 		}
 
 		public override void Update(PlayerController controller)
 		{
 			base.Update(controller);
-			if (Mathf.Abs(controller.CharacterController.Velocity.x) <= 0.03f)
+			if (Mathf.Abs(controller.CharacterController.Velocity.x) <= 0.1f)
 			{
 				controller.Animator.SetBool("isMoving", false);
 				controller.TransitionState(idleState);

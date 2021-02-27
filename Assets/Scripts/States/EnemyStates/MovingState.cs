@@ -13,6 +13,7 @@ namespace Assets.Scripts.States.EnemyStates
 		//float directionalForce = 0;
 		public override void OnEnterState(AI controller)
 		{
+			controller.Animator.Play("Running");
 		}
 
 		public override void OnExitState(AI controller)
