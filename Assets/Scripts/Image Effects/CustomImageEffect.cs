@@ -9,6 +9,10 @@ public class CustomImageEffect : MonoBehaviour
 	public float flashDuration;
 
 	private IEnumerator effectCoroutine;
+	private void Start()
+	{
+		SetEffectAmount(0);
+	}
 
 	public void DoEffect()
 	{

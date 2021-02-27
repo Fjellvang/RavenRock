@@ -17,10 +17,22 @@ public class PlayerAnimatorMethods : MonoBehaviour
 	{
 		attack.Attack();
 	}
+
+	public void CriticalAttack()
+	{
+		attack.PowerFullAttack();
+	}
+
+	public void Destroy()
+	{
+		//Used in Farmer. REFACTOR
+		Destroy(gameObject);
+	}
 }
 
 
 interface IAttack
 {
 	void Attack();
+	void PowerFullAttack();
 }

@@ -37,6 +37,7 @@ public class AI : EntityController, IAttack{
     public readonly AttackingState attackingState = new AttackingState();
     public readonly MovingState movingState = new MovingState();
     public readonly EnemyStunnedState stunnedState = new EnemyStunnedState();
+    public readonly EnemyDeadState deadState = new EnemyDeadState();
 
     // Use this for initialization
     void Start () {
@@ -78,4 +79,8 @@ public class AI : EntityController, IAttack{
         currentState.Update(this);
 	}
 
+	public void PowerFullAttack()
+	{
+		throw new System.NotImplementedException();
+	}
 }

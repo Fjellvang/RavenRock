@@ -100,4 +100,17 @@ public class PlayerController : EntityController, IAttack {
 	{
         Gizmos.DrawSphere(axeAttack.position, attackRadius);
 	}
+
+	public void PowerFullAttack()
+	{
+        var collders = Physics2D.OverlapCircleAll(axeAttack.position, attackRadius, enemyMask);
+		for (int i = 0; i < collders.Length; i++)
+		{
+            var enemy = collders[i];
+            var attackDelta = enemy.transform.position - this.transform.position; //could cache transform for micro optimization
+            enemy.GetComponent<Health>().TakeCriticalDamage(attackDelta);
+            var ai=enemy.GetComponent<AI>();
+            ai.TransitionState(ai.stunnedState);
+		}
+	}
 }

@@ -17,18 +17,34 @@ public class Health : MonoBehaviour
 		audioPlayer = GetComponent<AudioSource>();
 		rig = GetComponent<Rigidbody2D>();
 	}
-	internal void TakeDamage(Vector2 delta)
+	public void TakeDamage(Vector2 delta)
 	{
 		audioPlayer.PlayOneShot(hitSound);
 		rig.AddForce(delta * 3, ForceMode2D.Impulse);
-        health--;
+		health--;
+		EvaluateHealth();
+	}
+
+	public void TakeCriticalDamage(Vector2 delta)
+	{
+		audioPlayer.PlayOneShot(hitSound);
+
+		rig.AddForce(Vector2.up * 4 + delta * 3, ForceMode2D.Impulse);
+		health -= 2;
+		EvaluateHealth();
+	}
+
+	private void EvaluateHealth()
+	{
 		if (health < 0)
 		{
-			Destroy(this.gameObject);
-			if(monkBody)
-				Instantiate(monkBody, transform.position, transform.rotation);
-			if(monkHead)
-				Instantiate(monkHead, transform.position += new Vector3(0, 1f, 0f), transform.rotation);
+			var ai = this.gameObject.GetComponent<AI>();
+			ai.TransitionState(ai.deadState);
+			//Destroy(this.gameObject);
+			//if (monkBody)
+			//	Instantiate(monkBody, transform.position, transform.rotation);
+			//if (monkHead)
+			//	Instantiate(monkHead, transform.position += new Vector3(0, 1f, 0f), transform.rotation);
 		}
 	}
 }
