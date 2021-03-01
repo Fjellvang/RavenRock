@@ -5,20 +5,33 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour {
 
  
-    public GameObject target;
-    float origY;
+	
+	[Range(0,1)]
+	public float incrementX = .1f;
+    private Transform target;
+	private Transform subject;
     // Use this for initialization
     void Start()
     {
-        origY = transform.position.y;
-        target = GameObject.FindWithTag("Player");
+		if (target == null)
+		{
+			target = GameObject.FindWithTag("Player").transform;
+		}
+		subject = transform;
+		UpdatePosition();
     }
 	
 	// Update is called once per frame
-	void Update () {
-        Vector3 pos = target.transform.position;
-        pos.y = origY;
-        pos.z = -10;
-        transform.position = pos; 
-    }
+	void Update ()
+	{
+		UpdatePosition();
+	}
+
+	private void UpdatePosition()
+	{
+		//The smoothing could just aswell be done on more axis, but kept to x for now
+		var subX = subject.position.x;
+		var x = subX + (target.position.x - subX) * incrementX;
+		transform.position = new Vector3(x, subject.position.z, subject.position.z);
+	}
 }
