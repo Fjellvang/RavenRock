@@ -6,7 +6,6 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour {
 
     public float health = 5;
-    HealthBar hb;
     CustomImageEffect cameraEffect;
     public AudioClip hitSound;
     public AudioClip blockedAttackSound;
@@ -24,9 +23,9 @@ public class PlayerHealth : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        hb = FindObjectOfType<HealthBar>();
-        int pic = (int)health;
-        hb.SetPicture(pic);
+        //hb = FindObjectOfType<HealthBar>();
+        //int pic = (int)health;
+        //hb.SetPicture(pic);
 	}
 	
     public void TakeDmg()
@@ -41,14 +40,10 @@ public class PlayerHealth : MonoBehaviour {
             Destroy(gameObject);
             Application.LoadLevel("Game Over");
         }
-        if(health < 6 && health > 0) { 
-            hb.SetPicture(((int)health)-1);
-        }
     }
 
 	internal void Block()
 	{
-        Debug.Log("block");
 		audioPlayer.PlayOneShot(blockedAttackSound);
 	}
 }

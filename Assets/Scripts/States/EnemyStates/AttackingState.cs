@@ -12,12 +12,11 @@ namespace Assets.Scripts.States.EnemyStates
 	{
 		public override void OnEnterState(AI controller)
 		{
-            controller.Animator.SetBool("inRange", true);
+			controller.Animator.Play("Attacking");
 		}
 
 		public override void OnExitState(AI controller)
 		{
-            controller.Animator.SetBool("inRange", false);
 		}
 
 		public override void Update(AI controller)
