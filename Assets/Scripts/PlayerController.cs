@@ -28,6 +28,7 @@ public class PlayerController : EntityController, IAttack {
     public readonly Stack<PlayerBaseState> stateStack = new Stack<PlayerBaseState>();
     PlayerBaseState currentState;
 
+
     public void PoplastState()//TODO: Get better naming.
 	{
         currentState.OnExitState(this);

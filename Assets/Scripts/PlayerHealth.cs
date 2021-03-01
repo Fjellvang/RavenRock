@@ -6,19 +6,18 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour {
 
     public float health = 5;
-    CustomImageEffect cameraEffect;
     public AudioClip hitSound;
     public AudioClip blockedAttackSound;
     AudioSource audioPlayer;
 
+    //Events
+    //TODO: Shoudl this be here?
+    public delegate void HitAction();
+    public static event HitAction OnHit;
+
     private void Awake()
 	{
-        cameraEffect = Camera.main.GetComponent<CustomImageEffect>();
         audioPlayer = GetComponent<AudioSource>();
-		if (cameraEffect == null)
-		{
-            Debug.LogError("NO EFFECT FOUND ON CAMERA");
-		}
 	}
 
 	// Use this for initialization
@@ -30,7 +29,10 @@ public class PlayerHealth : MonoBehaviour {
 	
     public void TakeDmg()
     {
-        cameraEffect.DoEffect();
+		if (OnHit != null)
+		{
+            OnHit();
+		}
         audioPlayer.PlayOneShot(hitSound);
         health--;
         
