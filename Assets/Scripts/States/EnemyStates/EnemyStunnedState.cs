@@ -21,7 +21,7 @@ namespace Assets.Scripts.States.EnemyStates
 			timer += Time.deltaTime;
 			if (timer > controller.stunnedDuration)
 			{
-				controller.TransitionState(controller.movingState);
+				controller.StateMachine.TransitionState(controller.StateMachine.movingState);
 			}
 		}
 	}

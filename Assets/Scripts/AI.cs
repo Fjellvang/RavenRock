@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Player_States;
+using Assets.Scripts.States;
 using Assets.Scripts.States.EnemyStates;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,9 +12,6 @@ public class AI : EntityController, IAttack{
 
     public float moveSpeed = 10f;
     public float stunnedDuration = 2f;
-
-    Vector3 vectorTowardsPlayer;
-    //public float Ai;
 
     public bool witinRange = false;
 
@@ -29,38 +27,28 @@ public class AI : EntityController, IAttack{
     [HideInInspector]
     public SpriteRenderer SpriteRenderer;
 
-    EnemyBaseState currentState;
 
+    public FarmerStateMachine StateMachine;
 
+	private void Awake()
+	{
+        StateMachine = new FarmerStateMachine(this);
+	}
 
-    //States
-    public readonly AttackingState attackingState = new AttackingState();
-    public readonly MovingState movingState = new MovingState();
-    public readonly EnemyStunnedState stunnedState = new EnemyStunnedState();
-    public readonly EnemyDeadState deadState = new EnemyDeadState();
-
-    // Use this for initialization
-    void Start () {
+	// Use this for initialization
+	void Start () {
         player = GameObject.FindWithTag("Player");
         weapon = GetComponentInChildren<Attack>();
         Animator = GetComponentInChildren<Animator>();
         SpriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
-        currentState = movingState;
         controller = GetComponent<CharacterController2D>();
     }
 	
 
-    public void TransitionState(EnemyBaseState newState)
-	{
-        currentState.OnExitState(this);
-        currentState = newState;
-        currentState.OnEnterState(this);
-	}
-
 	private void FixedUpdate()
 	{
-        currentState.FixedUpdate(this);
+        StateMachine.currentState.FixedUpdate(this);
 	}
 
     public void Attack()
@@ -70,13 +58,13 @@ public class AI : EntityController, IAttack{
 		if (!successfull)
 		{
             //we get stunned
-            TransitionState(stunnedState);
+            StateMachine.TransitionState(StateMachine.stunnedState);
 		}
 	}
 
 	// Update is called once per frame
 	void Update () {
-        currentState.Update(this);
+        StateMachine.currentState.Update(this);
 	}
 
 	public void PowerFullAttack()

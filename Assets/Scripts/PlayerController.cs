@@ -105,7 +105,7 @@ public class PlayerController : EntityController, IAttack {
             var attackDelta = enemy.transform.position - this.transform.position; //could cache transform for micro optimization
             enemy.GetComponent<Health>().TakeCriticalDamage(attackDelta);
             var ai=enemy.GetComponent<AI>();
-            ai.TransitionState(ai.stunnedState);
+            ai.StateMachine.TransitionState(ai.StateMachine.stunnedState);
 		}
 	}
 }

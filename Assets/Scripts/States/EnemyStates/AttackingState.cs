@@ -25,7 +25,7 @@ namespace Assets.Scripts.States.EnemyStates
 			var inAttack = controller.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime < .9f;
 			if (!controller.weapon.withinRange && !inAttack)
 			{
-				controller.TransitionState(controller.movingState);
+				controller.StateMachine.TransitionState(controller.StateMachine.movingState);
 			}
 		}
 	}

@@ -34,7 +34,7 @@ namespace Assets.Scripts.States.EnemyStates
 			Debug.DrawRay(controller.transform.position, new Vector3(direction, 0), Color.red);
 			if (controller.weapon.withinRange)
 			{
-				controller.TransitionState(controller.attackingState);
+				controller.StateMachine.TransitionState(controller.StateMachine.attackingState);
 			}
 		}
 

@@ -39,7 +39,7 @@ public class Health : MonoBehaviour
 		if (health < 0)
 		{
 			var ai = this.gameObject.GetComponent<AI>();
-			ai.TransitionState(ai.deadState);
+			ai.StateMachine.TransitionState(ai.StateMachine.deadState);
 			//Destroy(this.gameObject);
 			//if (monkBody)
 			//	Instantiate(monkBody, transform.position, transform.rotation);
