@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.States.EnemyStates
+namespace Assets.Scripts.States.EnemyStates.FarmerStates
 {
 	public class AttackingState : EnemyBaseState
 	{

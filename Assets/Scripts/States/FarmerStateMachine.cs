@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.States.EnemyStates;
+﻿using Assets.Scripts.States.EnemyStates.FarmerStates;
 using System;
 using System.Collections.Generic;
 using System.Linq;
