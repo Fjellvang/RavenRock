@@ -19,7 +19,7 @@ namespace Assets.Scripts.States.PlayerStates
 			inputAxis = 0;
 			if (!Input.GetButton("Block"))
 			{
-				controller.PoplastState();
+				controller.StateMachine.PoplastState();
 			}
 		}
 

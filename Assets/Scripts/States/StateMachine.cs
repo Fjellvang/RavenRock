@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace Assets.Scripts.States
 {
-	public abstract class StateMachine<T, TController> where T : BaseState<TController>
+	public abstract class StateMachine<TBaseState, TController> where TBaseState : BaseState<TController>
 	{
-		public T currentState;
+		public TBaseState currentState;
 		private TController controller;
 
-		public readonly Stack<T> stateStack = new Stack<T>();
+		public readonly Stack<TBaseState> stateStack = new Stack<TBaseState>();
 
 		public StateMachine(TController controller)
 		{
@@ -26,7 +26,7 @@ namespace Assets.Scripts.States
 			currentState.OnEnterState(controller);
 		}
 
-		public void TransitionState(T newState)
+		public void TransitionState(TBaseState newState)
 		{
 			currentState.OnExitState(controller);
 			stateStack.Push(currentState);

@@ -66,10 +66,8 @@ namespace Assets.Scripts
 
 		[ContextMenu("FireOnceTest")]
         public void FireOnce() {
-            Debug.Log("Shaker");
             StopAllCoroutines();
             StartCoroutine(ShakeAndFade(.5f));
-            Debug.Log("Shaker end");
         }
 
         [ContextMenu("ContinousShake")]

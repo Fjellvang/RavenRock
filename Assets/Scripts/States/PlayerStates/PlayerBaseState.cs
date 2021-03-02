@@ -24,15 +24,15 @@ namespace Assets.Scripts.States.PlayerStates
 			inputAxis = Input.GetAxis("Horizontal");
 			if (Input.GetButtonDown("Attack"))
 			{
-				controller.TransitionState(attackingState);
+				controller.StateMachine.TransitionState(attackingState);
 			} else if (Input.GetButton("Block"))
 			{
-				controller.TransitionState(blockingState);
+				controller.StateMachine.TransitionState(blockingState);
 			}
 			if (jumpPressed && controller.CharacterController.Grounded)
 			{
 				jump = true;
-				controller.TransitionState(jumpingState);
+				controller.StateMachine.TransitionState(jumpingState);
 			}
 		}
 

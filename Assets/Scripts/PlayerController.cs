@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Player_States;
+using Assets.Scripts.States;
 using Assets.Scripts.States.PlayerStates;
 using System.Collections;
 using System.Collections.Generic;
@@ -25,24 +26,7 @@ public class PlayerController : EntityController, IAttack {
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2f;
 
-    public readonly Stack<PlayerBaseState> stateStack = new Stack<PlayerBaseState>();
-    PlayerBaseState currentState;
-
-
-    public void PoplastState()//TODO: Get better naming.
-	{
-        currentState.OnExitState(this);
-        currentState = stateStack.Pop();//TODO: nullcheck ?
-        currentState.OnEnterState(this);
-	}
-    public void TransitionState(PlayerBaseState newState)
-	{
-        currentState.OnExitState(this);
-        stateStack.Push(currentState);
-        currentState = newState;
-        currentState.OnEnterState(this);
-	}
-
+    public PlayerStateMachine StateMachine;
 
     // Use this for initialization
     void Start () {
@@ -55,20 +39,20 @@ public class PlayerController : EntityController, IAttack {
     public bool OnTakeDamage(Vector2 attackedFrom)
 	{
         this.CharacterController.m_Rigidbody2D.AddForce(attackedFrom*4, ForceMode2D.Impulse);
-        return currentState.OnTakeDamage(this, attackedFrom);
+        return StateMachine.currentState.OnTakeDamage(this, attackedFrom);
 	}
 
 	private void Awake()
 	{
-        currentState = PlayerBaseState.idleState;
+        StateMachine = new PlayerStateMachine(this);
 	}
 	private void FixedUpdate()
 	{
-        currentState.FixedUpdate(this);
+        StateMachine.currentState.FixedUpdate(this);
 	}
 	// Update is called once per frame
 	void Update() {
-        currentState.Update(this);
+        StateMachine.currentState.Update(this);
         //TODO: Refactor, test with fixed update ??
         var rb = CharacterController.m_Rigidbody2D;
 		if (rb.velocity.y < 0)

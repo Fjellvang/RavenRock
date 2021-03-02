@@ -24,7 +24,7 @@ namespace Assets.Scripts.States.PlayerStates
 			base.Update(controller);
 			if (Mathf.Abs(controller.CharacterController.Velocity.x) >= 0.01f)
 			{
-				controller.TransitionState(movingState);
+				controller.StateMachine.TransitionState(movingState);
 			}
 		}
 	}

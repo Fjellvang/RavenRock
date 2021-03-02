@@ -16,7 +16,7 @@ namespace Assets.Scripts.States.PlayerStates
 			if (Input.GetKeyDown(KeyCode.JoystickButton3) || Input.GetKeyDown(KeyCode.E))
 			{
 				//TODO: Could pop here, but for now idle should be fine
-				controller.TransitionState(idleState);
+				controller.StateMachine.TransitionState(idleState);
 			}
 		}
 

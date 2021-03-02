@@ -21,7 +21,7 @@ namespace Assets.Scripts.States.PlayerStates
 			var isNotAttacking = !Input.GetButton("Attack");
 			if (isNotAttacking)
 			{
-				controller.PoplastState();
+				controller.StateMachine.PoplastState();
 			}
 		}
 

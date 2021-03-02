@@ -20,8 +20,7 @@ namespace Assets.Scripts.States.PlayerStates
 
 			if (controller.CharacterController.Grounded)
 			{
-				Debug.Log("GROUNDED");
-				controller.PoplastState();
+				controller.StateMachine.PoplastState();
 			}
 		}
 
