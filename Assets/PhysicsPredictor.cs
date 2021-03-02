@@ -9,6 +9,10 @@ public class PhysicsPredictor : MonoBehaviour
     public Rigidbody2D rbdy;
     [SerializeField]
     Transform target;
+    [SerializeField]
+    Transform spawnPoint;
+    [SerializeField]
+    GameObject Axe;
 
     void Start()
 	{
@@ -19,11 +23,8 @@ public class PhysicsPredictor : MonoBehaviour
 	private Vector3 CalculateVelocity(Vector3 position, Vector3 target, float angle)
 	{
         //FROM HERE: https://forum.unity.com/threads/how-to-calculate-force-needed-to-jump-towards-target-point.372288/
-        //Vector3 p = target.position;
 
         float gravity = Physics2D.gravity.magnitude;
-		// Selected angle in radians
-		//float angle = initialAngle * Mathf.Deg2Rad;
 
 		// Positions of this object and the target on the same plane
 		Vector3 planarTarget = new Vector3(target.x, 0, 0);
@@ -32,7 +33,6 @@ public class PhysicsPredictor : MonoBehaviour
 		// Planar distance between objects
 		float distance = Vector3.Distance(planarTarget, planarPostion);
         // Distance along the y axis between objects
-        //float yOffset = transform.position.y - p.y;
         var yOffset = position.y - target.y;
 
 		float initialVelocity = (1 / Mathf.Cos(angle)) * Mathf.Sqrt((0.5f * gravity * Mathf.Pow(distance, 2)) / (distance * Mathf.Tan(angle) + yOffset));
@@ -40,42 +40,36 @@ public class PhysicsPredictor : MonoBehaviour
 		Vector3 velocity = new Vector3(initialVelocity * Mathf.Sin(angle), initialVelocity * Mathf.Cos(angle), 0);
 
         // Rotate our velocity to match the direction between the two objects
-        //float angleBetweenObjects = Vector3.Angle(Vector3.up, planarTarget - planarPostion);
         Vector3 finalVelocity = quaterion * velocity;
 		if (target.x > position.x)
 		{
-            return Vector3.Reflect(finalVelocity, Vector3.right);
+            return new Vector3(-finalVelocity.x, finalVelocity.y);
 		}
         return finalVelocity;
-		//// Fire!
-		//rigid.velocity = finalVelocity;
-		//// Alternative way:
-		//// rigid.AddForce(finalVelocity * rigid.mass, ForceMode.Impulse);
 	}
 
 	// Update is called once per frame
 	void Update()
     {
-		var worldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		Vector3 dir = new Vector3(1, 2, 0).normalized;
+		Vector3 dir = new Vector3(1, 4, 0).normalized;
         var rad = Mathf.Atan2(dir.y, dir.x);
-		Debug.DrawRay(transform.position, dir);
+		Debug.DrawRay(transform.position, dir, Color.red);
         //Debug.DrawLine(this.transform.position, worldPos);
         //var delta = Vector3.Normalize(worldPos - this.transform.position);
 
 		if (Input.GetKeyDown(KeyCode.V))
 		{
-            var vel = CalculateVelocity(this.transform.position, target.position, rad);
-			if (PredictRigidBodyLandPos(rbdy, vel, out var result))
-			{
-                Debug.Log($"Found result {result}");
-			}
-			else
-			{
-                Debug.Log("Found no result");
-			}
+            var facing = target.position.x < spawnPoint.position.x ? -1 : 1;
+            var vel = CalculateVelocity(spawnPoint.position, target.position, rad);
+            var axe = Instantiate(Axe, spawnPoint.position, this.transform.rotation, this.transform);
+            var rig = axe.GetComponent<Rigidbody2D>();
+            rig.velocity = vel;
+            rig.angularVelocity = facing * -150f;
+            axe.transform.localScale = new Vector3(facing, 1);
 		}
     }
+    //This code can theoretically draw the line of the rigid bodys path given a velocity.
+    //Issue is that if it collides it will affect the world... silly.
     public struct PredictResult
     {
         public Vector3 position;
@@ -85,7 +79,7 @@ public class PhysicsPredictor : MonoBehaviour
     bool PredictRigidBodyLandPos(Rigidbody2D sourceRigidbody, Vector3 velocity, out PredictResult result)
     {
         //const float landingYPoint = 0.15f;
-        const float landingYPoint = -7f;
+        const float landingYPoint = -8f;
 
         //Disable Physics AutoSimulation
         Physics2D.simulationMode = SimulationMode2D.Script;
@@ -140,13 +134,13 @@ public class PhysicsPredictor : MonoBehaviour
         result.landingTime = landingTime;
 
         //Re-enable Physics AutoSimulation and Reset position and rotation
-        Physics2D.simulationMode = SimulationMode2D.FixedUpdate;
         sourceRigidbody.velocity = Vector3.zero;
         //sourceRigidbody.useGravity = false;
 
         sourceRigidbody.transform.position = defaultPos;
         sourceRigidbody.transform.rotation = defaultRot;
 
+        Physics2D.simulationMode = SimulationMode2D.FixedUpdate;
         return landedSuccess;
     }
 }
