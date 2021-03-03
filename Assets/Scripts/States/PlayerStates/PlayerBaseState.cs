@@ -15,6 +15,7 @@ namespace Assets.Scripts.States.PlayerStates
 		public static readonly PlayerJumpingState jumpingState = new PlayerJumpingState();
 		public static readonly PlayerAttackingState attackingState = new PlayerAttackingState();
 		public static readonly PlayerBlockingState blockingState = new PlayerBlockingState();
+		public static readonly PlayerStunnedState stunnedState = new PlayerStunnedState();
 
 		protected float inputAxis = 0;
 		protected bool jump = false;

@@ -25,10 +25,13 @@ public class PlayerController : EntityController, IAttack {
     public CharacterController2D CharacterController;
 	[HideInInspector]
     public PlayerHealth health;
+	[HideInInspector]
+	public SpriteRenderer playerRenderer;
 
 	private void Awake()
 	{
         StateMachine = new PlayerStateMachine(this);
+		playerRenderer = GetComponentInChildren<SpriteRenderer>();
 	}
 
     void Start () {
