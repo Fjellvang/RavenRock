@@ -6,46 +6,43 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : EntityController, IAttack {
-	public float acceleration = 10f;
 
     public Transform axeAttack;
     public float attackRadius = 0.5f;
 	public LayerMask enemyMask;
-    Lady dame;
-    public Lady Dame => dame; //TODO: refacotr
 
-    public Animator anim;
+    private Animator anim;
     public Animator Animator { get { return anim; } }
-    public bool Blocking;
-    AudioSource kissSound;
-    public AudioSource KissSound => kissSound;
 
-    public CharacterController2D CharacterController;
-    public PlayerHealth health;
 
+	[Header("Locomotive")]
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2f;
+	public float acceleration = 10f;
 
     public PlayerStateMachine StateMachine;
-
-    // Use this for initialization
-    void Start () {
-		//anim = GetComponentInChildren<Animator> ();
-        dame = FindObjectOfType<Lady>();
-        kissSound = GetComponent<AudioSource>();
-        health = GetComponent<PlayerHealth>();
-	}
-
-    public bool OnTakeDamage(Vector2 attackedFrom)
-	{
-        this.CharacterController.m_Rigidbody2D.AddForce(attackedFrom*4, ForceMode2D.Impulse);
-        return StateMachine.currentState.OnTakeDamage(this, attackedFrom);
-	}
+	[HideInInspector]
+    public CharacterController2D CharacterController;
+	[HideInInspector]
+    public PlayerHealth health;
 
 	private void Awake()
 	{
         StateMachine = new PlayerStateMachine(this);
 	}
+
+    void Start () {
+		anim = GetComponentInChildren<Animator>();
+        health = GetComponent<PlayerHealth>();
+		CharacterController = GetComponent<CharacterController2D>();
+	}
+
+    public bool OnTakeDamage(Vector2 attackedFrom)
+	{
+        //this.CharacterController.m_Rigidbody2D.AddForce(attackedFrom*4, ForceMode2D.Impulse);
+        return StateMachine.currentState.OnTakeDamage(this, attackedFrom);
+	}
+
 	private void FixedUpdate()
 	{
         StateMachine.currentState.FixedUpdate(this);

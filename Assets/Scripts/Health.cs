@@ -20,7 +20,7 @@ public class Health : MonoBehaviour
 	public void TakeDamage(Vector2 delta)
 	{
 		audioPlayer.PlayOneShot(hitSound);
-		rig.AddForce(delta * 3, ForceMode2D.Impulse);
+		//rig.AddForce(delta * 3, ForceMode2D.Impulse);
 		health--;
 		EvaluateHealth();
 	}
@@ -29,7 +29,7 @@ public class Health : MonoBehaviour
 	{
 		audioPlayer.PlayOneShot(hitSound);
 
-		rig.AddForce(Vector2.up * 4 + delta * 3, ForceMode2D.Impulse);
+		rig.AddForce(Vector2.up * 8 + delta * 3, ForceMode2D.Impulse);
 		health -= 2;
 		EvaluateHealth();
 	}

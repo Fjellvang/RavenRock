@@ -20,20 +20,12 @@ public class PlayerHealth : MonoBehaviour {
         audioPlayer = GetComponent<AudioSource>();
 	}
 
-	// Use this for initialization
-	void Start () {
-        //hb = FindObjectOfType<HealthBar>();
-        //int pic = (int)health;
-        //hb.SetPicture(pic);
-	}
 	
     public void TakeDmg()
     {
-		if (OnHit != null)
-		{
-            OnHit();
-		}
-        audioPlayer.PlayOneShot(hitSound);
+		OnHit?.Invoke();
+        //TODO: Make audio manager.
+		audioPlayer.PlayOneShot(hitSound);
         health--;
         
         if (health < 0)

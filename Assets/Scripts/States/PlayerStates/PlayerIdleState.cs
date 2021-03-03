@@ -12,7 +12,7 @@ namespace Assets.Scripts.States.PlayerStates
 
 		public override void OnEnterState(PlayerController controller)
 		{
-			controller.anim.Play("Idle");
+			controller.Animator.Play("Idle");
 		}
 
 		public override void OnExitState(PlayerController controller)
