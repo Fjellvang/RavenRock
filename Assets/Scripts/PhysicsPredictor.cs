@@ -2,25 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PhysicsPredictor : MonoBehaviour
+public class PhysicsPredictor //: MonoBehaviour
 {
 
     public float initialVelocity = 200f;
     public Rigidbody2D rbdy;
-    [SerializeField]
-    Transform target;
-    [SerializeField]
-    Transform spawnPoint;
-    [SerializeField]
-    GameObject Axe;
+    //[SerializeField]
+    //Transform target;
+    //[SerializeField]
+    //Transform spawnPoint;
+    //[SerializeField]
+    //GameObject Axe;
 
-    void Start()
-	{
-		CalculateVelocity(transform.position, target.position, 0);
-	}
+ //   void Start()
+	//{
+	//	CalculateVelocity(transform.position, target.position, 0);
+	//}
 
     Quaternion quaterion = Quaternion.AngleAxis(90, Vector3.forward);
-	private Vector3 CalculateVelocity(Vector3 position, Vector3 target, float angle)
+	public Vector3 CalculateVelocity(Vector3 position, Vector3 target, float angle)
 	{
         //FROM HERE: https://forum.unity.com/threads/how-to-calculate-force-needed-to-jump-towards-target-point.372288/
 
@@ -48,26 +48,6 @@ public class PhysicsPredictor : MonoBehaviour
         return finalVelocity;
 	}
 
-	// Update is called once per frame
-	void Update()
-    {
-		Vector3 dir = new Vector3(1, 4, 0).normalized;
-        var rad = Mathf.Atan2(dir.y, dir.x);
-		Debug.DrawRay(transform.position, dir, Color.red);
-        //Debug.DrawLine(this.transform.position, worldPos);
-        //var delta = Vector3.Normalize(worldPos - this.transform.position);
-
-		if (Input.GetKeyDown(KeyCode.V))
-		{
-            var facing = target.position.x < spawnPoint.position.x ? -1 : 1;
-            var vel = CalculateVelocity(spawnPoint.position, target.position, rad);
-            var axe = Instantiate(Axe, spawnPoint.position, this.transform.rotation, this.transform);
-            var rig = axe.GetComponent<Rigidbody2D>();
-            rig.velocity = vel;
-            rig.angularVelocity = facing * -150f;
-            axe.transform.localScale = new Vector3(facing, 1);
-		}
-    }
     //This code can theoretically draw the line of the rigid bodys path given a velocity.
     //Issue is that if it collides it will affect the world... silly.
     public struct PredictResult
