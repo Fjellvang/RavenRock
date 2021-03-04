@@ -48,22 +48,17 @@ namespace Assets.Scripts.States.EnemyStates.ButcherBossStates
 
 		void ThrowAxe()
 		{
-			//TODO: add randomness ??
-			var x = UnityEngine.Random.Range(-2, 2);
-			//var x = Mathf.Round(Mathf.PerlinNoise(controller.projectileTarget.position.x, controller.projectileTarget.position.y) * 4 - 2);
-			Debug.Log(x);
-			var target = new Vector2(controller.projectileTarget.position.x + x, controller.projectileTarget.position.y);
+			//Add alittle randomness to the angle
+			var x = Mathf.PerlinNoise(0, Time.time) * 2f - 1f;
 
-			var bossTransform = controller.transform;
 			//Calculate target velocity
-			var targetVelocity = controller.physicsPredictor.CalculateVelocity(bossTransform.position, target, throwDirectionAngle);
+			var targetVelocity = controller.physicsPredictor.CalculateVelocity(controller.projectileSpawnPoint.position, controller.projectileTarget.position, throwDirectionAngle + x);
 			//determine facing
 			var facing = controller.projectileTarget.position.x < controller.projectileSpawnPoint.position.x ? -1 : 1;
-			var axe = UnityEngine.Object.Instantiate(controller.projectile,bossTransform.position, bossTransform.rotation, bossTransform);
+			var axe = UnityEngine.Object.Instantiate(controller.projectile, controller.projectileSpawnPoint.position, Quaternion.identity);
 
 			var rig = axe.GetComponent<Rigidbody2D>();
 			rig.velocity = targetVelocity;
-			rig.angularVelocity = facing * -150f;
 			axe.transform.localScale = new Vector3(facing, 1);
 		}
 	}
