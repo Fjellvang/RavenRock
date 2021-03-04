@@ -8,9 +8,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour, IAttacker, IAttackable {
 
-    public Transform axeAttack;
-    public float attackRadius = 0.5f;
-	public LayerMask enemyMask;
 
     private Animator anim;
     public Animator Animator { get { return anim; } }
@@ -28,10 +25,13 @@ public class PlayerController : MonoBehaviour, IAttacker, IAttackable {
     public PlayerHealth health;
 	[HideInInspector]
 	public SpriteRenderer playerRenderer;
+	[HideInInspector]
+	public Attack attackScript;
 
 	private void Awake()
 	{
         StateMachine = new PlayerStateMachine(this);
+		attackScript = GetComponent<Attack>();
 		playerRenderer = GetComponentInChildren<SpriteRenderer>();
 	}
 
@@ -64,32 +64,21 @@ public class PlayerController : MonoBehaviour, IAttacker, IAttackable {
 		}
 	}
 
-    //TODO: Refactor - it is too similar to enemy attack
-    public void Attack()
+	private IAttackEffect[] regularAttackEffects = new IAttackEffect[]
 	{
-        var collders = Physics2D.OverlapCircleAll(axeAttack.position, attackRadius, enemyMask);
-		for (int i = 0; i < collders.Length; i++)
-		{
-            var enemy = collders[i];
-            var attackDelta = enemy.transform.position - this.transform.position; //could cache transform for micro optimization
-            enemy.GetComponent<Health>().TakeDamage(attackDelta);
-		}
-	}
-	private void OnDrawGizmosSelected()
+		new PlayerRegularAttack()
+	};
+	private IAttackEffect[] heavyAttackEffects = new IAttackEffect[]
 	{
-        Gizmos.DrawSphere(axeAttack.position, attackRadius);
+		new PlayerHeavyAttack()
+	};
+	public void Attack()
+	{
+		this.attackScript.DoAttack(regularAttackEffects);
 	}
 
 	public void PowerFullAttack()
 	{
-        var collders = Physics2D.OverlapCircleAll(axeAttack.position, attackRadius, enemyMask);
-		for (int i = 0; i < collders.Length; i++)
-		{
-            var enemy = collders[i];
-            var attackDelta = enemy.transform.position - this.transform.position; //could cache transform for micro optimization
-            enemy.GetComponent<Health>().TakeCriticalDamage(attackDelta);
-            var ai=enemy.GetComponent<AI>();
-            ai.StateMachine.TransitionState(ai.StateMachine.stunnedState);
-		}
+		this.attackScript.DoAttack(heavyAttackEffects);
 	}
 }

@@ -9,7 +9,7 @@ using UnityEngine;
 //public abstract class EntityController : MonoBehaviour { } //TODO: Why this shiet
 
 [RequireComponent(typeof(CharacterController2D))]
-public class AI : MonoBehaviour, IAttacker{
+public class AI : MonoBehaviour, IAttacker, IAttackable{
 
     public float moveSpeed = 10f;
     public float stunnedDuration = 2f;
@@ -71,5 +71,13 @@ public class AI : MonoBehaviour, IAttacker{
 	public void PowerFullAttack()
 	{
 		throw new System.NotImplementedException();
+	}
+
+	public void OnTakeDamage(GameObject attacker, IAttackEffect[] attackEffects)
+	{
+		for (int i = 0; i < attackEffects.Length; i++)
+		{
+            attackEffects[i].OnSuccessFullAttack(attacker, gameObject);
+		}
 	}
 }

@@ -25,6 +25,7 @@ public class Attack : MonoBehaviour {
         Gizmos.DrawSphere(axeAttack.position, attackRadius);
     }
 
+    //TODO: Refactor this logic...
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
