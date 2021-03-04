@@ -6,7 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour, IAttacker {
+public class PlayerController : MonoBehaviour, IAttacker, IAttackable {
 
     public Transform axeAttack;
     public float attackRadius = 0.5f;
@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour, IAttacker {
 		CharacterController = GetComponent<CharacterController2D>();
 	}
 
-	public void OnTakeDamge(GameObject attacker, IAttackEffect[] effects)
+	public void OnTakeDamage(GameObject attacker, IAttackEffect[] effects)
 	{
 		StateMachine.currentState.OnTakeDamage(this, attacker, effects);
 	}

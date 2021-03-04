@@ -10,10 +10,6 @@ public class Attack : MonoBehaviour {
     public Transform axeAttack;
     public float attackRadius = 0.5f;
     public LayerMask enemyMask;
-	private void Awake()
-	{
-	}
-
 
 	public void DoAttack(IAttackEffect[] attackEffects)
     {
@@ -21,7 +17,7 @@ public class Attack : MonoBehaviour {
         for (int i = 0; i < collders.Length; i++)
         {
             var enemy = collders[i];
-            enemy.GetComponent<PlayerController>().OnTakeDamge(this.gameObject, attackEffects);
+            enemy.GetComponent<IAttackable>().OnTakeDamage(this.gameObject, attackEffects);
         }
     }
     private void OnDrawGizmosSelected()
