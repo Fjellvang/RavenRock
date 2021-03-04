@@ -12,7 +12,7 @@ namespace Assets.Scripts.States.EnemyStates.ButcherBossStates
 	{
 		private ButcherBossController controller;
 
-		static readonly Vector3 throwDirection = new Vector3(1, 4, 0).normalized;
+		static readonly Vector3 throwDirection = new Vector3(1, 1, 0).normalized;
 		static readonly float throwDirectionAngle = Mathf.Atan2(throwDirection.y, throwDirection.x);
 		private float timeToThrow = 1;
 		private float timer = 0;
