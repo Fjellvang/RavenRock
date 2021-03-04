@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.CombatSystem;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,19 +28,34 @@ namespace Assets.Scripts.States.PlayerStates
 		{
 		}
 
-		public override bool OnTakeDamage(PlayerController controller, Vector2 attackDirection)
+		public override void OnTakeDamage(PlayerController controller, GameObject attacker, IAttackEffect[] attackEffects)
 		{
-			bool attackFromLeft = attackDirection.x > 0;
-			bool facingRight = controller.CharacterController.FacingRight;
-			if (attackFromLeft && facingRight || !attackFromLeft && !facingRight)
+			var delta = (controller.transform.position - attacker.transform.position).normalized;
+			var facing = new Vector3(controller.transform.localScale.x, 0, 0); //we flip with local scale, so use just that.
+			var dot = Vector3.Dot(delta, facing);
+			var successfullAttack = dot > 0; //Positive dot product means we are facing the same way, IE player is attacked in the back.
+			for (int i = 0; i < attackEffects.Length; i++)
 			{
-				//We are attacked in the back
-				controller.health.TakeDmg();
-				return true;
+				var effect = attackEffects[i];
+				if (successfullAttack)
+				{
+					effect.OnSuccessFullAttack(controller.gameObject);
+				}
+				else
+				{
+					effect.OnFailedAttack(attacker, controller.gameObject);
+				}
 			}
-			controller.health.Block();
-			return false;
-
+			//bool attackFromLeft = attackDirection.x > 0;
+			//bool facingRight = controller.CharacterController.FacingRight;
+			//if (attackFromLeft && facingRight || !attackFromLeft && !facingRight)
+			//{
+			//	//We are attacked in the back
+			//	controller.health.TakeDmg();
+			//	return true;
+			//}
+			//controller.health.Block();
+			//return false;
 		}
 	}
 }

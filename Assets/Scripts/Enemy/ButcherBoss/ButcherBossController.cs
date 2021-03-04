@@ -21,10 +21,13 @@ namespace Assets.Scripts.Enemy.ButcherBoss
 		public CharacterController2D controller;
 		public ButcherBossStateMachine stateMachine;
 		public PhysicsPredictor physicsPredictor = new PhysicsPredictor();
+		[HideInInspector]
+		public Attack Attack;
 
 		private void Awake()
 		{
 			stateMachine = new ButcherBossStateMachine(this);
+			Attack = GetComponent<Attack>();
 		}
 
 		private void Update()

@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Player_States;
+﻿using Assets.Scripts.CombatSystem;
+using Assets.Scripts.Player_States;
 using Assets.Scripts.States;
 using Assets.Scripts.States.PlayerStates;
 using System.Collections;
@@ -40,10 +41,9 @@ public class PlayerController : EntityController, IAttack {
 		CharacterController = GetComponent<CharacterController2D>();
 	}
 
-    public bool OnTakeDamage(Vector2 attackedFrom)
+	public void OnTakeDamge(GameObject attacker, IAttackEffect[] effects)
 	{
-        //this.CharacterController.m_Rigidbody2D.AddForce(attackedFrom*4, ForceMode2D.Impulse);
-        return StateMachine.currentState.OnTakeDamage(this, attackedFrom);
+		StateMachine.currentState.OnTakeDamage(this, attacker, effects);
 	}
 
 	private void FixedUpdate()

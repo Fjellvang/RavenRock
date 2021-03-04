@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.CombatSystem;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,17 +17,14 @@ public class Attack : MonoBehaviour {
 	}
 
 
-	public bool DoAttack()
+	public void DoAttack(IAttackEffect[] attackEffects)
     {
         var collders = Physics2D.OverlapCircleAll(axeAttack.position, attackRadius, enemyMask);
-        bool successFull = true;
         for (int i = 0; i < collders.Length; i++)
         {
             var enemy = collders[i];
-            var attackDir = enemy.transform.position - thisTransform.position;
-            successFull = enemy.GetComponent<PlayerController>().OnTakeDamage(attackDir);
+            enemy.GetComponent<PlayerController>().OnTakeDamge(this.gameObject, attackEffects);
         }
-        return successFull;
     }
     private void OnDrawGizmosSelected()
     {

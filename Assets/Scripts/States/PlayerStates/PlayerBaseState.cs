@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Player_States;
+﻿using Assets.Scripts.CombatSystem;
+using Assets.Scripts.Player_States;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,10 +38,12 @@ namespace Assets.Scripts.States.PlayerStates
 			}
 		}
 
-		public override bool OnTakeDamage(PlayerController controller, Vector2 attackDirection)
+		public override void OnTakeDamage(PlayerController controller, GameObject attacker, IAttackEffect[] attackEffects)
 		{
-			controller.health.TakeDmg();
-			return true;
+			for (int i = 0; i < attackEffects.Length; i++)
+			{
+				attackEffects[i].OnSuccessFullAttack(controller.gameObject);
+			}
 		}
 	}
 }

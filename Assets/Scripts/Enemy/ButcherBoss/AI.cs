@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Player_States;
+﻿using Assets.Scripts.CombatSystem;
+using Assets.Scripts.Player_States;
 using Assets.Scripts.States;
 using Assets.Scripts.States.EnemyStates;
 using System.Collections;
@@ -51,15 +52,21 @@ public class AI : EntityController, IAttack{
         StateMachine.currentState.FixedUpdate(this);
 	}
 
+    //TODO: get this in a cleaner manner
+    IAttackEffect[] attacks = new[]
+    {
+        new FarmerAttack()
+    };
+
     public void Attack()
 	{
         //TODO: this was required to access the method in animator. Investigate why.
-        var successfull = this.weapon.DoAttack();
-		if (!successfull)
-		{
-            //we get stunned
-            StateMachine.TransitionState(StateMachine.stunnedState);
-		}
+        weapon.DoAttack(attacks);
+		//if (!successfull)
+		//{
+  //          //we get stunned
+  //          StateMachine.TransitionState(StateMachine.stunnedState);
+		//}
 	}
 
 	// Update is called once per frame
