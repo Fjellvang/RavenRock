@@ -12,10 +12,12 @@ namespace Assets.Scripts.States.EnemyStates.ButcherBossStates
 	{
 		public override void OnEnterState(ButcherBossController controller)
 		{
+			controller.animator.Play("ButcherBossShieldBash");
 		}
 
 		public override void OnExitState(ButcherBossController controller)
 		{
+			controller.animator.Play("Idle");
 		}
 
 		public override void Update(ButcherBossController controller)

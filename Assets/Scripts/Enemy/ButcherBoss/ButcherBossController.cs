@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.States;
+﻿using Assets.Scripts.CombatSystem;
+using Assets.Scripts.States;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Enemy.ButcherBoss
 {
-	public class ButcherBossController : MonoBehaviour
+	public class ButcherBossController : MonoBehaviour, IAttacker
 	{
 		[Header("Projectile Setting")]
 		public GameObject projectile; //This axe that the boss throws
@@ -22,12 +23,15 @@ namespace Assets.Scripts.Enemy.ButcherBoss
 		public ButcherBossStateMachine stateMachine;
 		public PhysicsPredictor physicsPredictor = new PhysicsPredictor();
 		[HideInInspector]
-		public Attack Attack;
+		public Attack weapon;
+		[HideInInspector]
+		public Animator animator;
 
 		private void Awake()
 		{
 			stateMachine = new ButcherBossStateMachine(this);
-			Attack = GetComponent<Attack>();
+			weapon = GetComponent<Attack>();
+			animator = GetComponentInChildren<Animator>();
 		}
 
 		private void Update()
@@ -35,9 +39,24 @@ namespace Assets.Scripts.Enemy.ButcherBoss
 			stateMachine.currentState.Update(this);
 		}
 
+		IAttackEffect[] attackEffects = new IAttackEffect[]
+		{
+			new ButcherBossAttack()
+		};
+
+		public void Attack()
+		{
+			weapon.DoAttack(attackEffects);
+		}
+
 		private void FixedUpdate()
 		{
 			stateMachine.currentState.FixedUpdate(this);
+		}
+
+		public void PowerFullAttack()
+		{
+			throw new NotImplementedException();
 		}
 	}
 }

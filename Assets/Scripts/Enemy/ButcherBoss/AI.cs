@@ -6,10 +6,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class EntityController : MonoBehaviour { }
+//public abstract class EntityController : MonoBehaviour { } //TODO: Why this shiet
 
 [RequireComponent(typeof(CharacterController2D))]
-public class AI : EntityController, IAttack{
+public class AI : MonoBehaviour, IAttacker{
 
     public float moveSpeed = 10f;
     public float stunnedDuration = 2f;
@@ -60,13 +60,7 @@ public class AI : EntityController, IAttack{
 
     public void Attack()
 	{
-        //TODO: this was required to access the method in animator. Investigate why.
         weapon.DoAttack(attacks);
-		//if (!successfull)
-		//{
-  //          //we get stunned
-  //          StateMachine.TransitionState(StateMachine.stunnedState);
-		//}
 	}
 
 	// Update is called once per frame

@@ -39,23 +39,13 @@ namespace Assets.Scripts.States.PlayerStates
 				var effect = attackEffects[i];
 				if (successfullAttack)
 				{
-					effect.OnSuccessFullAttack(controller.gameObject);
+					effect.OnSuccessFullAttack(attacker, controller.gameObject);
 				}
 				else
 				{
 					effect.OnFailedAttack(attacker, controller.gameObject);
 				}
 			}
-			//bool attackFromLeft = attackDirection.x > 0;
-			//bool facingRight = controller.CharacterController.FacingRight;
-			//if (attackFromLeft && facingRight || !attackFromLeft && !facingRight)
-			//{
-			//	//We are attacked in the back
-			//	controller.health.TakeDmg();
-			//	return true;
-			//}
-			//controller.health.Block();
-			//return false;
 		}
 	}
 }

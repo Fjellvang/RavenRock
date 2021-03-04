@@ -10,10 +10,8 @@ public class Attack : MonoBehaviour {
     public Transform axeAttack;
     public float attackRadius = 0.5f;
     public LayerMask enemyMask;
-    private Transform thisTransform;
 	private void Awake()
 	{
-        this.thisTransform = transform;
 	}
 
 

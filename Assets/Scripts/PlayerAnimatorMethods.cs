@@ -5,22 +5,22 @@ using UnityEngine;
 //TODO: rename to something apropriate
 public class PlayerAnimatorMethods : MonoBehaviour
 {
-	public EntityController controller;
-	private IAttack attack;
+	public IAttacker attacker;
+	//private IAttack attack;
 	private void Awake()
 	{
-		controller = GetComponentInParent<EntityController>();
-		attack = controller as IAttack;
+		attacker = GetComponentInParent<IAttacker>();
+		//attack = controller as IAttack;
 	}
 
 	public void Attack()
 	{
-		attack.Attack();
+		attacker.Attack();
 	}
 
 	public void CriticalAttack()
 	{
-		attack.PowerFullAttack();
+		attacker.PowerFullAttack();
 	}
 
 	public void Destroy()
@@ -31,7 +31,7 @@ public class PlayerAnimatorMethods : MonoBehaviour
 }
 
 
-interface IAttack
+public interface IAttacker
 {
 	void Attack();
 	void PowerFullAttack();

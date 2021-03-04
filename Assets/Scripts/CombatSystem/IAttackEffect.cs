@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.States.PlayerStates;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ namespace Assets.Scripts.CombatSystem
 {
 	public interface IAttackEffect
 	{
-		void OnSuccessFullAttack(GameObject attacked);
+		void OnSuccessFullAttack(GameObject attacker, GameObject attacked);
 
 		void OnFailedAttack(GameObject attacker,GameObject attacked);
 	}
@@ -23,9 +24,29 @@ namespace Assets.Scripts.CombatSystem
 			ai.StateMachine.TransitionState(ai.StateMachine.stunnedState);
 		}
 
-		public void OnSuccessFullAttack(GameObject attacked)
+		public void OnSuccessFullAttack(GameObject attacker, GameObject attacked)
 		{
 			attacked.GetComponent<PlayerHealth>().TakeDmg();
+		}
+	}
+
+	public class ButcherBossAttack : IAttackEffect
+	{
+		public void OnFailedAttack(GameObject attacker, GameObject attacked)
+		{
+			var pc = attacked.GetComponent<PlayerController>();
+			var delta = (attacked.transform.position - attacker.transform.position).normalized;
+			pc.CharacterController.m_Rigidbody2D.AddForce(delta * 20, ForceMode2D.Impulse);
+			pc.health.TakeDmg();
+		}
+
+		public void OnSuccessFullAttack(GameObject attacker, GameObject attacked)
+		{
+			var pc = attacked.GetComponent<PlayerController>();
+			var delta = (attacked.transform.position - attacker.transform.position).normalized;
+			pc.CharacterController.m_Rigidbody2D.AddForce(delta * 20, ForceMode2D.Impulse);
+			pc.StateMachine.TransitionState(PlayerBaseState.stunnedState);
+			pc.health.TakeDmg();
 		}
 	}
 }

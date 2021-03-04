@@ -6,7 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : EntityController, IAttack {
+public class PlayerController : MonoBehaviour, IAttacker {
 
     public Transform axeAttack;
     public float attackRadius = 0.5f;

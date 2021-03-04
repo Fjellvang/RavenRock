@@ -42,7 +42,7 @@ namespace Assets.Scripts.States.PlayerStates
 		{
 			for (int i = 0; i < attackEffects.Length; i++)
 			{
-				attackEffects[i].OnSuccessFullAttack(controller.gameObject);
+				attackEffects[i].OnSuccessFullAttack(attacker, controller.gameObject);
 			}
 		}
 	}
