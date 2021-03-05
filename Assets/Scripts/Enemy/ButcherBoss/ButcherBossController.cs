@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Enemy.ButcherBoss
 {
-	public class ButcherBossController : MonoBehaviour, IAttacker
+	public class ButcherBossController : MonoBehaviour, IAttacker, IAttackable
 	{
 		[Header("Projectile Setting")]
 		public GameObject projectile; //This axe that the boss throws
@@ -26,6 +26,8 @@ namespace Assets.Scripts.Enemy.ButcherBoss
 		public Attack weapon;
 		[HideInInspector]
 		public Animator animator;
+
+		public Health meatShieldHealth;
 
 		private void Awake()
 		{
@@ -57,6 +59,11 @@ namespace Assets.Scripts.Enemy.ButcherBoss
 		public void PowerFullAttack()
 		{
 			throw new NotImplementedException();
+		}
+
+		public void OnTakeDamage(GameObject attacker, IAttackEffect[] attackEffects)
+		{
+			meatShieldHealth.TakeDamage(Vector3.zero);
 		}
 	}
 }
