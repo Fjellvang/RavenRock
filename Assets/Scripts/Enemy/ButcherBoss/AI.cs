@@ -34,7 +34,13 @@ public class AI : MonoBehaviour, IAttacker, IAttackable{
 	private void Awake()
 	{
         StateMachine = new FarmerStateMachine(this);
-	}
+        GetComponent<Health>().OnDeath += OnDeath;
+    }
+
+    private void OnDeath()
+	{
+        StateMachine.TransitionState(StateMachine.deadState);
+    }
 
 	// Use this for initialization
 	void Start () {

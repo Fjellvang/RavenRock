@@ -12,6 +12,11 @@ public class Health : MonoBehaviour
 	private Rigidbody2D rig;
 	public SpriteFlash spriteFlash;
 
+	//TODO: Shoudl this be here?
+	public delegate void DeathAction();
+	public event DeathAction OnDeath;
+
+
 	private void Awake()
 	{
 		audioPlayer = GetComponent<AudioSource>();
@@ -39,8 +44,7 @@ public class Health : MonoBehaviour
 	{
 		if (health < 0)
 		{
-			var ai = this.gameObject.GetComponent<AI>();
-			ai.StateMachine.TransitionState(ai.StateMachine.deadState);
+			OnDeath?.Invoke();
 		}
 	}
 }
