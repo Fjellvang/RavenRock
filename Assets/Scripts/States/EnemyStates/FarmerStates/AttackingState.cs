@@ -23,7 +23,7 @@ namespace Assets.Scripts.States.EnemyStates.FarmerStates
 		{
 			//TODO: Fix this. maybe add animation event or something better?
 			var inAttack = controller.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime < .9f;
-			var outOfRange = !IsPlayerInAttackRange(controller);
+			var outOfRange = !controller.weapon.WithinRange(controller.player.transform);
 			if (outOfRange && !inAttack)
 			{
 				controller.StateMachine.TransitionState(controller.StateMachine.movingState);

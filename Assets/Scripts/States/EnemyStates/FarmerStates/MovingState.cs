@@ -31,7 +31,7 @@ namespace Assets.Scripts.States.EnemyStates.FarmerStates
 			var direction = vectorTowardsPlayer.x > 0 ? 1 : -1;
 
 			directionalForce = direction * controller.moveSpeed;
-			bool withinRange = IsPlayerInAttackRange(controller);
+			bool withinRange = controller.weapon.WithinRange(controller.player.transform);
 			if (withinRange)
 			{
 				controller.StateMachine.TransitionState(controller.StateMachine.attackingState);

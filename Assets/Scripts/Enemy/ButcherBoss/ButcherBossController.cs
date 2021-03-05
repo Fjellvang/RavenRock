@@ -26,11 +26,14 @@ namespace Assets.Scripts.Enemy.ButcherBoss
 		public Attack weapon;
 		[HideInInspector]
 		public Animator animator;
+		[HideInInspector]
+		public GameObject player;
 
 		public Health meatShieldHealth;
 
 		private void Awake()
 		{
+			player = GameObject.FindWithTag("Player");
 			stateMachine = new ButcherBossStateMachine(this);
 			weapon = GetComponent<Attack>();
 			animator = GetComponentInChildren<Animator>();

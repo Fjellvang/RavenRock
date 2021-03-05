@@ -11,6 +11,7 @@ namespace Assets.Scripts.States
 	public class ButcherBossStateMachine : StateMachine<ButcherBossBaseState, ButcherBossController>
 	{
 		public ButcherBossIdleState idleState = new ButcherBossIdleState();
+		public ButcherBossWithinRangeState withinRangeState = new ButcherBossWithinRangeState();
 		public ButcherBossThrowingState throwingState = new ButcherBossThrowingState();
 
 		public ButcherBossStateMachine(ButcherBossController controller) : base(controller)

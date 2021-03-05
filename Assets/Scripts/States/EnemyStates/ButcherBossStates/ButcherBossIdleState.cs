@@ -12,7 +12,8 @@ namespace Assets.Scripts.States.EnemyStates.ButcherBossStates
 	{
 		public override void OnEnterState(ButcherBossController controller)
 		{
-			controller.animator.Play("ButcherBossShieldBash");
+			//controller.animator.Play("ButcherBossShieldBash");
+			controller.animator.Play("Idle");
 		}
 
 		public override void OnExitState(ButcherBossController controller)
@@ -26,6 +27,11 @@ namespace Assets.Scripts.States.EnemyStates.ButcherBossStates
 			var direction = targetDelta > 1 ? 1 : -1;
 			directionalForce = direction * controller.movementSpeed;
 
+			var inRange = controller.weapon.WithinRange(controller.player.transform);
+			if (inRange)
+			{
+				controller.stateMachine.TransitionState(controller.stateMachine.withinRangeState);
+			}
 			if (Mathf.Abs(targetDelta) > controller.projectileRange)
 			{
 				controller.stateMachine.TransitionState(controller.stateMachine.throwingState);

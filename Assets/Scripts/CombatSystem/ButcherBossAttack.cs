@@ -15,7 +15,7 @@ namespace Assets.Scripts.CombatSystem
 			var pc = attacked.GetComponent<PlayerController>();
 			var delta = (attacked.transform.position - attacker.transform.position).normalized;
 			delta.y += 1f;
-			pc.CharacterController.m_Rigidbody2D.AddForce(delta * 10, ForceMode2D.Impulse);
+			pc.CharacterController.m_Rigidbody2D.AddForce(delta * 1, ForceMode2D.Impulse);
 			pc.health.TakeDmg();
 		}
 
@@ -24,7 +24,7 @@ namespace Assets.Scripts.CombatSystem
 			var pc = attacked.GetComponent<PlayerController>();
 			var delta = (attacked.transform.position - attacker.transform.position).normalized;
 			delta.y += 1f;
-			pc.CharacterController.m_Rigidbody2D.AddForce(delta * 10, ForceMode2D.Impulse);
+			pc.CharacterController.m_Rigidbody2D.AddForce(delta * 5, ForceMode2D.Impulse);
 			pc.StateMachine.TransitionState(PlayerBaseState.stunnedState);
 			pc.health.TakeDmg();
 		}

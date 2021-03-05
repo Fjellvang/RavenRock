@@ -22,4 +22,11 @@ public class Attack : MonoBehaviour {
     {
         Gizmos.DrawSphere(axeAttack.position, attackRadius);
     }
+
+    public bool WithinRange(Transform transform)
+    {
+        var weaponToPlayer = axeAttack.position - transform.position;
+        var withinRange = Mathf.Abs(weaponToPlayer.x) <= attackRadius;
+        return withinRange;
+    }
 }
