@@ -27,12 +27,15 @@ public class PlayerController : MonoBehaviour, IAttacker, IAttackable {
 	public SpriteRenderer playerRenderer;
 	[HideInInspector]
 	public Attack attackScript;
+	[HideInInspector]
+	public SpriteFlash flash;
 
 	private void Awake()
 	{
         StateMachine = new PlayerStateMachine(this);
 		attackScript = GetComponent<Attack>();
 		playerRenderer = GetComponentInChildren<SpriteRenderer>();
+		flash = GetComponent<SpriteFlash>();
 	}
 
     void Start () {

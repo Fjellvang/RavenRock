@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.CombatSystem;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,15 +8,40 @@ using UnityEngine;
 
 namespace Assets.Scripts.Enemy.ButcherBoss
 {
-	public class ButcherCleaver : MonoBehaviour
+	public class ButcherCleaver : MonoBehaviour, IAttackable
 	{
 		public Rigidbody2D rig;
+
+		public void OnTakeDamage(GameObject attacker, IAttackEffect[] attackEffects)
+		{
+			var delta = transform.position - attacker.transform.position;
+			rig.AddForce(delta * 20, ForceMode2D.Impulse);
+		}
+
+		public void PowerFullAttack()
+		{
+			throw new NotImplementedException();
+		}
+
 		private void Awake()
 		{
 			rig = GetComponent<Rigidbody2D>();
 		}
+
+		private IAttackEffect[] attackEffects = new IAttackEffect[]
+		{
+			new ButcherCleaverAttack()
+		};
 		private void OnCollisionEnter2D(Collision2D collision)
 		{
+			if (collision.gameObject.CompareTag("Attack"))
+			{
+				return;
+			}
+			if (collision.gameObject.TryGetComponent<IAttackable>(out var attackable))
+			{
+				attackable.OnTakeDamage(gameObject, attackEffects);
+			}
 			rig.simulated = false;
 			GetComponent<CircleCollider2D>().enabled = false;
 			Destroy(gameObject, 1);

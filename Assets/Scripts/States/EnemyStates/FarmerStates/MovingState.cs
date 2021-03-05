@@ -38,11 +38,5 @@ namespace Assets.Scripts.States.EnemyStates.FarmerStates
 			}
 		}
 
-		private static bool IsPlayerInAttackRange(AI controller)
-		{
-			var weaponToPlayer = controller.weapon.axeAttack.position - controller.player.transform.position;
-			var withinRange = Mathf.Abs(weaponToPlayer.x) <= controller.weapon.attackRadius;
-			return withinRange;
-		}
 	}
 }
