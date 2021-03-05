@@ -13,7 +13,6 @@ namespace Assets.Scripts.States.EnemyStates.ButcherBossStates
 		private ButcherBossPigPickup target;
 		public override void OnEnterState(ButcherBossController controller)
 		{
-			controller.meatShieldHealth.gameObject.SetActive(false);
 			target = controller.remainingShields.First();
 			controller.remainingShields.Remove(target);
 		}
