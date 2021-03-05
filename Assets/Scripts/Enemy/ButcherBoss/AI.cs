@@ -14,7 +14,7 @@ public class AI : MonoBehaviour, IAttacker, IAttackable{
     public float moveSpeed = 10f;
     public float stunnedDuration = 2f;
 
-    public bool witinRange = false;
+    public bool playerVisible = false;
 
     [HideInInspector]
     public CharacterController2D controller;

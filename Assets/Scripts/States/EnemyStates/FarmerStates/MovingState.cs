@@ -22,7 +22,7 @@ namespace Assets.Scripts.States.EnemyStates.FarmerStates
 
 		public override void Update(AI controller)
 		{
-			if (!controller.witinRange)
+			if (!controller.playerVisible)
 			{
 				return;
 			}
@@ -31,11 +31,18 @@ namespace Assets.Scripts.States.EnemyStates.FarmerStates
 			var direction = vectorTowardsPlayer.x > 0 ? 1 : -1;
 
 			directionalForce = direction * controller.moveSpeed;
-			if (controller.weapon.withinRange)
+			bool withinRange = IsPlayerInAttackRange(controller);
+			if (withinRange)
 			{
 				controller.StateMachine.TransitionState(controller.StateMachine.attackingState);
 			}
 		}
 
+		private static bool IsPlayerInAttackRange(AI controller)
+		{
+			var weaponToPlayer = controller.weapon.axeAttack.position - controller.player.transform.position;
+			var withinRange = Mathf.Abs(weaponToPlayer.x) <= controller.weapon.attackRadius;
+			return withinRange;
+		}
 	}
 }

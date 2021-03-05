@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour {
 
-    public bool withinRange= false;
-
     public Transform axeAttack;
     public float attackRadius = 0.5f;
     public LayerMask enemyMask;
@@ -24,21 +22,4 @@ public class Attack : MonoBehaviour {
     {
         Gizmos.DrawSphere(axeAttack.position, attackRadius);
     }
-
-    //TODO: Refactor this logic...
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == "Player")
-        {
-            withinRange = true;
-        }
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.tag == "Player")
-        {
-            withinRange = false;
-        }
-    }
-
 }

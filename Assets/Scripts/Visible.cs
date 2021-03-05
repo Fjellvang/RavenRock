@@ -13,11 +13,11 @@ public class Visible : MonoBehaviour {
     {
 		SetWithinRange(collision, false);
     }
-	private static void SetWithinRange(Collider2D collision, bool withinRange)
+	private static void SetWithinRange(Collider2D collision, bool playerVisible)
 	{
 		if ((collision.tag == "Enemy" || collision.tag == "Monk") && collision.gameObject.TryGetComponent<AI>(out var ai))
 		{
-			ai.witinRange = withinRange;
+			ai.playerVisible = playerVisible;
 		}
 	}
 }

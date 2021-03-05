@@ -27,5 +27,11 @@ namespace Assets.Scripts.States.EnemyStates.FarmerStates
 			controller.controller.Move(directionalForce * Time.fixedDeltaTime, false, false);
 		}
 
+		protected static bool IsPlayerInAttackRange(AI controller)
+		{
+			var weaponToPlayer = controller.weapon.axeAttack.position - controller.player.transform.position;
+			var withinRange = Mathf.Abs(weaponToPlayer.x) <= controller.weapon.attackRadius;
+			return withinRange;
+		}
 	}
 }
