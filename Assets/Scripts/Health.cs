@@ -29,6 +29,7 @@ public class Health : MonoBehaviour
 	public void ResetHealth()
 	{
 		health = originalHealth;
+		spriteFlash.EnsureReset();
 	}
 	public void TakeDamage(Vector2 delta)
 	{
