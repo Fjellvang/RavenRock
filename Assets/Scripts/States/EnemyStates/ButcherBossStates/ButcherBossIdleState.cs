@@ -25,7 +25,7 @@ namespace Assets.Scripts.States.EnemyStates.ButcherBossStates
 		{
 			var targetDelta = (controller.projectileTarget.position.x - controller.transform.position.x);
 			var direction = targetDelta > 1 ? 1 : -1;
-			directionalForce = direction * controller.movementSpeed;
+			directionalForce = direction;
 
 			var inRange = controller.weapon.WithinRange(controller.player.transform);
 			if (inRange)

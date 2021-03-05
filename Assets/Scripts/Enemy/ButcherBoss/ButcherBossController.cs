@@ -28,8 +28,14 @@ namespace Assets.Scripts.Enemy.ButcherBoss
 		public Animator animator;
 		[HideInInspector]
 		public GameObject player;
+		[HideInInspector]
+		public SpriteRenderer spriteRenderer;
 
 		public Health meatShieldHealth;
+		public Health bossHealth;
+
+
+		public List<ButcherBossPigPickup> remainingShields = new List<ButcherBossPigPickup>();
 
 		private void Awake()
 		{
@@ -37,6 +43,24 @@ namespace Assets.Scripts.Enemy.ButcherBoss
 			stateMachine = new ButcherBossStateMachine(this);
 			weapon = GetComponent<Attack>();
 			animator = GetComponentInChildren<Animator>();
+			spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+
+			remainingShields = GameObject.FindGameObjectsWithTag("PigPickup").Select(x => x.GetComponent<ButcherBossPigPickup>()).ToList();
+
+			meatShieldHealth.OnDeath += EvaluateShield;
+		}
+
+		private void EvaluateShield()
+		{
+			meatShieldHealth.gameObject.SetActive(false);
+			var shieldsRemaning = remainingShields.Count > 0;
+			if (shieldsRemaning)
+			{
+				stateMachine.TransitionState(stateMachine.searchForShieldState);
+				return;
+			}
+
+			stateMachine.TransitionState(stateMachine.enrageState);
 		}
 
 		private void Update()
@@ -66,7 +90,8 @@ namespace Assets.Scripts.Enemy.ButcherBoss
 
 		public void OnTakeDamage(GameObject attacker, IAttackEffect[] attackEffects)
 		{
-			meatShieldHealth.TakeDamage(Vector3.zero);
+			stateMachine.currentState.OnTakeDamage(this, attacker, attackEffects);
+			//TODO: Use the attack effects.. currently needs refactor as player attack adds force. we dont want that on the boss.
 		}
 	}
 }

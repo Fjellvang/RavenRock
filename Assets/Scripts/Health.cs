@@ -16,12 +16,19 @@ public class Health : MonoBehaviour
 	public delegate void DeathAction();
 	public event DeathAction OnDeath;
 
+	private float originalHealth = 0;
 
 	private void Awake()
 	{
 		audioPlayer = GetComponent<AudioSource>();
 		rig = GetComponent<Rigidbody2D>();
 		spriteFlash = GetComponent<SpriteFlash>();
+		originalHealth = health;
+	}
+
+	public void ResetHealth()
+	{
+		health = originalHealth;
 	}
 	public void TakeDamage(Vector2 delta)
 	{

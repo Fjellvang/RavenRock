@@ -15,6 +15,7 @@ namespace Assets.Scripts.CombatSystem
 
 		public void OnSuccessFullAttack(GameObject attacker, GameObject attacked)
 		{
+			//TODO: REFACTOR This works SHIT with the boss...
             var attackDelta = attacked.transform.position - attacker.transform.position; //could cache transform for micro optimization
             attacked.GetComponent<Health>().TakeCriticalDamage(attackDelta);
             var ai= attacked.GetComponent<AI>();
