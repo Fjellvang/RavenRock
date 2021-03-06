@@ -9,13 +9,13 @@ using UnityEngine;
 //public abstract class EntityController : MonoBehaviour { } //TODO: Why this shiet
 
 [RequireComponent(typeof(CharacterController2D))]
-public class AI : MonoBehaviour, IAttacker, IAttackable{
+public class AI : MonoBehaviour, IAttacker, IAttackable, IStunnable {
 
     public float moveSpeed = 10f;
+    [HideInInspector]
     public float stunnedDuration = 2f;
-
+    [HideInInspector]
     public bool playerVisible = false;
-
     [HideInInspector]
     public CharacterController2D controller;
     [HideInInspector]
@@ -85,5 +85,11 @@ public class AI : MonoBehaviour, IAttacker, IAttackable{
 		{
             attackEffects[i].OnSuccessFullAttack(attacker, gameObject);
 		}
+	}
+
+	public void Stun(float duration)
+	{
+        this.stunnedDuration = duration;
+        this.StateMachine.TransitionState(StateMachine.stunnedState);
 	}
 }

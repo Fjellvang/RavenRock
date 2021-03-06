@@ -17,7 +17,7 @@ namespace Assets.Scripts.CombatSystem
 		{
 			//Same TODO as Heavy attack... Maybe introduce attacked effect...
             //var attackDelta = attacked.transform.position - attacker.transform.position; //could cache transform for micro optimization
-            attacked.GetComponent<Health>().TakeDamage(Vector3.zero);
+            attacked.GetComponent<Health>().TakeDamage(attacker);
 		}
 	}
 }
