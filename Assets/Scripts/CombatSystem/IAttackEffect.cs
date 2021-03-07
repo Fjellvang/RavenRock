@@ -16,5 +16,8 @@ namespace Assets.Scripts.CombatSystem
 	}
 
 
-
+	public interface ITest<T>
+	{
+		T Component { get; }
+	}
 }

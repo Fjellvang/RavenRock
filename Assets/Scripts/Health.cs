@@ -24,7 +24,6 @@ public class Health : MonoBehaviour
 	{
 		audioPlayer = GetComponent<AudioSource>();
 		spriteFlash = GetComponent<SpriteFlash>();
-
 		attackedEffects = GetComponent<AttackedEffects>();
 		originalHealth = health;
 	}
@@ -36,7 +35,7 @@ public class Health : MonoBehaviour
 	}
 	public void TakeDamage(GameObject attacker)
 	{
-		audioPlayer.PlayOneShot(hitSound);
+		//audioPlayer.PlayOneShot(hitSound);
 		spriteFlash.Flash();
 		attackedEffects.OnDamage(attacker);
 		health--;
@@ -45,7 +44,7 @@ public class Health : MonoBehaviour
 
 	public void TakeCriticalDamage(GameObject attacker)
 	{
-		audioPlayer.PlayOneShot(hitSound);
+		//audioPlayer.PlayOneShot(hitSound);
 		attackedEffects.OnCriticalDamage(attacker);
 		spriteFlash.Flash();
 		health -= 2;

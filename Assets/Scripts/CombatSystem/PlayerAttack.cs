@@ -16,7 +16,6 @@ namespace Assets.Scripts.CombatSystem
 		public void OnSuccessFullAttack(GameObject attacker, GameObject attacked)
 		{
 			//Same TODO as Heavy attack... Maybe introduce attacked effect...
-            //var attackDelta = attacked.transform.position - attacker.transform.position; //could cache transform for micro optimization
             attacked.GetComponent<Health>().TakeDamage(attacker);
 		}
 	}
