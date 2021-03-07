@@ -14,6 +14,11 @@ namespace Assets.Scripts.Enemy.ButcherBoss
 
 		public void OnTakeDamage(GameObject attacker, IAttackEffect[] attackEffects)
 		{
+
+			//for (int i = 0; i < attackedEffects.Length; i++)
+			//{
+			//	attackedEffects[i].OnTakeDamage(this.gameObject, attacker);
+			//}
 			var delta = transform.position - attacker.transform.position;
 			rig.AddForce(delta * 20, ForceMode2D.Impulse);
 		}

@@ -6,21 +6,21 @@ using UnityEngine;
 public class ForegroundAsset : MonoBehaviour
 {
 
-    SpriteRenderer renderer;
+    SpriteRenderer spriteRenderer;
 	// Start is called before the first frame update
 	void Awake()
     {
-        renderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
         Debug.Log($"Ontrigger enter: {collision.name}", this);
-        renderer.material.SetFloat("_Alpha", 0.5f);
+        spriteRenderer.material.SetFloat("_Alpha", 0.5f);
 	}
 	private void OnTriggerExit2D(Collider2D collision)
 	{
         Debug.Log($"Ontrigger exit: {collision.name}", this);
-        renderer.material.SetFloat("_Alpha", 1);
+        spriteRenderer.material.SetFloat("_Alpha", 1);
 	}
 }

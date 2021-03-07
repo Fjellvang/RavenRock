@@ -90,6 +90,7 @@ namespace Assets.Scripts.Enemy.ButcherBoss
 
 		public void OnTakeDamage(GameObject attacker, IAttackEffect[] attackEffects)
 		{
+			//TODO: Attacked effects.
 			stateMachine.currentState.OnTakeDamage(this, attacker, attackEffects);
 			//TODO: Use the attack effects.. currently needs refactor as player attack adds force. we dont want that on the boss.
 		}

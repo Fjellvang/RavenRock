@@ -46,6 +46,10 @@ public class SpriteFlash : MonoBehaviour
         SetFlashAmount(0);
     }
 
+    public void EnsureReset()
+	{
+        SetFlashAmount(0);
+	}
     private void SetFlashAmount(float flashAmount)
     {
         mat.SetFloat("_FlashAmount", flashAmount);

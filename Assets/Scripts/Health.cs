@@ -1,16 +1,18 @@
-﻿using System;
+﻿using Assets.Scripts.CombatSystem.DamageEffects;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(SpriteFlash))]
+[RequireComponent(typeof(AttackedEffects))]
 public class Health : MonoBehaviour
 {
     public float health = 3;
 	public AudioClip hitSound;
 	public AudioSource audioPlayer;
-	private Rigidbody2D rig;
-	public SpriteFlash spriteFlash;
+	private SpriteFlash spriteFlash;
+	private AttackedEffects attackedEffects;
 
 	//TODO: Shoudl this be here?
 	public delegate void DeathAction();
@@ -21,28 +23,30 @@ public class Health : MonoBehaviour
 	private void Awake()
 	{
 		audioPlayer = GetComponent<AudioSource>();
-		rig = GetComponent<Rigidbody2D>();
 		spriteFlash = GetComponent<SpriteFlash>();
+		attackedEffects = GetComponent<AttackedEffects>();
 		originalHealth = health;
 	}
 
 	public void ResetHealth()
 	{
 		health = originalHealth;
+		spriteFlash.EnsureReset();
 	}
-	public void TakeDamage(Vector2 delta)
+	public void TakeDamage(GameObject attacker)
 	{
-		audioPlayer.PlayOneShot(hitSound);
+		//audioPlayer.PlayOneShot(hitSound);
 		spriteFlash.Flash();
+		attackedEffects.OnDamage(attacker);
 		health--;
 		EvaluateHealth();
 	}
 
-	public void TakeCriticalDamage(Vector2 delta)
+	public void TakeCriticalDamage(GameObject attacker)
 	{
-		audioPlayer.PlayOneShot(hitSound);
+		//audioPlayer.PlayOneShot(hitSound);
+		attackedEffects.OnCriticalDamage(attacker);
 		spriteFlash.Flash();
-		rig.AddForce(Vector2.up * 8 + delta * 3, ForceMode2D.Impulse);
 		health -= 2;
 		EvaluateHealth();
 	}

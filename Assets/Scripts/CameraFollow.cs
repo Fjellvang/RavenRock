@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraFollow : MonoBehaviour {
-
- 
-	
 	[Range(0,1)]
 	public float incrementX = .1f;
     private Transform target;

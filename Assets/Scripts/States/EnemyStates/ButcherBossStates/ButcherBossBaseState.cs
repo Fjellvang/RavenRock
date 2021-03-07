@@ -21,7 +21,11 @@ namespace Assets.Scripts.States.EnemyStates.ButcherBossStates
 
 		public override void OnTakeDamage(ButcherBossController controller, GameObject attacker, IAttackEffect[] attackEffects)
 		{
-			controller.meatShieldHealth.TakeDamage(Vector3.zero); //TODO: This asumes player never gets behind the boss.. FIX
+			for (int i = 0; i < attackEffects.Length; i++)
+			{
+				//TODO: This asumes player never gets behind the boss.. FIX
+				attackEffects[i].OnSuccessFullAttack(attacker, controller.meatShieldHealth.gameObject);
+			}
 		}
 	}
 }
