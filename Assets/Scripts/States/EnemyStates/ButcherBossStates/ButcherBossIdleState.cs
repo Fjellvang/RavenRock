@@ -13,7 +13,7 @@ namespace Assets.Scripts.States.EnemyStates.ButcherBossStates
 		public override void OnEnterState(ButcherBossController controller)
 		{
 			//controller.animator.Play("ButcherBossShieldBash");
-			controller.animator.Play("Idle");
+			controller.animator.Play("Walk");
 		}
 
 		public override void OnExitState(ButcherBossController controller)

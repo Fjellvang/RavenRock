@@ -13,6 +13,7 @@ namespace Assets.Scripts.States.EnemyStates.ButcherBossStates
 		public override void OnEnterState(ButcherBossController controller)
 		{
 			controller.spriteRenderer.color = Color.red;
+			controller.animator.Play("Attack");
 		}
 
 		public override void OnExitState(ButcherBossController controller)
