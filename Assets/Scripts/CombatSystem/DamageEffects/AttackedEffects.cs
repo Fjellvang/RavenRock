@@ -9,8 +9,14 @@ namespace Assets.Scripts.CombatSystem.DamageEffects
 {
 	public class AttackedEffects : MonoBehaviour
 	{
-		public DamageEffect[] damageEffects;
-		public DamageEffect[] criticalDamageEffects;
+		public IDamageEffect[] damageEffects;
+		public IDamageEffect[] criticalDamageEffects;
+		//IDamageEffect
+		private void Awake()
+		{
+			criticalDamageEffects = GetComponentsInChildren<IDamageEffect>();
+			damageEffects = criticalDamageEffects.Where(x => !x.CriticalOnly()).ToArray();
+		}
 
 		public void OnDamage(GameObject attacker)
 		{
@@ -22,7 +28,7 @@ namespace Assets.Scripts.CombatSystem.DamageEffects
 			ApplyDamageEffects(criticalDamageEffects, attacker);
 		}
 
-		private void ApplyDamageEffects(DamageEffect[] effects, GameObject attacker)
+		private void ApplyDamageEffects(IDamageEffect[] effects, GameObject attacker)
 		{
 			for (int i = 0; i < effects.Length; i++)
 			{

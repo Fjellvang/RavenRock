@@ -7,11 +7,14 @@ using UnityEngine;
 
 namespace Assets.Scripts.CombatSystem.DamageEffects
 {
-	[CreateAssetMenu(fileName = "StunEffect.asset", menuName = "ScriptableObjects/"+nameof(StunEffect)+"ScriptableObject")]
-	public class StunEffect : DamageEffect
+	public class StunEffect : MonoBehaviour, IDamageEffect
 	{
 		public float stunDuration = 1f;
-		public override void OnTakeDamage(GameObject defender, GameObject attacker)
+		public bool critOnly;
+
+		public bool CriticalOnly() => critOnly;
+
+		public void OnTakeDamage(GameObject defender, GameObject attacker)
 		{
 			defender.GetComponent<IStunnable>().Stun(stunDuration);
 		}
