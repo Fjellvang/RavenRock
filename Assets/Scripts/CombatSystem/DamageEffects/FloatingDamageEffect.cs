@@ -13,10 +13,11 @@ namespace Assets.Scripts.CombatSystem.DamageEffects
 		public FloatingDamageText FloatingDamageText;
 		public bool CriticalOnly() => false;
 
-		public void OnTakeDamage(GameObject defender, GameObject attacker)
+		public void OnTakeDamage(GameObject attacker, float damage)
 		{
-			var floatingtextObject = Instantiate(FloatingDamageText, TextAnchor.position, Quaternion.identity);
-			floatingtextObject.textMesh.text = "Ouch";
+			var randomCircle = UnityEngine.Random.insideUnitCircle * .5f;
+			var floatingtextObject = Instantiate(FloatingDamageText, TextAnchor.position + (Vector3)randomCircle, Quaternion.identity);
+			floatingtextObject.textMesh.text = damage.ToString();
 		}
 	}
 
@@ -24,6 +25,6 @@ namespace Assets.Scripts.CombatSystem.DamageEffects
 	{
 		//apply effect only if critifcal
 		bool CriticalOnly();
-		void OnTakeDamage(GameObject defender, GameObject attacker);
+		void OnTakeDamage(GameObject attacker, float damage);
 	}
 }

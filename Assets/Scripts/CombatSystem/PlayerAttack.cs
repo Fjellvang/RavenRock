@@ -16,7 +16,8 @@ namespace Assets.Scripts.CombatSystem
 		public void OnSuccessFullAttack(GameObject attacker, GameObject attacked)
 		{
 			//Same TODO as Heavy attack... Maybe introduce attacked effect...
-            attacked.GetComponent<Health>().TakeDamage(attacker);
+			var damage = UnityEngine.Random.Range(10, 20);
+            attacked.GetComponent<Health>().TakeDamage(attacker, damage);
 		}
 	}
 }

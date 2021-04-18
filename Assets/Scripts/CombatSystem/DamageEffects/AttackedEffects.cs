@@ -18,21 +18,21 @@ namespace Assets.Scripts.CombatSystem.DamageEffects
 			damageEffects = criticalDamageEffects.Where(x => !x.CriticalOnly()).ToArray();
 		}
 
-		public void OnDamage(GameObject attacker)
+		public void OnDamage(GameObject attacker, float damage)
 		{
-			ApplyDamageEffects(damageEffects, attacker);
+			ApplyDamageEffects(damageEffects, attacker, damage);
 		}
 
-		public void OnCriticalDamage(GameObject attacker)
+		public void OnCriticalDamage(GameObject attacker, float damage)
 		{
-			ApplyDamageEffects(criticalDamageEffects, attacker);
+			ApplyDamageEffects(criticalDamageEffects, attacker, damage);
 		}
 
-		private void ApplyDamageEffects(IDamageEffect[] effects, GameObject attacker)
+		private void ApplyDamageEffects(IDamageEffect[] effects, GameObject attacker, float damage)
 		{
 			for (int i = 0; i < effects.Length; i++)
 			{
-				effects[i].OnTakeDamage(gameObject, attacker);
+				effects[i].OnTakeDamage(attacker, damage);
 			}
 		}
 	}

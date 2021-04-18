@@ -21,9 +21,9 @@ namespace Assets.Scripts.CombatSystem.DamageEffects
 
 		public bool CriticalOnly() => critOnly;
 
-		public void OnTakeDamage(GameObject defender, GameObject attacker)
+		public void OnTakeDamage(GameObject attacker, float damage)
 		{
-			var delta = defender.transform.position - attacker.transform.position;
+			var delta = transform.position - attacker.transform.position;
 			delta.y += yForce;
 			rig.AddForce(delta * knockbackStrength, ForceMode2D.Impulse);
 		}

@@ -16,7 +16,8 @@ namespace Assets.Scripts.CombatSystem
 		public void OnSuccessFullAttack(GameObject attacker, GameObject attacked)
 		{
 			//TODO: REFACTOR This works SHIT with the boss...
-            attacked.GetComponent<Health>().TakeCriticalDamage(attacker);
+			var damage = UnityEngine.Random.Range(20, 40);
+            attacked.GetComponent<Health>().TakeCriticalDamage(attacker, damage);
 		}
 	}
 }

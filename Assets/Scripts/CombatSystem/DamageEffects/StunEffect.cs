@@ -21,7 +21,7 @@ namespace Assets.Scripts.CombatSystem.DamageEffects
 			stunnable = GetComponent<IStunnable>();
 		}
 
-		public void OnTakeDamage(GameObject defender, GameObject attacker)
+		public void OnTakeDamage(GameObject attacker, float damage)
 		{
 			stunnable.Stun(stunDuration);
 		}

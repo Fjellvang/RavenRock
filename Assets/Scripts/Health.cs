@@ -33,21 +33,21 @@ public class Health : MonoBehaviour
 		health = originalHealth;
 		spriteFlash.EnsureReset();
 	}
-	public void TakeDamage(GameObject attacker)
+	public void TakeDamage(GameObject attacker, float damage)
 	{
 		//audioPlayer.PlayOneShot(hitSound);
 		spriteFlash.Flash();
-		attackedEffects.OnDamage(attacker);
-		health--;
+		attackedEffects.OnDamage(attacker, damage);
+		health -= damage;
 		EvaluateHealth();
 	}
 
-	public void TakeCriticalDamage(GameObject attacker)
+	public void TakeCriticalDamage(GameObject attacker, float damage)
 	{
 		//audioPlayer.PlayOneShot(hitSound);
-		attackedEffects.OnCriticalDamage(attacker);
+		attackedEffects.OnCriticalDamage(attacker, damage);
 		spriteFlash.Flash();
-		health -= 2;
+		health -= damage;
 		EvaluateHealth();
 	}
 
