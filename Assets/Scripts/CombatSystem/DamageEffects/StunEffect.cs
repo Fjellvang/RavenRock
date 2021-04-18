@@ -14,9 +14,16 @@ namespace Assets.Scripts.CombatSystem.DamageEffects
 
 		public bool CriticalOnly() => critOnly;
 
+		private IStunnable stunnable;
+
+		private void Awake()
+		{
+			stunnable = GetComponent<IStunnable>();
+		}
+
 		public void OnTakeDamage(GameObject defender, GameObject attacker)
 		{
-			defender.GetComponent<IStunnable>().Stun(stunDuration);
+			stunnable.Stun(stunDuration);
 		}
 	}
 }

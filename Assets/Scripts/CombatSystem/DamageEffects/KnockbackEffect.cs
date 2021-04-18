@@ -12,6 +12,12 @@ namespace Assets.Scripts.CombatSystem.DamageEffects
 		public float knockbackStrength = 5f;
 		public float yForce = 2f;
 		public bool critOnly;
+		Rigidbody2D rig;
+
+		private void Awake()
+		{
+			rig = GetComponent<Rigidbody2D>();
+		}
 
 		public bool CriticalOnly() => critOnly;
 
@@ -19,7 +25,7 @@ namespace Assets.Scripts.CombatSystem.DamageEffects
 		{
 			var delta = defender.transform.position - attacker.transform.position;
 			delta.y += yForce;
-			defender.GetComponent<Rigidbody2D>().AddForce(delta * knockbackStrength);
+			rig.AddForce(delta * knockbackStrength, ForceMode2D.Impulse);
 		}
 	}
 }
