@@ -40,6 +40,8 @@ public class PlayerController : MonoBehaviour, IAttacker, IAttackable {
         health = GetComponent<Health>();
 		CharacterController = GetComponent<CharacterController2D>();
         health.OnDeath += OnDeath;
+		var staminaScript = GameObject.FindGameObjectWithTag("UI").GetComponent<StaminaScript>();
+		attackScript.OnAttack += () => staminaScript.ReduceStamina(0.2f);
 	}
 
     public void OnTakeDamage(GameObject attacker, IAttackEffect[] effects)
