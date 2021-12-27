@@ -1,9 +1,5 @@
 ﻿using Assets.Scripts.CombatSystem;
-using Assets.Scripts.Player_States;
 using Assets.Scripts.States;
-using Assets.Scripts.States.PlayerStates;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 

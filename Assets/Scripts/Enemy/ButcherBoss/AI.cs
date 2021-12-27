@@ -24,6 +24,7 @@ public class AI : MonoBehaviour, IAttacker, IAttackable, IStunnable {
     public Attack weapon;
     [HideInInspector]
     public Animator Animator;
+    public IAttackEffect[] attacks;
 
     [HideInInspector]
     public SpriteRenderer SpriteRenderer;
@@ -48,6 +49,7 @@ public class AI : MonoBehaviour, IAttacker, IAttackable, IStunnable {
         weapon = GetComponentInChildren<Attack>();
         Animator = GetComponentInChildren<Animator>();
         SpriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        attacks = GetComponents<IAttackEffect>();
 
         controller = GetComponent<CharacterController2D>();
     }
@@ -59,10 +61,10 @@ public class AI : MonoBehaviour, IAttacker, IAttackable, IStunnable {
 	}
 
     //TODO: get this in a cleaner manner
-    IAttackEffect[] attacks = new[]
-    {
-        new FarmerAttack()
-    };
+    //IAttackEffect[] attacks = new[]
+    //{
+    //    new FarmerAttack()
+    //};
 
     public void Attack()
 	{
