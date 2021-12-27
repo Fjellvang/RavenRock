@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.CombatSystem;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,6 @@ namespace Assets.Scripts.Player_States
 		/// <param name="controller"></param>
 		/// <param name="attackDirection"></param>
 		/// <returns>bool indicating whether damage was successfull</returns>
-		public virtual bool OnTakeDamage(T controller, Vector2 attackDirection) { return true; }
+		public virtual void OnTakeDamage(T controller, GameObject attacker, IAttackEffect[] attackEffects) {}
 	}
 }

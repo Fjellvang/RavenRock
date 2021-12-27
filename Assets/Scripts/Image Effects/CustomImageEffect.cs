@@ -9,9 +9,22 @@ public class CustomImageEffect : MonoBehaviour
 	public float flashDuration;
 
 	private IEnumerator effectCoroutine;
-	private void Start()
+	private void OnEnable()
 	{
 		SetEffectAmount(0);
+		var playerHealth = GameObject.FindGameObjectWithTag("Player")?.GetComponent<Health>();
+        if (playerHealth != null)
+        {
+            playerHealth.OnHit += DoEffect;
+        }
+	}
+	private void OnDisable()
+	{
+		var playerHealth = GameObject.FindGameObjectWithTag("Player")?.GetComponent<Health>();
+        if (playerHealth != null)
+        {
+            playerHealth.OnHit -= DoEffect;
+        }
 	}
 
 	public void DoEffect()

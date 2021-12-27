@@ -8,6 +8,72 @@ TextureImporter:
   - first:
       213: -5257704660895527383
     second: Buthcer-1thboss 1
+  - first:
+      213: 4237725875533677408
+    second: Buthcer-1thboss_0
+  - first:
+      213: 522298981389760947
+    second: Buthcer-1thboss_1
+  - first:
+      213: 7048065645135145292
+    second: Buthcer-1thboss_2
+  - first:
+      213: 8299570480455125448
+    second: Buthcer-1thboss_3
+  - first:
+      213: -2620692638315340119
+    second: Buthcer-1thboss_4
+  - first:
+      213: 7996827420374236698
+    second: Buthcer-1thboss_5
+  - first:
+      213: -1346227059866435008
+    second: Buthcer-1thboss_6
+  - first:
+      213: 4243747934844181192
+    second: Buthcer-1thboss_7
+  - first:
+      213: -1433880152455244791
+    second: Buthcer-1thboss 2
+  - first:
+      213: -3971297560510803356
+    second: Buthcer-1thboss 3
+  - first:
+      213: 2167698915765243419
+    second: Buthcer-1thboss 4
+  - first:
+      213: 5526811208598303869
+    second: Buthcer-1thboss 5
+  - first:
+      213: 2803633193332661077
+    second: Buthcer-1thboss 6
+  - first:
+      213: -7997904048032580767
+    second: Buthcer-1thboss 7
+  - first:
+      213: -4100726937838799711
+    second: Buthcer-1thboss 8
+  - first:
+      213: -7416084055453508243
+    second: Buthcer-1thboss 9
+  - first:
+      213: 9101760148311119609
+    second: Buthcer-1thboss 10
+  - first:
+      213: -2254280963296900
+    second: Buthcer-1thboss 11
+  - first:
+      213: -3651769411708050005
+    second: Buthcer-1thboss 12
+  - first:
+      213: 4887634280710850620
+    second: Buthcer-1thboss 13
+  - first:
+      213: -8048186039421564432
+    second: Buthcer-1thboss 14
+  - first:
+      213: -1009246982684492396
+    second: Buthcer-1thboss 15
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -69,7 +135,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 240
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -87,11 +153,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 120
-        height: 120
+        y: 384
+        width: 128
+        height: 128
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -107,12 +173,12 @@ TextureImporter:
       name: Buthcer-1thboss 1
       rect:
         serializedVersion: 2
-        x: 120
-        y: 0
-        width: 120
-        height: 120
+        x: 128
+        y: 384
+        width: 128
+        height: 128
       alignment: 7
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -120,6 +186,300 @@ TextureImporter:
       bones: []
       spriteID: 92e0869a771e807b0800000000000000
       internalID: -5257704660895527383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buthcer-1thboss 2
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 384
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9041c6e2995d91ce0800000000000000
+      internalID: -1433880152455244791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buthcer-1thboss 3
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 384
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 462d068d8ed13e8c0800000000000000
+      internalID: -3971297560510803356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buthcer-1thboss 4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1ecf2ecda6351e10800000000000000
+      internalID: 2167698915765243419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buthcer-1thboss 5
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 256
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d74362d038d23bc40800000000000000
+      internalID: 5526811208598303869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buthcer-1thboss 6
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55b5619f88188e620800000000000000
+      internalID: 2803633193332661077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buthcer-1thboss 7
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 256
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16bfb5d94acb10190800000000000000
+      internalID: -7997904048032580767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buthcer-1thboss 8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a43e3d939a4717c0800000000000000
+      internalID: -4100726937838799711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buthcer-1thboss 9
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6d514af7d6c41990800000000000000
+      internalID: -7416084055453508243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buthcer-1thboss 10
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 128
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f614e6b1a2ff4e70800000000000000
+      internalID: 9101760148311119609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buthcer-1thboss 11
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 128
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7175ff4ebdf7fff0800000000000000
+      internalID: -2254280963296900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buthcer-1thboss 12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba52185611f425dc0800000000000000
+      internalID: -3651769411708050005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buthcer-1thboss 13
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c38cac58b7d54d340800000000000000
+      internalID: 4887634280710850620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buthcer-1thboss 14
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f9050230791f4090800000000000000
+      internalID: -8048186039421564432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buthcer-1thboss 15
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 256
+        width: 128
+        height: 128
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49db47a673f6ef1f0800000000000000
+      internalID: -1009246982684492396
       vertices: []
       indices: 
       edges: []

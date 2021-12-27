@@ -50,21 +50,28 @@ namespace Assets.Scripts
             //~     enabled = false;
             //~ }
         }
+		private void Awake()
+		{
+            var playerHealth = GameObject.FindGameObjectWithTag("Player")?.GetComponent<Health>();
+            if (playerHealth != null)
+            {
+                playerHealth.OnHit += FireOnce;
+            }
+		}
 
-        void Update()
-        {
-            var sin = Mathf.Sin(_Speed * (_Seed.x + _Seed.y + Time.time));
-            var direction = _Direction + GetNoise();
-            direction.Normalize();
-            var delta = direction * sin;
-            _Target.localPosition = delta * _MaxMagnitude * _FadeOut;
-        }
+		void Update()
+		{
+			var sin = Mathf.Sin(_Speed * (_Seed.x + _Seed.y + Time.time));
+			var direction = _Direction + GetNoise();
+			direction.Normalize();
+			var delta = direction * sin;
+			_Target.localPosition = delta * _MaxMagnitude * _FadeOut;
+		}
 
-        [ContextMenu("FireOnceTest")]
-        public void FireOnce()
-        {
+		[ContextMenu("FireOnceTest")]
+        public void FireOnce() {
             StopAllCoroutines();
-            StartCoroutine(ShakeAndFade(0.5f));
+            StartCoroutine(ShakeAndFade(.5f));
         }
 
         [ContextMenu("ContinousShake")]

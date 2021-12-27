@@ -1,28 +1,32 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 //TODO: rename to something apropriate
 public class PlayerAnimatorMethods : MonoBehaviour
 {
-	public EntityController controller;
-	private IAttack attack;
+	public IAttacker attacker;
 	private void Awake()
 	{
-		controller = GetComponentInParent<EntityController>();
-		attack = controller as IAttack;
+		attacker = GetComponentInParent<IAttacker>();
 	}
-
-	public void Attack()
+	public enum AttackEnum { Regular, Heavy };
+	public void Attack(AttackEnum attackType)
 	{
-		attack.Attack();
+		switch (attackType)
+		{
+			case AttackEnum.Heavy:
+				attacker.PowerFullAttack();
+				break;
+			case AttackEnum.Regular:
+				attacker.Attack();
+				break;
+			default:
+				Debug.LogError("Undefined attack");
+				break;
+		}
 	}
-
-	public void CriticalAttack()
-	{
-		attack.PowerFullAttack();
-	}
-
 	public void Destroy()
 	{
 		//Used in Farmer. REFACTOR
@@ -31,7 +35,7 @@ public class PlayerAnimatorMethods : MonoBehaviour
 }
 
 
-interface IAttack
+public interface IAttacker
 {
 	void Attack();
 	void PowerFullAttack();

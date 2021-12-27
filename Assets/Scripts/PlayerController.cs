@@ -4,76 +4,73 @@ using Assets.Scripts.Player_States;
 using Assets.Scripts.States.PlayerStates;
 using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts.CombatSystem;
+using Assets.Scripts.States;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class PlayerController : EntityController, IAttack {
-	public float acceleration = 10f;
+public class PlayerController : MonoBehaviour, IAttacker, IAttackable {
 
-    public Transform axeAttack;
-    public float attackRadius = 0.5f;
-	public LayerMask enemyMask;
-    Lady dame;
-    public Lady Dame => dame; //TODO: refacotr
 
-    public Animator anim;
+    private Animator anim;
     public Animator Animator { get { return anim; } }
-    public bool Blocking;
-    AudioSource kissSound;
-    public AudioSource KissSound => kissSound;
 
     public CharacterController2D CharacterController;
     public IInputHandler InputHandler;
     public Joystick joystick;
     public PlayerHealth health;
 
+	[Header("Locomotive")]
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2f;
+	public float acceleration = 10f;
 
-    public readonly Stack<PlayerBaseState> stateStack = new Stack<PlayerBaseState>();
-    PlayerBaseState currentState;
-
-    public void PoplastState()//TODO: Get better naming.
-	{
-        currentState.OnExitState(this);
-        currentState = stateStack.Pop();//TODO: nullcheck ?
-        currentState.OnEnterState(this);
-	}
-    public void TransitionState(PlayerBaseState newState)
-	{
-        currentState.OnExitState(this);
-        stateStack.Push(currentState);
-        currentState = newState;
-        currentState.OnEnterState(this);
-	}
-
-
-    // Use this for initialization
-    void Start () {
-		//anim = GetComponentInChildren<Animator> ();
-        dame = FindObjectOfType<Lady>();
-        kissSound = GetComponent<AudioSource>();
-        health = GetComponent<PlayerHealth>();
-	}
-
-    public bool OnTakeDamage(Vector2 attackedFrom)
-	{
-        this.CharacterController.m_Rigidbody2D.AddForce(attackedFrom*4, ForceMode2D.Impulse);
-        return currentState.OnTakeDamage(this, attackedFrom);
-	}
+    public PlayerStateMachine StateMachine;
+	[HideInInspector]
+    public CharacterController2D CharacterController;
+	[HideInInspector]
+    public Health health;
+	[HideInInspector]
+	public SpriteRenderer playerRenderer;
+	[HideInInspector]
+	public Attack attackScript;
+	[HideInInspector]
+	public SpriteFlash flash;
 
 	private void Awake()
 	{
-        currentState = PlayerBaseState.idleState;
-        InputHandler = AndroidButtonHandler.Instance;
-        joystick = GameObject.FindGameObjectWithTag("Joystick").GetComponent<Joystick>();
+        StateMachine = new PlayerStateMachine(this);
+		attackScript = GetComponent<Attack>();
+		playerRenderer = GetComponentInChildren<SpriteRenderer>();
+		flash = GetComponent<SpriteFlash>();
+		currentState = PlayerBaseState.idleState;
+		InputHandler = AndroidButtonHandler.Instance;
+		joystick = GameObject.FindGameObjectWithTag("Joystick").GetComponent<Joystick>();
 	}
+
+	void Start () {
+		anim = GetComponentInChildren<Animator>();
+        health = GetComponent<Health>();
+		CharacterController = GetComponent<CharacterController2D>();
+        health.OnDeath += OnDeath;
+	}
+
+    public void OnTakeDamage(GameObject attacker, IAttackEffect[] effects)
+	{
+		StateMachine.currentState.OnTakeDamage(this, attacker, effects);
+	}
+
 	private void FixedUpdate()
 	{
-        currentState.FixedUpdate(this);
+        currentState = PlayerBaseState.idleState;
 	}
+	public void OnDeath()
+    {
+		SceneManager.LoadScene("Game Over");
+    }
 	// Update is called once per frame
 	void Update() {
-        currentState.Update(this);
+        StateMachine.currentState.Update(this);
         //TODO: Refactor, test with fixed update ??
         var rb = CharacterController.m_Rigidbody2D;
 		if (rb.velocity.y < 0)
@@ -85,32 +82,21 @@ public class PlayerController : EntityController, IAttack {
 		}
 	}
 
-    //TODO: Refactor - it is too similar to enemy attack
-    public void Attack()
+	private IAttackEffect[] regularAttackEffects = new IAttackEffect[]
 	{
-        var collders = Physics2D.OverlapCircleAll(axeAttack.position, attackRadius, enemyMask);
-		for (int i = 0; i < collders.Length; i++)
-		{
-            var enemy = collders[i];
-            var attackDelta = enemy.transform.position - this.transform.position; //could cache transform for micro optimization
-            enemy.GetComponent<Health>().TakeDamage(attackDelta);
-		}
-	}
-	private void OnDrawGizmosSelected()
+		new PlayerRegularAttack()
+	};
+	private IAttackEffect[] heavyAttackEffects = new IAttackEffect[]
 	{
-        Gizmos.DrawSphere(axeAttack.position, attackRadius);
+		new PlayerHeavyAttack()
+	};
+	public void Attack()
+	{
+		this.attackScript.DoAttack(regularAttackEffects);
 	}
 
 	public void PowerFullAttack()
 	{
-        var collders = Physics2D.OverlapCircleAll(axeAttack.position, attackRadius, enemyMask);
-		for (int i = 0; i < collders.Length; i++)
-		{
-            var enemy = collders[i];
-            var attackDelta = enemy.transform.position - this.transform.position; //could cache transform for micro optimization
-            enemy.GetComponent<Health>().TakeCriticalDamage(attackDelta);
-            var ai=enemy.GetComponent<AI>();
-            ai.TransitionState(ai.stunnedState);
-		}
+		this.attackScript.DoAttack(heavyAttackEffects);
 	}
 }

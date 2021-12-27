@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Player_States;
+﻿using Assets.Scripts.CombatSystem;
+using Assets.Scripts.Player_States;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace Assets.Scripts.States.PlayerStates
 		public static readonly PlayerJumpingState jumpingState = new PlayerJumpingState();
 		public static readonly PlayerAttackingState attackingState = new PlayerAttackingState();
 		public static readonly PlayerBlockingState blockingState = new PlayerBlockingState();
+		public static readonly PlayerStunnedState stunnedState = new PlayerStunnedState();
 
 		protected float inputAxis = 0;
 		protected bool jump = false;
@@ -28,19 +30,21 @@ namespace Assets.Scripts.States.PlayerStates
 				controller.TransitionState(attackingState);
 			} else if (controller.InputHandler.BlockPressed)
 			{
-				controller.TransitionState(blockingState);
+				controller.StateMachine.TransitionState(blockingState);
 			}
 			if (jumpPressed && controller.CharacterController.Grounded)
 			{
 				jump = true;
-				controller.TransitionState(jumpingState);
+				controller.StateMachine.TransitionState(jumpingState);
 			}
 		}
 
-		public override bool OnTakeDamage(PlayerController controller, Vector2 attackDirection)
+		public override void OnTakeDamage(PlayerController controller, GameObject attacker, IAttackEffect[] attackEffects)
 		{
-			controller.health.TakeDmg();
-			return true;
+			for (int i = 0; i < attackEffects.Length; i++)
+			{
+				attackEffects[i].OnSuccessFullAttack(attacker, controller.gameObject);
+			}
 		}
 	}
 }

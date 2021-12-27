@@ -1,36 +1,63 @@
-﻿using System;
+﻿using Assets.Scripts.CombatSystem.DamageEffects;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(SpriteFlash))]
+[RequireComponent(typeof(AttackedEffects))]
 public class Health : MonoBehaviour
 {
     public float health = 3;
 	public AudioClip hitSound;
 	public AudioSource audioPlayer;
-    public GameObject monkBody;
-	private Rigidbody2D rig;
-    public GameObject monkHead;
+	private SpriteFlash spriteFlash;
+	private AttackedEffects attackedEffects;
+
+	//TODO: Shoudl this be here?
+	public delegate void DeathAction();
+	public event DeathAction OnDeath;
+	public delegate void OnHitAction();
+	public event OnHitAction OnHit;
+
+	private float originalHealth = 0;
 
 	private void Awake()
 	{
-		audioPlayer = GetComponent<AudioSource>();
-		rig = GetComponent<Rigidbody2D>();
+		audioPlayer = GetComponent<AudioSource>(); //TODO: Move this out of health into manage maybe?
+		spriteFlash = GetComponent<SpriteFlash>();
+		attackedEffects = GetComponent<AttackedEffects>();
+		originalHealth = health;
 	}
-	public void TakeDamage(Vector2 delta)
+
+	public void ResetHealth()
 	{
-		audioPlayer.PlayOneShot(hitSound);
-		rig.AddForce(delta * 3, ForceMode2D.Impulse);
-		health--;
+		health = originalHealth;
+		spriteFlash.EnsureReset();
+	}
+	public void TakeDamage(GameObject attacker, float damage)
+	{
+        audioPlayer.PlayOneShot(hitSound);
+        if (OnHit != null)
+        {
+            OnHit();
+        }
+		spriteFlash.Flash();
+		attackedEffects.OnDamage(attacker, damage);
+		health -= damage;
 		EvaluateHealth();
 	}
 
-	public void TakeCriticalDamage(Vector2 delta)
+	public void TakeCriticalDamage(GameObject attacker, float damage)
 	{
-		audioPlayer.PlayOneShot(hitSound);
-
-		rig.AddForce(Vector2.up * 4 + delta * 3, ForceMode2D.Impulse);
-		health -= 2;
+        audioPlayer.PlayOneShot(hitSound);
+        if (OnHit != null)
+        {
+            OnHit();
+        }
+		attackedEffects.OnCriticalDamage(attacker, damage);
+		spriteFlash.Flash();
+		health -= damage;
 		EvaluateHealth();
 	}
 
@@ -38,13 +65,7 @@ public class Health : MonoBehaviour
 	{
 		if (health < 0)
 		{
-			var ai = this.gameObject.GetComponent<AI>();
-			ai.TransitionState(ai.deadState);
-			//Destroy(this.gameObject);
-			//if (monkBody)
-			//	Instantiate(monkBody, transform.position, transform.rotation);
-			//if (monkHead)
-			//	Instantiate(monkHead, transform.position += new Vector3(0, 1f, 0f), transform.rotation);
+			OnDeath?.Invoke();
 		}
 	}
 }

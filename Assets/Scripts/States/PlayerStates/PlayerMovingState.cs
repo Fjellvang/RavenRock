@@ -24,7 +24,7 @@ namespace Assets.Scripts.States.PlayerStates
 			if (Mathf.Abs(controller.CharacterController.Velocity.x) <= 0.1f)
 			{
 				controller.Animator.SetBool("isMoving", false);
-				controller.TransitionState(idleState);
+				controller.StateMachine.TransitionState(idleState);
 			}
 		}
 	}

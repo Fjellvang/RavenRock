@@ -15,4 +15,14 @@ public class MenuManager : MonoBehaviour
 		Application.Quit();
 	}
 
+
+	public void LoadBossScene()
+    {
+		SceneManager.LoadScene("tempBossScene");
+    }
+
+	public void Awake()
+    {
+		Object.DontDestroyOnLoad(this);
+    }
 }

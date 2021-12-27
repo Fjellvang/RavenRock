@@ -12,7 +12,7 @@ namespace Assets.Scripts.States.PlayerStates
 
 		public override void OnEnterState(PlayerController controller)
 		{
-			controller.anim.Play("Idle");
+			controller.Animator.Play("Idle");
 		}
 
 		public override void OnExitState(PlayerController controller)
@@ -24,7 +24,7 @@ namespace Assets.Scripts.States.PlayerStates
 			base.Update(controller);
 			if (Mathf.Abs(controller.CharacterController.Velocity.x) >= 0.01f)
 			{
-				controller.TransitionState(movingState);
+				controller.StateMachine.TransitionState(movingState);
 			}
 		}
 	}
