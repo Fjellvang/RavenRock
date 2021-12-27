@@ -27,7 +27,7 @@ namespace Assets.Scripts.States.PlayerStates
 			inputAxis = Input.GetAxis("Horizontal") + controller.joystick.Horizontal;
 			if (controller.InputHandler.AttackPressed)
 			{
-				controller.TransitionState(attackingState);
+				controller.StateMachine.TransitionState(attackingState);
 			} else if (controller.InputHandler.BlockPressed)
 			{
 				controller.StateMachine.TransitionState(blockingState);

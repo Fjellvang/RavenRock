@@ -15,10 +15,8 @@ public class PlayerController : MonoBehaviour, IAttacker, IAttackable {
     private Animator anim;
     public Animator Animator { get { return anim; } }
 
-    public CharacterController2D CharacterController;
     public IInputHandler InputHandler;
     public Joystick joystick;
-    public PlayerHealth health;
 
 	[Header("Locomotive")]
     public float fallMultiplier = 2.5f;
@@ -43,7 +41,6 @@ public class PlayerController : MonoBehaviour, IAttacker, IAttackable {
 		attackScript = GetComponent<Attack>();
 		playerRenderer = GetComponentInChildren<SpriteRenderer>();
 		flash = GetComponent<SpriteFlash>();
-		currentState = PlayerBaseState.idleState;
 		InputHandler = AndroidButtonHandler.Instance;
 		joystick = GameObject.FindGameObjectWithTag("Joystick").GetComponent<Joystick>();
 	}
@@ -62,7 +59,7 @@ public class PlayerController : MonoBehaviour, IAttacker, IAttackable {
 
 	private void FixedUpdate()
 	{
-        currentState = PlayerBaseState.idleState;
+		StateMachine.currentState.FixedUpdate(this);
 	}
 	public void OnDeath()
     {
