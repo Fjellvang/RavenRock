@@ -52,7 +52,11 @@ namespace Assets.Scripts
         }
 		private void Awake()
 		{
-            PlayerHealth.OnHit += FireOnce;
+            var playerHealth = GameObject.FindGameObjectWithTag("Player")?.GetComponent<Health>();
+            if (playerHealth != null)
+            {
+                playerHealth.OnHit += FireOnce;
+            }
 		}
 
 		void Update()

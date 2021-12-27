@@ -5,6 +5,7 @@ using Assets.Scripts.States.PlayerStates;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour, IAttacker, IAttackable {
 
@@ -22,7 +23,7 @@ public class PlayerController : MonoBehaviour, IAttacker, IAttackable {
 	[HideInInspector]
     public CharacterController2D CharacterController;
 	[HideInInspector]
-    public PlayerHealth health;
+    public Health health;
 	[HideInInspector]
 	public SpriteRenderer playerRenderer;
 	[HideInInspector]
@@ -40,11 +41,12 @@ public class PlayerController : MonoBehaviour, IAttacker, IAttackable {
 
     void Start () {
 		anim = GetComponentInChildren<Animator>();
-        health = GetComponent<PlayerHealth>();
+        health = GetComponent<Health>();
 		CharacterController = GetComponent<CharacterController2D>();
+        health.OnDeath += OnDeath;
 	}
 
-	public void OnTakeDamage(GameObject attacker, IAttackEffect[] effects)
+    public void OnTakeDamage(GameObject attacker, IAttackEffect[] effects)
 	{
 		StateMachine.currentState.OnTakeDamage(this, attacker, effects);
 	}
@@ -53,6 +55,10 @@ public class PlayerController : MonoBehaviour, IAttacker, IAttackable {
 	{
         StateMachine.currentState.FixedUpdate(this);
 	}
+	public void OnDeath()
+    {
+		SceneManager.LoadScene("Game Over");
+    }
 	// Update is called once per frame
 	void Update() {
         StateMachine.currentState.Update(this);

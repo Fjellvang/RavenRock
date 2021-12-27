@@ -18,7 +18,7 @@ namespace Assets.Scripts.CombatSystem
 
 		public void OnSuccessFullAttack(GameObject attacker, GameObject attacked)
 		{
-			attacked.GetComponent<PlayerHealth>().TakeDmg();
+			attacked.GetComponent<Health>().TakeDamage(attacker,1);
 		}
 	}
 }

@@ -12,11 +12,19 @@ public class CustomImageEffect : MonoBehaviour
 	private void OnEnable()
 	{
 		SetEffectAmount(0);
-		PlayerHealth.OnHit += DoEffect;
+		var playerHealth = GameObject.FindGameObjectWithTag("Player")?.GetComponent<Health>();
+        if (playerHealth != null)
+        {
+            playerHealth.OnHit += DoEffect;
+        }
 	}
 	private void OnDisable()
 	{
-		PlayerHealth.OnHit -= DoEffect;
+		var playerHealth = GameObject.FindGameObjectWithTag("Player")?.GetComponent<Health>();
+        if (playerHealth != null)
+        {
+            playerHealth.OnHit -= DoEffect;
+        }
 	}
 
 	public void DoEffect()

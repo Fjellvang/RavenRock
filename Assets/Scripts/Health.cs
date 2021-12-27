@@ -17,12 +17,14 @@ public class Health : MonoBehaviour
 	//TODO: Shoudl this be here?
 	public delegate void DeathAction();
 	public event DeathAction OnDeath;
+	public delegate void OnHitAction();
+	public event OnHitAction OnHit;
 
 	private float originalHealth = 0;
 
 	private void Awake()
 	{
-		audioPlayer = GetComponent<AudioSource>();
+		audioPlayer = GetComponent<AudioSource>(); //TODO: Move this out of health into manage maybe?
 		spriteFlash = GetComponent<SpriteFlash>();
 		attackedEffects = GetComponent<AttackedEffects>();
 		originalHealth = health;
@@ -35,7 +37,11 @@ public class Health : MonoBehaviour
 	}
 	public void TakeDamage(GameObject attacker, float damage)
 	{
-		//audioPlayer.PlayOneShot(hitSound);
+        audioPlayer.PlayOneShot(hitSound);
+        if (OnHit != null)
+        {
+            OnHit();
+        }
 		spriteFlash.Flash();
 		attackedEffects.OnDamage(attacker, damage);
 		health -= damage;
@@ -44,7 +50,11 @@ public class Health : MonoBehaviour
 
 	public void TakeCriticalDamage(GameObject attacker, float damage)
 	{
-		//audioPlayer.PlayOneShot(hitSound);
+        audioPlayer.PlayOneShot(hitSound);
+        if (OnHit != null)
+        {
+            OnHit();
+        }
 		attackedEffects.OnCriticalDamage(attacker, damage);
 		spriteFlash.Flash();
 		health -= damage;
