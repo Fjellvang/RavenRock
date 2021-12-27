@@ -1,14 +1,6 @@
-﻿using Assets.Scripts.Player_States;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
-
-namespace Assets.Scripts.States.EnemyStates.FarmerStates
+﻿namespace Assets.Scripts.States.EnemyStates.FarmerStates
 {
-	public class AttackingState : EnemyBaseState
+    public class EnemyAttackingState : EnemyBaseState
 	{
 		public override void OnEnterState(AI controller)
 		{
@@ -28,6 +20,10 @@ namespace Assets.Scripts.States.EnemyStates.FarmerStates
 			{
 				controller.StateMachine.TransitionState(controller.StateMachine.movingState);
 			}
+            if (controller.weapon.successfullyAttacked)
+            {
+				controller.StateMachine.TransitionState(controller.StateMachine.fleeingState);
+            }
 		}
 	}
 }

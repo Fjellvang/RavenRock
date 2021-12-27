@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.States.EnemyStates.FarmerStates
 {
-	public class MovingState : EnemyBaseState
+	public class EnemyMovingState : EnemyBaseState
 	{
 		//float directionalForce = 0;
 		public override void OnEnterState(AI controller)
@@ -29,7 +29,6 @@ namespace Assets.Scripts.States.EnemyStates.FarmerStates
 
 			var vectorTowardsPlayer = controller.player.transform.position - controller.transform.position;
 			var direction = vectorTowardsPlayer.x > 0 ? 1 : -1;
-
 			directionalForce = direction * controller.moveSpeed;
 			bool withinRange = controller.weapon.WithinRange(controller.player.transform);
 			if (withinRange)
