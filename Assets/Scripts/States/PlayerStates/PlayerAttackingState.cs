@@ -9,6 +9,8 @@ namespace Assets.Scripts.States.PlayerStates
 {
 	public class PlayerAttackingState : PlayerLocomotiveBaseState
 	{
+		float pressedAttackGrace = 0.2f; //TODO: move to somewhere modifyable?
+		float timeSinceLastAttackPress = 0;
 		public override void OnEnterState(PlayerController controller)
 		{
 			controller.Animator.Play("Attack");
@@ -18,7 +20,14 @@ namespace Assets.Scripts.States.PlayerStates
 		public override void Update(PlayerController controller)
 		{
 			inputAxis = 0;
-			var isNotAttacking = !Input.GetButton("Attack");
+			timeSinceLastAttackPress -= Time.deltaTime;
+			var pressingAttack = Input.GetButton("Attack");
+            if (pressingAttack)
+            {
+				timeSinceLastAttackPress = pressedAttackGrace;
+            }
+			var attacking = timeSinceLastAttackPress > 0;
+			var isNotAttacking = !attacking && controller.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9;
 			if (isNotAttacking)
 			{
 				controller.StateMachine.PoplastState();
