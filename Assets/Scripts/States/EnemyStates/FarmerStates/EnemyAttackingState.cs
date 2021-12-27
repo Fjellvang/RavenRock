@@ -1,6 +1,6 @@
 ﻿namespace Assets.Scripts.States.EnemyStates.FarmerStates
 {
-    public class AttackingState : EnemyBaseState
+    public class EnemyAttackingState : EnemyBaseState
 	{
 		public override void OnEnterState(AI controller)
 		{

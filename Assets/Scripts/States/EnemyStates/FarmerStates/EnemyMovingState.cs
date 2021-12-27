@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.States.EnemyStates.FarmerStates
 {
-	public class MovingState : EnemyBaseState
+	public class EnemyMovingState : EnemyBaseState
 	{
 		//float directionalForce = 0;
 		public override void OnEnterState(AI controller)

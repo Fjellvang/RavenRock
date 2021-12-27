@@ -14,8 +14,8 @@ namespace Assets.Scripts.States
 			currentState = movingState;
 		}
 		//States
-		public readonly AttackingState attackingState = new AttackingState();
-		public readonly MovingState movingState = new MovingState();
+		public readonly EnemyAttackingState attackingState = new EnemyAttackingState();
+		public readonly EnemyMovingState movingState = new EnemyMovingState();
 		public readonly EnemyFleeingState fleeingState = new EnemyFleeingState();
 		public readonly EnemyStunnedState stunnedState = new EnemyStunnedState();
 		public readonly EnemyDeadState deadState = new EnemyDeadState();
