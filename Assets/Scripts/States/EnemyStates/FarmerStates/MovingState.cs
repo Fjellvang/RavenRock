@@ -29,7 +29,6 @@ namespace Assets.Scripts.States.EnemyStates.FarmerStates
 
 			var vectorTowardsPlayer = controller.player.transform.position - controller.transform.position;
 			var direction = vectorTowardsPlayer.x > 0 ? 1 : -1;
-
 			directionalForce = direction * controller.moveSpeed;
 			bool withinRange = controller.weapon.WithinRange(controller.player.transform);
 			if (withinRange)
