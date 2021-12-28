@@ -7,6 +7,7 @@ using UnityEngine;
 public class PlayerAnimatorMethods : MonoBehaviour
 {
 	public IAttacker attacker;
+	public GameObject OnDeathSpawn;
 	private void Awake()
 	{
 		attacker = GetComponentInParent<IAttacker>();
@@ -29,7 +30,11 @@ public class PlayerAnimatorMethods : MonoBehaviour
 	}
 	public void Destroy()
 	{
-		//Used in Farmer. REFACTOR
+        //Used in Farmer. REFACTOR
+        if (OnDeathSpawn != null)
+        {
+			Instantiate(OnDeathSpawn,transform.position, transform.rotation);
+        }
 		Destroy(gameObject);
 	}
 }
