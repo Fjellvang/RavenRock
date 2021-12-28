@@ -29,5 +29,10 @@ namespace Assets.Scripts.States.PlayerStates
         {
             controller.playerRenderer.color = originalColor;
         }
+        public override void FixedUpdate(PlayerController controller)
+        {
+            controller.CharacterController.Move(inputAxis * controller.acceleration * Time.fixedDeltaTime, false, jump);
+            jump = false;
+        }
     }
 }

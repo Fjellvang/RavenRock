@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour, IAttacker, IAttackable {
 	[Header("Stamina")]
 	[Range(0.001f, 1f)]
 	public float staminaIncreasePerSecond = 1;
+	public float attackStaminaCost = 0.2f;
+	public float blockStaminaCost = 0.2f;
 	[HideInInspector]
 	public float staminaMultiplier = 1;
 	public float staminaBaseMultiplier = 1;
@@ -58,7 +60,7 @@ public class PlayerController : MonoBehaviour, IAttacker, IAttackable {
         health.OnDeath += OnDeath;
 		staminaScript = GameObject.FindGameObjectWithTag("UI").GetComponent<StaminaScript>();
 		staminaScript.OnExhausted += () => StateMachine.TransitionState(PlayerBaseState.exhaustedState);
-		attackScript.OnAttack += () => staminaScript.ReduceStamina(0.2f);
+		attackScript.OnAttack += () => staminaScript.ReduceStamina(attackStaminaCost);
 	}
 
     public void OnTakeDamage(GameObject attacker, IAttackEffect[] effects)

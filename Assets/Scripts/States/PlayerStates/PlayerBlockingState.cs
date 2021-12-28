@@ -49,7 +49,7 @@ namespace Assets.Scripts.States.PlayerStates
 			}
             if (!successfullAttack)
             {
-				controller.staminaScript.ReduceStamina(0.2f);
+				controller.staminaScript.ReduceStamina(controller.blockStaminaCost);
             }
 		}
 	}
