@@ -15,6 +15,5 @@ namespace Assets.Scripts.States.EnemyStates.FarmerStates
 			controller.GetComponent<Rigidbody2D>().simulated = false;
 			controller.Animator.SetTrigger("Death");
 		}
-
 	}
 }

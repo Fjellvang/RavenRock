@@ -13,6 +13,7 @@ namespace Assets.Scripts.States.PlayerStates
 		public override void OnEnterState(PlayerController controller)
 		{
 			controller.Animator.Play("Idle");
+			controller.staminaMultiplier = controller.staminaBaseMultiplier;
 		}
 
 		public override void OnExitState(PlayerController controller)

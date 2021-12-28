@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.CombatSystem;
 using Assets.Scripts.States;
+using Assets.Scripts.States.PlayerStates;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -15,7 +16,22 @@ public class PlayerController : MonoBehaviour, IAttacker, IAttackable {
     public float lowJumpMultiplier = 2f;
 	public float acceleration = 10f;
 
-    public PlayerStateMachine StateMachine;
+	[Header("Stamina")]
+	[Range(0.001f, 1f)]
+	public float staminaIncreasePerSecond = 1;
+	public float attackStaminaCost = 0.2f;
+	public float blockStaminaCost = 0.2f;
+	[HideInInspector]
+	public float staminaMultiplier = 1;
+	public float staminaBaseMultiplier = 1;
+	[Range(0.001f, 1f)]
+	public float staminaMovingMultiplier = 0.75f;
+	[Range(0.001f, 1f)]
+	public float staminaFightingMultiplier = 0.5f;
+	[Range(0, 1f)]
+	public float staminaBlockingMultiplier = 0f;
+
+	public PlayerStateMachine StateMachine;
 	[HideInInspector]
     public CharacterController2D CharacterController;
 	[HideInInspector]
@@ -26,6 +42,8 @@ public class PlayerController : MonoBehaviour, IAttacker, IAttackable {
 	public Attack attackScript;
 	[HideInInspector]
 	public SpriteFlash flash;
+	[HideInInspector]
+	public StaminaScript staminaScript;//TODO
 
 	private void Awake()
 	{
@@ -40,8 +58,9 @@ public class PlayerController : MonoBehaviour, IAttacker, IAttackable {
         health = GetComponent<Health>();
 		CharacterController = GetComponent<CharacterController2D>();
         health.OnDeath += OnDeath;
-		var staminaScript = GameObject.FindGameObjectWithTag("UI").GetComponent<StaminaScript>();
-		attackScript.OnAttack += () => staminaScript.ReduceStamina(0.2f);
+		staminaScript = GameObject.FindGameObjectWithTag("UI").GetComponent<StaminaScript>();
+		staminaScript.OnExhausted += () => StateMachine.TransitionState(PlayerBaseState.exhaustedState);
+		attackScript.OnAttack += () => staminaScript.ReduceStamina(attackStaminaCost);
 	}
 
     public void OnTakeDamage(GameObject attacker, IAttackEffect[] effects)
