@@ -13,6 +13,7 @@ namespace Assets.Scripts.States.PlayerStates
 		public override void OnEnterState(PlayerController controller)
 		{
 			controller.Animator.Play("Blocking");
+			controller.staminaMultiplier = controller.staminaBlockingMultiplier;
 		}
 
 		public override void Update(PlayerController controller)
@@ -46,6 +47,10 @@ namespace Assets.Scripts.States.PlayerStates
 					effect.OnFailedAttack(attacker, controller.gameObject);
 				}
 			}
+            if (!successfullAttack)
+            {
+				controller.staminaScript.ReduceStamina(0.2f);
+            }
 		}
 	}
 }
