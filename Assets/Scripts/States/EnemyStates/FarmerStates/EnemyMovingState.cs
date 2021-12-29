@@ -33,7 +33,7 @@ namespace Assets.Scripts.States.EnemyStates.FarmerStates
 			bool withinRange = controller.weapon.WithinRange(controller.player.transform);
 			if (withinRange)
 			{
-				controller.StateMachine.TransitionState(controller.StateMachine.attackingState);
+				controller.stateMachine.TransitionState(controller.stateMachine.attackingState);
 			}
 		}
 

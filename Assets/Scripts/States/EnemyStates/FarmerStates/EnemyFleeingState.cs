@@ -20,7 +20,7 @@ namespace Assets.Scripts.States.EnemyStates.FarmerStates
 
             if (timefleeing <= 0)
             {
-                controller.StateMachine.TransitionState(controller.StateMachine.movingState);
+                controller.stateMachine.TransitionState(controller.stateMachine.movingState);
             }
         }
     }

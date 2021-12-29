@@ -21,7 +21,7 @@ namespace Assets.Scripts.States.EnemyStates.FarmerStates
 			timer += Time.deltaTime;
 			if (timer > controller.stunnedDuration)
 			{
-				controller.StateMachine.TransitionState(controller.StateMachine.movingState);
+				controller.stateMachine.TransitionState(controller.stateMachine.movingState);
 			}
 		}
 	}

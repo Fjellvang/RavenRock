@@ -9,7 +9,7 @@ public class FarmerAttack : MonoBehaviour, IAttackEffect
     public void OnFailedAttack(GameObject attacker, GameObject attacked)
     {
         audioSource.PlayOneShot(blockedSound);
-        ai.StateMachine.TransitionState(ai.StateMachine.stunnedState);
+        ai.stateMachine.TransitionState(ai.stateMachine.stunnedState);
     }
 
     public void OnSuccessFullAttack(GameObject attacker, GameObject attacked)

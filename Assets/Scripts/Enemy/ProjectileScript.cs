@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProjectTileScript : MonoBehaviour
+public class ProjectileScript : MonoBehaviour
 {
 	private Animator animator;
 	private Rigidbody2D rig;

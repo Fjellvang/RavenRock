@@ -1,19 +1,18 @@
 ﻿using Assets.Scripts.CombatSystem;
+using Assets.Scripts.Enemy;
 using Assets.Scripts.States;
+using Assets.Scripts.States.EnemyStates.FarmerStates;
+using System;
 using UnityEngine;
 
-//public abstract class EntityController : MonoBehaviour { } //TODO: Why this shiet
 
-[RequireComponent(typeof(CharacterController2D))]
-public class FarmerController : MonoBehaviour, IAttacker, IAttackable, IStunnable {
+public class FarmerController : NPCControllerBase<FarmerStateMachine, EnemyBaseState, FarmerController>,
+    IAttacker, IAttackable, IStunnable {
 
-    public float moveSpeed = 10f;
     [HideInInspector]
     public float stunnedDuration = 2f;
     [HideInInspector]
     public bool playerVisible = false;
-    [HideInInspector]
-    public CharacterController2D controller;
     [HideInInspector]
     public GameObject player;
     [HideInInspector]
@@ -25,18 +24,17 @@ public class FarmerController : MonoBehaviour, IAttacker, IAttackable, IStunnabl
     [HideInInspector]
     public SpriteRenderer SpriteRenderer;
 
+    public override Func<FarmerStateMachine> ConstructStatemachine => () => new FarmerStateMachine(this);
 
-    public FarmerStateMachine StateMachine;
-
-	private void Awake()
+    protected override void Awake()
 	{
-        StateMachine = new FarmerStateMachine(this);
+        base.Awake();
         GetComponent<Health>().OnDeath += OnDeath;
     }
 
     private void OnDeath()
 	{
-        StateMachine.TransitionState(StateMachine.deadState);
+        stateMachine.TransitionState(stateMachine.deadState);
     }
 
 	// Use this for initialization
@@ -51,25 +49,9 @@ public class FarmerController : MonoBehaviour, IAttacker, IAttackable, IStunnabl
     }
 	
 
-	private void FixedUpdate()
-	{
-        StateMachine.currentState.FixedUpdate(this);
-	}
-
-    //TODO: get this in a cleaner manner
-    //IAttackEffect[] attacks = new[]
-    //{
-    //    new FarmerAttack()
-    //};
-
     public void Attack()
 	{
         weapon.DoAttack(attacks);
-	}
-
-	// Update is called once per frame
-	void Update () {
-        StateMachine.currentState.Update(this);
 	}
 
 	public void PowerFullAttack()
@@ -77,7 +59,7 @@ public class FarmerController : MonoBehaviour, IAttacker, IAttackable, IStunnabl
 		throw new System.NotImplementedException();
 	}
 
-	public void OnTakeDamage(GameObject attacker, IAttackEffect[] attackEffects)
+	public override void OnTakeDamage(GameObject attacker, IAttackEffect[] attackEffects)
 	{
 		for (int i = 0; i < attackEffects.Length; i++)
 		{
@@ -88,6 +70,6 @@ public class FarmerController : MonoBehaviour, IAttacker, IAttackable, IStunnabl
 	public void Stun(float duration)
 	{
         this.stunnedDuration = duration;
-        this.StateMachine.TransitionState(StateMachine.stunnedState);
+        this.stateMachine.TransitionState(stateMachine.stunnedState);
 	}
 }

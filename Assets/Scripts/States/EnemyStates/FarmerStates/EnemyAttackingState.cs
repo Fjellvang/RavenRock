@@ -18,11 +18,11 @@
 			var outOfRange = !controller.weapon.WithinRange(controller.player.transform);
 			if (outOfRange && !inAttack)
 			{
-				controller.StateMachine.TransitionState(controller.StateMachine.movingState);
+				controller.stateMachine.TransitionState(controller.stateMachine.movingState);
 			}
             if (controller.weapon.successfullyAttacked)
             {
-				controller.StateMachine.TransitionState(controller.StateMachine.fleeingState);
+				controller.stateMachine.TransitionState(controller.stateMachine.fleeingState);
             }
 		}
 	}
