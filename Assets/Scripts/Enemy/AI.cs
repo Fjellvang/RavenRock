@@ -1,9 +1,5 @@
 ﻿using Assets.Scripts.CombatSystem;
-using Assets.Scripts.Player_States;
 using Assets.Scripts.States;
-using Assets.Scripts.States.EnemyStates;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 //public abstract class EntityController : MonoBehaviour { } //TODO: Why this shiet

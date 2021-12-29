@@ -9,6 +9,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Enemy.ButcherBoss
 {
+	[RequireComponent(typeof(CharacterController2D))]
 	public class ButcherBossController : MonoBehaviour, IAttacker, IAttackable
 	{
 		[Header("Projectile Setting")]
