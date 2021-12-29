@@ -2,16 +2,16 @@
 {
     public class EnemyAttackingState : EnemyBaseState
 	{
-		public override void OnEnterState(AI controller)
+		public override void OnEnterState(FarmerController controller)
 		{
 			controller.Animator.Play("Attacking");
 		}
 
-		public override void OnExitState(AI controller)
+		public override void OnExitState(FarmerController controller)
 		{
 		}
 
-		public override void Update(AI controller)
+		public override void Update(FarmerController controller)
 		{
 			//TODO: Fix this. maybe add animation event or something better?
 			var inAttack = controller.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime < .9f;

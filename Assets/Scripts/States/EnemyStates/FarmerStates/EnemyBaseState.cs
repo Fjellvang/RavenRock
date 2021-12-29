@@ -8,21 +8,21 @@ using UnityEngine;
 
 namespace Assets.Scripts.States.EnemyStates.FarmerStates
 {
-	public class EnemyBaseState : BaseState<AI>
+	public class EnemyBaseState : BaseState<FarmerController>
 	{
 		protected float directionalForce = 0;
-		public override void OnEnterState(AI controller)
+		public override void OnEnterState(FarmerController controller)
 		{
 		}
 
-		public override void OnExitState(AI controller)
+		public override void OnExitState(FarmerController controller)
 		{
 		}
 
-		public override void Update(AI controller)
+		public override void Update(FarmerController controller)
 		{
 		}
-		public override void FixedUpdate(AI controller)
+		public override void FixedUpdate(FarmerController controller)
 		{
 			controller.controller.Move(directionalForce * Time.fixedDeltaTime, false, false);
 		}

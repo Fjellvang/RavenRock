@@ -5,7 +5,7 @@ using UnityEngine;
 //public abstract class EntityController : MonoBehaviour { } //TODO: Why this shiet
 
 [RequireComponent(typeof(CharacterController2D))]
-public class AI : MonoBehaviour, IAttacker, IAttackable, IStunnable {
+public class FarmerController : MonoBehaviour, IAttacker, IAttackable, IStunnable {
 
     public float moveSpeed = 10f;
     [HideInInspector]

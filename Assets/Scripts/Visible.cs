@@ -15,7 +15,7 @@ public class Visible : MonoBehaviour {
     }
 	private static void SetWithinRange(Collider2D collision, bool playerVisible)
 	{
-		if ((collision.tag == "Enemy" || collision.tag == "Monk") && collision.gameObject.TryGetComponent<AI>(out var ai))
+		if ((collision.tag == "Enemy" || collision.tag == "Monk") && collision.gameObject.TryGetComponent<FarmerController>(out var ai))
 		{
 			ai.playerVisible = playerVisible;
 		}

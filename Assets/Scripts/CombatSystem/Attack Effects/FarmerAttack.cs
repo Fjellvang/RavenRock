@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class FarmerAttack : MonoBehaviour, IAttackEffect
 {
-    private AI ai;
+    private FarmerController ai;
     public AudioClip blockedSound;
     public AudioSource audioSource;
     public void OnFailedAttack(GameObject attacker, GameObject attacked)
@@ -19,7 +19,7 @@ public class FarmerAttack : MonoBehaviour, IAttackEffect
 
     // Start is called before the first frame update
     void Awake() { 
-        ai = GetComponent<AI>();
+        ai = GetComponent<FarmerController>();
     }
     
 }

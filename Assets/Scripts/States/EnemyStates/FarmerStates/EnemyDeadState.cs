@@ -9,7 +9,7 @@ namespace Assets.Scripts.States.EnemyStates.FarmerStates
 {
 	public class EnemyDeadState : EnemyBaseState
 	{
-		public override void OnEnterState(AI controller)
+		public override void OnEnterState(FarmerController controller)
 		{
 			controller.GetComponent<CapsuleCollider2D>().enabled = false;
 			controller.GetComponent<Rigidbody2D>().simulated = false;

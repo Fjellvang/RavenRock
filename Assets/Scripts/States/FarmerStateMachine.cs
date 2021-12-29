@@ -2,9 +2,9 @@
 
 namespace Assets.Scripts.States
 {
-    public class FarmerStateMachine : StateMachine<EnemyBaseState, AI>
+    public class FarmerStateMachine : StateMachine<EnemyBaseState, FarmerController>
 	{
-		public FarmerStateMachine(AI controller) : base(controller)
+		public FarmerStateMachine(FarmerController controller) : base(controller)
 		{
 			currentState = movingState;
 		}
