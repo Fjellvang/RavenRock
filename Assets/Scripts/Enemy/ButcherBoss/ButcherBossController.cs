@@ -27,8 +27,6 @@ namespace Assets.Scripts.Enemy.ButcherBoss
 		[HideInInspector]
 		public Animator animator;
 		[HideInInspector]
-		public GameObject player;
-		[HideInInspector]
 		public SpriteRenderer spriteRenderer;
 
 		public Health meatShieldHealth;
@@ -40,7 +38,6 @@ namespace Assets.Scripts.Enemy.ButcherBoss
 		protected override void Awake()
 		{
 			base.Awake();
-			player = GameObject.FindWithTag("Player");
 			weapon = GetComponent<Attack>();
 			animator = GetComponentInChildren<Animator>();
 			spriteRenderer = GetComponentInChildren<SpriteRenderer>();

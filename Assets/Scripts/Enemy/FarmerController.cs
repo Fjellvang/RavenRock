@@ -14,8 +14,6 @@ public class FarmerController : NPCControllerBase<FarmerStateMachine, EnemyBaseS
     [HideInInspector]
     public bool playerVisible = false;
     [HideInInspector]
-    public GameObject player;
-    [HideInInspector]
     public Attack weapon;
     [HideInInspector]
     public Animator Animator;
@@ -38,14 +36,11 @@ public class FarmerController : NPCControllerBase<FarmerStateMachine, EnemyBaseS
     }
 
 	// Use this for initialization
-	void Start () {
-        player = GameObject.FindWithTag("Player");
+	protected override void Start () {
         weapon = GetComponentInChildren<Attack>();
         Animator = GetComponentInChildren<Animator>();
         SpriteRenderer = GetComponentInChildren<SpriteRenderer>();
         attacks = GetComponents<IAttackEffect>();
-
-        controller = GetComponent<CharacterController2D>();
     }
 	
 

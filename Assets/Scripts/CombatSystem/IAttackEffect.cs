@@ -1,14 +1,8 @@
-﻿using Assets.Scripts.States.PlayerStates;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts.CombatSystem
 {
-	public interface IAttackEffect
+    public interface IAttackEffect
 	{
 		void OnSuccessFullAttack(GameObject attacker, GameObject attacked);
 

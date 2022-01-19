@@ -15,14 +15,23 @@ namespace Assets.Scripts.Enemy
     {
         public float moveSpeed = 10f;
 
+        [HideInInspector]
         public CharacterController2D controller;
 
         public TStateMachine stateMachine;
 
+		[HideInInspector]
+		public GameObject player;
+
         public abstract Func<TStateMachine> ConstructStatemachine { get; } 
+        protected virtual void Start()
+        {
+
+        }
 
         protected virtual void Awake()
         {
+			player = GameObject.FindWithTag("Player");
             stateMachine = ConstructStatemachine();
             controller = GetComponent<CharacterController2D>();
         }
