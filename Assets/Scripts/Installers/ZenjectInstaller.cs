@@ -1,4 +1,5 @@
 using Assets.Scripts.GameInput;
+using Assets.Scripts.Player;
 using Assets.Scripts.Signals;
 using Zenject;
 
@@ -13,7 +14,12 @@ public class ZenjectInstaller : MonoInstaller
 
         //Container.BindInterfacesAndSelfTo<PauseManager>().AsSingle();// Bound via component
         Container.Bind<MenuManager>().AsSingle();
+
         Container.DeclareSignal<GamePausedSignal>();
+
+        Container.Bind<PlayerSettings>().AsSingle();
+        Container.Bind<PlayerStamina>().AsSingle();
+        Container.BindInterfacesAndSelfTo<PlayerStaminaManager>().AsSingle();
 
         Container.Bind<InputState>().AsSingle();
         Container.BindInterfacesAndSelfTo<InputHandler>().AsSingle();

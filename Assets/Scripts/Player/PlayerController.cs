@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.CombatSystem;
 using Assets.Scripts.GameInput;
+using Assets.Scripts.Player;
 using Assets.Scripts.States;
 using Assets.Scripts.States.PlayerStates;
 using UnityEngine;
@@ -44,16 +45,18 @@ public class PlayerController : MonoBehaviour, IAttacker, IAttackable {
 	public Attack attackScript;
 	[HideInInspector]
 	public SpriteFlash flash;
-	[HideInInspector]
-	public StaminaScript staminaScript;//TODO
 
 	[HideInInspector]
     public InputState inputState; //TODO: can we refactor so that states inject this?
+    public PlayerStaminaManager playerStaminaManager;
+    private PlayerSettings playerSettings;
 
-	[Inject]
-	public void Construct(InputState inputState)
+    [Inject]
+	public void Construct(InputState inputState, PlayerStaminaManager playerStaminaManager, PlayerSettings playerSettings)
     {
 		this.inputState = inputState;
+		this.playerStaminaManager = playerStaminaManager; 
+		this.playerSettings = playerSettings; //Maybe we should NOT control this from the controller...
     }
 
 	private void Awake()
@@ -70,10 +73,12 @@ public class PlayerController : MonoBehaviour, IAttacker, IAttackable {
 		CharacterController = GetComponent<CharacterController2D>();
         health.OnDeath += OnDeath;
 
-        staminaScript = GameObject.FindGameObjectWithTag("UI").GetComponent<StaminaScript>();
-        staminaScript.OnExhausted += () => StateMachine.TransitionState(PlayerBaseState.exhaustedState);
+		playerSettings.StaminaMultiplier = staminaBaseMultiplier;
+		playerSettings.StaminaIncreasePerSecond = staminaIncreasePerSecond;
 
-        attackScript.OnAttack += () => staminaScript.ReduceStamina(attackStaminaCost);
+		playerStaminaManager.OnExhausted += () => StateMachine.TransitionState(PlayerBaseState.exhaustedState);
+
+        attackScript.OnAttack += () => playerStaminaManager.ReduceStamina(attackStaminaCost);
 	}
 
     public void OnTakeDamage(GameObject attacker, IAttackEffect[] effects)
