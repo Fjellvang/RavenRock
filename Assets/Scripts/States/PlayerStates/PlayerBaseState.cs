@@ -23,8 +23,8 @@ namespace Assets.Scripts.States.PlayerStates
 		protected bool jump = false;
 		public override void Update(PlayerController controller)
 		{
-			inputAxis = Input.GetAxis("Horizontal"); //WE doin this cus of exhaust?
-		}
+			inputAxis = controller.inputState.HorizontalMovement;
+        }
 
 		public override void OnTakeDamage(PlayerController controller, GameObject attacker, IAttackEffect[] attackEffects)
 		{

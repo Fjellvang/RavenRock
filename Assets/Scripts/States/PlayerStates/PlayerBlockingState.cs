@@ -19,7 +19,7 @@ namespace Assets.Scripts.States.PlayerStates
 		public override void Update(PlayerController controller)
 		{
 			inputAxis = 0;
-			if (!Input.GetButton("Block"))
+			if (!controller.inputState.IsPressingBlock)
 			{
 				controller.StateMachine.PoplastState();
 			}

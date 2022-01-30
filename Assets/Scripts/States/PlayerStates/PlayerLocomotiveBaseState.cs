@@ -17,7 +17,6 @@ namespace Assets.Scripts.States.PlayerStates
 		{
 			base.Update(controller);
 			var jumpPressed = controller.inputState.IsPressingJump;
-			inputAxis = controller.inputState.HorizontalMovement;
 			if (controller.inputState.IsPressingAttack)
 			{
 				controller.StateMachine.TransitionState(attackingState);

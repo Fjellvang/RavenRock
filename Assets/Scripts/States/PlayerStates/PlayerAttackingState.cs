@@ -22,7 +22,7 @@ namespace Assets.Scripts.States.PlayerStates
 		{
 			inputAxis = 0;
 			timeSinceLastAttackPress -= Time.deltaTime;
-			var pressingAttack = Input.GetButton("Attack");
+			var pressingAttack = controller.inputState.IsPressingAttack;
             if (pressingAttack)
             {
 				timeSinceLastAttackPress = pressedAttackGrace;

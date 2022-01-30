@@ -14,7 +14,7 @@ namespace Assets.Scripts.GameInput
         public void Tick()
         {
             inputState.HorizontalMovement = Input.GetAxis("Horizontal");
-            inputState.IsPressingAttack = Input.GetButtonDown("Attack");
+            inputState.IsPressingAttack = Input.GetButton("Attack");
             inputState.IsPressingJump = Input.GetKeyDown(KeyCode.JoystickButton1) || Input.GetKeyDown(KeyCode.Space);
             inputState.IsPressingBlock = Input.GetButton("Block");
             inputState.IsPressingPause = Input.GetKeyDown(KeyCode.Escape);
