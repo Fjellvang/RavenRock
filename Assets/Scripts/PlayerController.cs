@@ -1,8 +1,10 @@
 ﻿using Assets.Scripts.CombatSystem;
+using Assets.Scripts.GameInput;
 using Assets.Scripts.States;
 using Assets.Scripts.States.PlayerStates;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Zenject;
 
 public class PlayerController : MonoBehaviour, IAttacker, IAttackable {
 
@@ -44,6 +46,15 @@ public class PlayerController : MonoBehaviour, IAttacker, IAttackable {
 	public SpriteFlash flash;
 	[HideInInspector]
 	public StaminaScript staminaScript;//TODO
+
+	[HideInInspector]
+    public InputState inputState; //TODO: can we refactor so that states inject this?
+
+	[Inject]
+	public void Construct(InputState inputState)
+    {
+		this.inputState = inputState;
+    }
 
 	private void Awake()
 	{
@@ -100,7 +111,8 @@ public class PlayerController : MonoBehaviour, IAttacker, IAttackable {
 	{
 		new PlayerHeavyAttack()
 	};
-	public void Attack()
+
+    public void Attack()
 	{
 		this.attackScript.DoAttack(regularAttackEffects);
 	}

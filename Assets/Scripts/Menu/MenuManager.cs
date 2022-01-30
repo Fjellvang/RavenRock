@@ -1,49 +1,22 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Assets.Scripts.GameInput;
+using Assets.Scripts.Signals;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Zenject;
 
 public class MenuManager : MonoBehaviour
 {
-	public GameObject menu;
+    private InputState inputState;
+    private SignalBus signalBus;
 	public void StartGame()
 	{
 		SceneManager.LoadScene("LVL1-Porktown");
 	}
-
-    private void OnEnable()
+    [Inject]
+    public void Construct(SignalBus bus, InputState inputState)
     {
-        SceneManager.sceneLoaded += SceneManager_sceneLoaded;
-    }
-
-	private bool IsGameScene(int sceneIndex) => sceneIndex == 1 || sceneIndex == 4; //TODO: find something cleaner
-
-    private void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
-    {
-        if (IsGameScene(arg0.buildIndex))
-        {
-            Debug.Log("Loaded game scene");
-            SetGameUIActive(true, "UI");
-            return;
-        }
-        Debug.Log("Loaded none game scene");
-        SetGameUIActive(false, "UI");
-    }
-
-    private void SetGameUIActive(bool active, string tag)
-    {
-        var childUi = menu.GetComponentsInChildren<RectTransform>(includeInactive: true).Where(x => x.tag == tag).ToArray();
-#if DEBUG
-        if (!childUi.Any())
-        {
-            Debug.Log("Found no obects with tag" + tag + "in " + menu.name);
-        }
-#endif
-        foreach (var item in childUi)
-        {
-            item.gameObject.SetActive(active);
-        }
+        this.inputState = inputState;
+        signalBus = bus;
     }
 
     public void QuitGame()
@@ -60,7 +33,6 @@ public class MenuManager : MonoBehaviour
 	public void Awake()
     {
 		Object.DontDestroyOnLoad(this);
-		DontDestroyOnLoad(menu);
     }
 
     public static bool gameIsPaused;
@@ -70,7 +42,7 @@ public class MenuManager : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (inputState.IsPressingPause)//TODO: GET FROM INPUT MANAGER.
         {
             gameIsPaused = !gameIsPaused;
             PauseGame();
@@ -81,13 +53,13 @@ public class MenuManager : MonoBehaviour
     {
         if (gameIsPaused)
         {
-            Time.timeScale = 0f;
-            SetGameUIActive(true, "PauseMenu");
+            signalBus.Fire<GamePausedSignal>();
+            Time.timeScale = 0f; //TODO: manager for this? It has nothing to do with menu..
         }
         else
         {
+            signalBus.Fire<GameUnPausedSignal>();
             Time.timeScale = 1;
-            SetGameUIActive(false, "PauseMenu");
         }
     }
 
