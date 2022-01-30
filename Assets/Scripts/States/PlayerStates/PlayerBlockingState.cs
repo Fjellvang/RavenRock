@@ -13,7 +13,9 @@ namespace Assets.Scripts.States.PlayerStates
 		public override void OnEnterState(PlayerController controller)
 		{
 			controller.Animator.Play("Blocking");
-			controller.staminaMultiplier = controller.staminaBlockingMultiplier;
+
+			controller.playerSettings.StaminaMultiplier = controller.staminaBlockingMultiplier;
+
 		}
 
 		public override void Update(PlayerController controller)

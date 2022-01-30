@@ -24,6 +24,8 @@ public class PauseManager : IPauseManager, ITickable
         this.inputState = inputState;
     }
 
+    public bool IsPaused => paused;
+
     public void OnPauseChanged(bool paused)
     {
         for (int i = 0; i < actions.Count; i++)

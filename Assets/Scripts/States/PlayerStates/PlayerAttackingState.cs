@@ -14,8 +14,9 @@ namespace Assets.Scripts.States.PlayerStates
 		public override void OnEnterState(PlayerController controller)
 		{
 			controller.Animator.Play("Attack");
-			controller.staminaMultiplier = controller.staminaFightingMultiplier;
-			//controller.Animator.SetBool("shootButton", true);
+
+			controller.playerSettings.StaminaMultiplier = controller.staminaFightingMultiplier;
+
 		}
 
 		public override void Update(PlayerController controller)

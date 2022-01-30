@@ -12,7 +12,7 @@ namespace Assets.Scripts.States.PlayerStates
 		public override void OnEnterState(PlayerController controller)
 		{
 			controller.Animator.Play("Run");
-			controller.staminaMultiplier = controller.staminaMovingMultiplier;
+			controller.playerSettings.StaminaMultiplier = controller.staminaMovingMultiplier;
 		}
 
 		public override void OnExitState(PlayerController controller)

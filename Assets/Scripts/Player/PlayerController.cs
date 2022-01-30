@@ -45,15 +45,17 @@ public class PlayerController : MonoBehaviour, IAttacker, IAttackable {
 	public Attack attackScript;
 	[HideInInspector]
 	public SpriteFlash flash;
-
-	[HideInInspector]
+    private PauseManager pauseManager;
+    [HideInInspector]
     public InputState inputState; //TODO: can we refactor so that states inject this?
     public PlayerStaminaManager playerStaminaManager;
-    private PlayerSettings playerSettings;
+	[HideInInspector]
+    public PlayerSettings playerSettings;
 
     [Inject]
-	public void Construct(InputState inputState, PlayerStaminaManager playerStaminaManager, PlayerSettings playerSettings)
+	public void Construct(InputState inputState, PlayerStaminaManager playerStaminaManager, PlayerSettings playerSettings, PauseManager pauseManager)
     {
+		this.pauseManager = pauseManager; //TODO: Really the states need injectables so we can avoid this.
 		this.inputState = inputState;
 		this.playerStaminaManager = playerStaminaManager; 
 		this.playerSettings = playerSettings; //Maybe we should NOT control this from the controller...
@@ -96,6 +98,10 @@ public class PlayerController : MonoBehaviour, IAttacker, IAttackable {
     }
 	// Update is called once per frame
 	void Update() {
+        if (pauseManager.IsPaused)
+        {
+			return;
+        }
         StateMachine.currentState.Update(this);
         //TODO: Refactor, test with fixed update ??
         var rb = CharacterController.m_Rigidbody2D;
