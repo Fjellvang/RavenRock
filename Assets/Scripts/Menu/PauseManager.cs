@@ -1,32 +1,61 @@
-﻿using Assets.Scripts.Signals;
-using System.Collections;
+﻿using Assets.Scripts.GameInput;
+using Assets.Scripts.Signals;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class PauseManager : MonoBehaviour, IInitializable
+public interface IPauseManager
 {
-    [SerializeField]
-    GameObject[] SetActiveOnPause;
-    private SignalBus signalBus;
+    void Register(Action<bool> onPause);
 
-    [Inject]
-    public void Construct(SignalBus signalBus)
+    void OnPauseChanged(bool paused);
+}
+
+public class PauseManager : IPauseManager, ITickable
+{
+    List<Action<bool>> actions = new List<Action<bool>>();
+    private readonly InputState inputState;
+    private bool paused = false;
+
+    public PauseManager(InputState inputState, SignalBus bus)
     {
-        this.signalBus = signalBus;
+        bus.Subscribe<GamePausedSignal>(TogglePause);
+        this.inputState = inputState;
     }
 
-    public void SetGameObjectsActive(bool active)
+    public void OnPauseChanged(bool paused)
     {
-        for (int i = 0; i < SetActiveOnPause.Length; i++)
+        for (int i = 0; i < actions.Count; i++)
         {
-            SetActiveOnPause[i].SetActive(active);
+            actions[i].Invoke(paused);
         }
     }
 
-    public void Initialize()
+    public void Register(Action<bool> onPause)
     {
-        signalBus.Subscribe<GamePausedSignal>(() => SetGameObjectsActive(true));
-        signalBus.Subscribe<GameUnPausedSignal>(() => SetGameObjectsActive(false));
+        actions.Add(onPause ?? throw new NullReferenceException("Add a method please."));
+    }
+
+    public void Tick()
+    {
+        if (inputState.IsPressingPause)
+        {
+            TogglePause();
+        }
+    }
+
+    private void TogglePause()
+    {
+        paused = !paused;
+        OnPauseChanged(paused);
+        if (paused)
+        {
+            Time.timeScale = 0f; //TODO: be more fancy than this...
+        }
+        else
+        {
+            Time.timeScale = 1f;
+        }
     }
 }

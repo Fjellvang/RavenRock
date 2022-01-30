@@ -14,10 +14,11 @@ public class ZenjectInstaller : MonoInstaller
         //Container.BindInterfacesAndSelfTo<PauseManager>().AsSingle();// Bound via component
         Container.Bind<MenuManager>().AsSingle();
         Container.DeclareSignal<GamePausedSignal>();
-        Container.DeclareSignal<GameUnPausedSignal>();
 
         Container.Bind<InputState>().AsSingle();
         Container.BindInterfacesAndSelfTo<InputHandler>().AsSingle();
+        Container.BindInterfacesAndSelfTo<PauseManager>().AsSingle();
+
     }
 }
 

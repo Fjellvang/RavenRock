@@ -16,7 +16,7 @@ namespace Assets.Scripts.States.PlayerStates
 		public override void Update(PlayerController controller)
 		{
 			base.Update(controller);
-			var jumpPressed = controller.inputState.IsPressingJump;
+			var jumpPressed = controller.inputState.PressedJump;
 			if (controller.inputState.IsPressingAttack)
 			{
 				controller.StateMachine.TransitionState(attackingState);
