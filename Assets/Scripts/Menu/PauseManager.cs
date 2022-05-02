@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.GameInput;
+﻿using Assets.Scripts.Game;
+using Assets.Scripts.GameInput;
 using Assets.Scripts.Signals;
 using System;
 using System.Collections.Generic;
@@ -16,15 +17,14 @@ public class PauseManager : IPauseManager, ITickable
 {
     List<Action<bool>> actions = new List<Action<bool>>();
     private readonly InputState inputState;
-    private bool paused = false;
+    private readonly GameState gameState;
 
-    public PauseManager(InputState inputState, SignalBus bus)
+    public PauseManager(InputState inputState, SignalBus bus, GameState gameState)
     {
         bus.Subscribe<GamePausedSignal>(TogglePause);
         this.inputState = inputState;
+        this.gameState = gameState;
     }
-
-    public bool IsPaused => paused;
 
     public void OnPauseChanged(bool paused)
     {
@@ -49,9 +49,9 @@ public class PauseManager : IPauseManager, ITickable
 
     private void TogglePause()
     {
-        paused = !paused;
-        OnPauseChanged(paused);
-        if (paused)
+        gameState.IsPaused = !gameState.IsPaused;
+        OnPauseChanged(gameState.IsPaused);
+        if (gameState.IsPaused)
         {
             Time.timeScale = 0f; //TODO: be more fancy than this...
         }

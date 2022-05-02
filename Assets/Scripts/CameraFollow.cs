@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.Game;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
@@ -9,12 +10,12 @@ public class CameraFollow : MonoBehaviour {
     private Transform target;
 	private Transform subject;
 
-	private PauseManager pauseManager;
+	private GameState gameState;
 
 	[Inject]
-	public void Construct(PauseManager pauseManager)
+	public void Construct(GameState gameState)
 	{
-		this.pauseManager = pauseManager; //TODO: Really the states need injectables so we can avoid this.
+		this.gameState = gameState; 
 	}
     // Use this for initialization
     void Start()
@@ -35,7 +36,7 @@ public class CameraFollow : MonoBehaviour {
 
 	private void UpdatePosition()
 	{
-        if (pauseManager.IsPaused)
+        if (gameState.IsPaused)
         {
 			return;
         }

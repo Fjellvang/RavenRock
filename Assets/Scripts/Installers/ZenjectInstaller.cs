@@ -1,3 +1,4 @@
+using Assets.Scripts.Game;
 using Assets.Scripts.GameInput;
 using Assets.Scripts.Player;
 using Assets.Scripts.Signals;
@@ -22,6 +23,7 @@ public class ZenjectInstaller : MonoInstaller
         Container.BindInterfacesAndSelfTo<PlayerStaminaManager>().AsSingle();
 
         Container.Bind<InputState>().AsSingle();
+        Container.Bind<GameState>().AsSingle();
         Container.BindInterfacesAndSelfTo<InputHandler>().AsSingle();
         Container.BindInterfacesAndSelfTo<PauseManager>().AsSingle();
 

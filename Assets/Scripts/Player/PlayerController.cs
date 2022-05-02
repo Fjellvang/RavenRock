@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.CombatSystem;
+using Assets.Scripts.Game;
 using Assets.Scripts.GameInput;
 using Assets.Scripts.Player;
 using Assets.Scripts.States;
@@ -45,7 +46,7 @@ public class PlayerController : MonoBehaviour, IAttacker, IAttackable {
 	public Attack attackScript;
 	[HideInInspector]
 	public SpriteFlash flash;
-    private PauseManager pauseManager;
+    private GameState gameState;
     [HideInInspector]
     public InputState inputState; //TODO: can we refactor so that states inject this?
     public PlayerStaminaManager playerStaminaManager;
@@ -53,9 +54,9 @@ public class PlayerController : MonoBehaviour, IAttacker, IAttackable {
     public PlayerSettings playerSettings;
 
     [Inject]
-	public void Construct(InputState inputState, PlayerStaminaManager playerStaminaManager, PlayerSettings playerSettings, PauseManager pauseManager)
+	public void Construct(InputState inputState, PlayerStaminaManager playerStaminaManager, PlayerSettings playerSettings, GameState gameState)
     {
-		this.pauseManager = pauseManager; //TODO: Really the states need injectables so we can avoid this.
+		this.gameState = gameState; 
 		this.inputState = inputState;
 		this.playerStaminaManager = playerStaminaManager; 
 		this.playerSettings = playerSettings; //Maybe we should NOT control this from the controller...
@@ -98,7 +99,7 @@ public class PlayerController : MonoBehaviour, IAttacker, IAttackable {
     }
 	// Update is called once per frame
 	void Update() {
-        if (pauseManager.IsPaused)
+        if (gameState.IsPaused)
         {
 			return;
         }
