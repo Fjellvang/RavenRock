@@ -29,7 +29,7 @@ public class Health : MonoBehaviour
 	public void ResetHealth()
 	{
 		health = originalHealth;
-		spriteFlash.EnsureReset();
+		spriteFlash?.EnsureReset();
 	}
 	public void TakeDamage(GameObject attacker, float damage)
 	{
