@@ -54,15 +54,23 @@ public class PlayerController : MonoBehaviour, IAttacker, IAttackable {
     public PlayerSettings playerSettings;
 	[HideInInspector]
 	public PlayerCombatManager combatManager;
+	[HideInInspector]
+	public PlayerStateDescriber playerState;
 
     [Inject]
-	public void Construct(InputState inputState, PlayerStaminaManager playerStaminaManager, PlayerSettings playerSettings, GameState gameState, PlayerCombatManager combatManager)
+	public void Construct(InputState inputState,
+		PlayerStaminaManager playerStaminaManager,
+		PlayerSettings playerSettings,
+		GameState gameState,
+		PlayerCombatManager combatManager,
+		PlayerStateDescriber playerState)
     {
 		this.gameState = gameState; 
 		this.inputState = inputState;
 		this.playerStaminaManager = playerStaminaManager; 
 		this.playerSettings = playerSettings; //Maybe we should NOT control this from the controller...
 		this.combatManager = combatManager;
+		this.playerState = playerState;
     }
 
 	private void Awake()

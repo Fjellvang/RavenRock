@@ -24,6 +24,7 @@ namespace Assets.Scripts.States.PlayerStates
 		protected bool jump = false;
 		public override void Update(PlayerController controller)
 		{
+			controller.playerState.IsGrounded = controller.CharacterController.Grounded;
 			inputAxis = controller.inputState.HorizontalMovement;
         }
 

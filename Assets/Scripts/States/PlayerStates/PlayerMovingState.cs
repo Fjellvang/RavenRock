@@ -13,10 +13,12 @@ namespace Assets.Scripts.States.PlayerStates
 		{
 			controller.Animator.Play("Run");
 			controller.playerSettings.StaminaMultiplier = controller.staminaMovingMultiplier;
+			controller.playerState.IsRunning = true;
 		}
 
 		public override void OnExitState(PlayerController controller)
 		{
+			controller.playerState.IsRunning = false;
 		}
 
 		public override void Update(PlayerController controller)
@@ -24,7 +26,6 @@ namespace Assets.Scripts.States.PlayerStates
 			base.Update(controller);
 			if (Mathf.Abs(controller.CharacterController.Velocity.x) <= 0.1f)
 			{
-				controller.Animator.SetBool("isMoving", false);
 				controller.StateMachine.TransitionState(idleState);
 			}
 		}

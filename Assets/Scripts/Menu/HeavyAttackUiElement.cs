@@ -29,7 +29,6 @@ public class HeavyAttackUiElement : MonoBehaviour
         // 0.2 the icon is fully dissolved
         // 0.1 the icon is fully visible
         var value = 0.1f + (0.1f * (1 - playerCombatManager.HeavyAttackReadyRange));
-        Debug.Log("Setting dissolve: " + value + "Range: "+ playerCombatManager.HeavyAttackReadyRange);
         attackIcon.material.SetFloat("_DissolveAmount", value);
     }
 }
