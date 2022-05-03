@@ -20,6 +20,9 @@ public class Attack : MonoBehaviour {
     public delegate void OnAttackAction();
     public event OnAttackAction OnAttack;
 
+    public delegate void OnAttackHitAction();
+    public event OnAttackHitAction OnAttackHit;
+
     public void DoAttack(IAttackEffect[] attackEffects)
     {
         var collders = Physics2D.OverlapCircleAll(axeAttack.position, attackRadius, enemyMask);
@@ -28,6 +31,7 @@ public class Attack : MonoBehaviour {
         {
             var enemy = collders[i];
             enemy.GetComponent<IAttackable>().OnTakeDamage(this.gameObject, attackEffects);
+            OnAttackHit?.Invoke();
             successfullyAttacked = true;
             timeSinceSuccessfullAttack = attackGracePeriod;
         }

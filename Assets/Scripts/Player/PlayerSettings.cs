@@ -10,5 +10,7 @@ namespace Assets.Scripts.Player
     {
         public float StaminaMultiplier { get; set; }
         public float StaminaIncreasePerSecond { get; set; }
+
+        public int SuccessfullAttacksBeforeSuperAttack { get; set; }
     }
 }

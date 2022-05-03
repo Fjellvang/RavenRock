@@ -20,6 +20,8 @@ public class ZenjectInstaller : MonoInstaller
 
         Container.Bind<PlayerSettings>().AsSingle();
         Container.Bind<PlayerStamina>().AsSingle();
+
+        Container.Bind<PlayerCombatManager>().AsSingle(); //These could in theory be transient, as they should only live in the player controller?
         Container.BindInterfacesAndSelfTo<PlayerStaminaManager>().AsSingle();
 
         Container.Bind<InputState>().AsSingle();
