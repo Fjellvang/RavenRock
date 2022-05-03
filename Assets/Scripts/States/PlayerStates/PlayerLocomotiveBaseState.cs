@@ -21,6 +21,10 @@ namespace Assets.Scripts.States.PlayerStates
 			{
 				controller.StateMachine.TransitionState(attackingState);
 			}
+			else if (controller.inputState.IsPressingHeavyAttack) // TODO: add condition
+			{
+				controller.StateMachine.TransitionState(heavyAttackState);
+			}
 			else if (controller.inputState.IsPressingBlock)
 			{
 				controller.StateMachine.TransitionState(blockingState);
