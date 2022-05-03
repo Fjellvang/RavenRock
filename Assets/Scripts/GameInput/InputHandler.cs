@@ -15,6 +15,7 @@ namespace Assets.Scripts.GameInput
         {
             inputState.HorizontalMovement = Input.GetAxis("Horizontal");
             inputState.IsPressingAttack = Input.GetButton("Attack");
+            inputState.IsPressingHeavyAttack = Input.GetKeyDown(KeyCode.E);
             inputState.PressedJump = Input.GetKeyDown(KeyCode.JoystickButton1) || Input.GetKeyDown(KeyCode.Space);
             inputState.IsHoldingJump = Input.GetKey(KeyCode.JoystickButton1) || Input.GetKey(KeyCode.Space);
             inputState.IsPressingBlock = Input.GetButton("Block");

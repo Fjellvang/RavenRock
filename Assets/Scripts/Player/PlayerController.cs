@@ -52,14 +52,17 @@ public class PlayerController : MonoBehaviour, IAttacker, IAttackable {
     public PlayerStaminaManager playerStaminaManager;
 	[HideInInspector]
     public PlayerSettings playerSettings;
+	[HideInInspector]
+	public PlayerCombatManager combatManager;
 
     [Inject]
-	public void Construct(InputState inputState, PlayerStaminaManager playerStaminaManager, PlayerSettings playerSettings, GameState gameState)
+	public void Construct(InputState inputState, PlayerStaminaManager playerStaminaManager, PlayerSettings playerSettings, GameState gameState, PlayerCombatManager combatManager)
     {
 		this.gameState = gameState; 
 		this.inputState = inputState;
 		this.playerStaminaManager = playerStaminaManager; 
 		this.playerSettings = playerSettings; //Maybe we should NOT control this from the controller...
+		this.combatManager = combatManager;
     }
 
 	private void Awake()
@@ -78,10 +81,12 @@ public class PlayerController : MonoBehaviour, IAttacker, IAttackable {
 
 		playerSettings.StaminaMultiplier = staminaBaseMultiplier;
 		playerSettings.StaminaIncreasePerSecond = staminaIncreasePerSecond;
+		playerSettings.SuccessfullAttacksBeforeSuperAttack = 3; //TODO: Make editable.
 
 		playerStaminaManager.OnExhausted += () => StateMachine.TransitionState(PlayerBaseState.exhaustedState);
 
         attackScript.OnAttack += () => playerStaminaManager.ReduceStamina(attackStaminaCost);
+		attackScript.OnAttackHit += () => combatManager.OnAttackHit();
 	}
 
     public void OnTakeDamage(GameObject attacker, IAttackEffect[] effects)
