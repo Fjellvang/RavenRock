@@ -141,8 +141,11 @@ namespace Assets.Scripts.Algorithms
             }
 
             //We check if the kids is on the right or left, and then recurse the most likely candidates first.
-            var right = (2 * p.X > quadTree.TopLeft.X + quadTree.BotRight.X);
-            var top = (2 * p.Y > quadTree.TopLeft.Y + quadTree.BotRight.Y);
+            var right = (2 * p.X > quadTree.TopLeft.X + quadTree.BotRight.X) ? 1 : 0;
+            var top = (2 * p.Y > quadTree.TopLeft.Y + quadTree.BotRight.Y) ? 1 : 0;
+
+            var index0 = top * 2 + right;
+            var index1 = top * 2 + (1-right);
 
             return best.node;
         }
