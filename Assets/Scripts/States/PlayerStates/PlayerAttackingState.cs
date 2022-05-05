@@ -1,27 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts.States.PlayerStates
 {
-	public class PlayerAttackingState : PlayerLocomotiveBaseState
+    public class PlayerAttackingState : PlayerLocomotiveBaseState
 	{
-		float pressedAttackGrace = 0.2f; //TODO: move to somewhere modifyable?
+		float pressedAttackGrace = 0.1f; //TODO: move to somewhere modifyable?
 		float timeSinceLastAttackPress = 0;
 		public override void OnEnterState(PlayerController controller)
 		{
 			controller.Animator.Play("Attack");
-			//controller.Animator.SetBool("shootButton", true);
+
+			controller.playerSettings.StaminaMultiplier = controller.staminaFightingMultiplier;
+
 		}
 
 		public override void Update(PlayerController controller)
 		{
 			inputAxis = 0;
 			timeSinceLastAttackPress -= Time.deltaTime;
-			var pressingAttack = Input.GetButton("Attack");
+			var pressingAttack = controller.inputState.IsPressingAttack;
             if (pressingAttack)
             {
 				timeSinceLastAttackPress = pressedAttackGrace;
@@ -36,7 +33,6 @@ namespace Assets.Scripts.States.PlayerStates
 
 		public override void OnExitState(PlayerController controller)
 		{
-			//controller.Animator.SetBool("shootButton", false);
 		}
 	}
 }

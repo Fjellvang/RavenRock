@@ -12,9 +12,11 @@ namespace Assets.Scripts.States.PlayerStates
 	public abstract class PlayerBaseState : BaseState<PlayerController>
 	{
 		public static readonly PlayerIdleState idleState = new PlayerIdleState();
+		public static readonly PlayerExhaustedState exhaustedState = new PlayerExhaustedState();
 		public static readonly PlayerMovingState movingState = new PlayerMovingState();
 		public static readonly PlayerJumpingState jumpingState = new PlayerJumpingState();
 		public static readonly PlayerAttackingState attackingState = new PlayerAttackingState();
+		public static readonly PlayerHeavyAttackState heavyAttackState = new PlayerHeavyAttackState();
 		public static readonly PlayerBlockingState blockingState = new PlayerBlockingState();
 		public static readonly PlayerStunnedState stunnedState = new PlayerStunnedState();
 
@@ -22,21 +24,9 @@ namespace Assets.Scripts.States.PlayerStates
 		protected bool jump = false;
 		public override void Update(PlayerController controller)
 		{
-			var jumpPressed = Input.GetKeyDown(KeyCode.JoystickButton1) || Input.GetKeyDown(KeyCode.Space);
-			inputAxis = Input.GetAxis("Horizontal");
-			if (Input.GetButtonDown("Attack"))
-			{
-				controller.StateMachine.TransitionState(attackingState);
-			} else if (Input.GetButton("Block"))
-			{
-				controller.StateMachine.TransitionState(blockingState);
-			}
-			if (jumpPressed && controller.CharacterController.Grounded)
-			{
-				jump = true;
-				controller.StateMachine.TransitionState(jumpingState);
-			}
-		}
+			controller.playerState.IsGrounded = controller.CharacterController.Grounded;
+			inputAxis = controller.inputState.HorizontalMovement;
+        }
 
 		public override void OnTakeDamage(PlayerController controller, GameObject attacker, IAttackEffect[] attackEffects)
 		{

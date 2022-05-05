@@ -11,16 +11,16 @@ namespace Assets.Scripts.States.EnemyStates.FarmerStates
 	public class EnemyMovingState : EnemyBaseState
 	{
 		//float directionalForce = 0;
-		public override void OnEnterState(AI controller)
+		public override void OnEnterState(FarmerController controller)
 		{
 			controller.Animator.Play("Running");
 		}
 
-		public override void OnExitState(AI controller)
+		public override void OnExitState(FarmerController controller)
 		{
 		}
 
-		public override void Update(AI controller)
+		public override void Update(FarmerController controller)
 		{
 			if (!controller.playerVisible)
 			{
@@ -33,7 +33,7 @@ namespace Assets.Scripts.States.EnemyStates.FarmerStates
 			bool withinRange = controller.weapon.WithinRange(controller.player.transform);
 			if (withinRange)
 			{
-				controller.StateMachine.TransitionState(controller.StateMachine.attackingState);
+				controller.stateMachine.TransitionState(controller.stateMachine.attackingState);
 			}
 		}
 

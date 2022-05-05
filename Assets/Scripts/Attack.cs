@@ -17,13 +17,21 @@ public class Attack : MonoBehaviour {
     [HideInInspector]
     public bool successfullyAttacked;
 
-	public void DoAttack(IAttackEffect[] attackEffects)
+    public delegate void OnAttackAction();
+    public event OnAttackAction OnAttack;
+
+    public delegate void OnAttackHitAction();
+    public event OnAttackHitAction OnAttackHit;
+
+    public void DoAttack(IAttackEffect[] attackEffects)
     {
         var collders = Physics2D.OverlapCircleAll(axeAttack.position, attackRadius, enemyMask);
+        OnAttack?.Invoke();
         for (int i = 0; i < collders.Length; i++)
         {
             var enemy = collders[i];
             enemy.GetComponent<IAttackable>().OnTakeDamage(this.gameObject, attackEffects);
+            OnAttackHit?.Invoke();
             successfullyAttacked = true;
             timeSinceSuccessfullAttack = attackGracePeriod;
         }

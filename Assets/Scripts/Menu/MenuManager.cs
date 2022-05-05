@@ -1,28 +1,35 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Assets.Scripts.GameInput;
+using Assets.Scripts.Signals;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Zenject;
 
 public class MenuManager : MonoBehaviour
 {
+    private SignalBus signalBus;
 	public void StartGame()
 	{
 		SceneManager.LoadScene("LVL1-Porktown");
 	}
+    [Inject]
+    public void Construct(SignalBus bus)
+    {
+        this.signalBus = bus;
+    }
 
-	public void QuitGame()
+    public void QuitGame()
 	{
 		Application.Quit();
 	}
-
 
 	public void LoadBossScene()
     {
 		SceneManager.LoadScene("tempBossScene");
     }
 
-	public void Awake()
+    public void PauseGame()
     {
-		Object.DontDestroyOnLoad(this);
+        signalBus.Fire<GamePausedSignal>();
     }
+
 }

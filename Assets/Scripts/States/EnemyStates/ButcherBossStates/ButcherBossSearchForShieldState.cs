@@ -29,7 +29,6 @@ namespace Assets.Scripts.States.EnemyStates.ButcherBossStates
 			var direction = deltaX > 1 ? 1 : -1;
 			directionalForce = direction;
 
-			Debug.Log(deltaX);
 			if (Mathf.Abs(deltaX) <= 1) //TODO: unhardcode.
 			{
 				target.OnPickup();

@@ -6,12 +6,12 @@ namespace Assets.Scripts.States.EnemyStates.FarmerStates
     {
         public float fleeDuration = 4f; //TODO: Move me
         float timefleeing = 0f;
-        public override void OnEnterState(AI controller)
+        public override void OnEnterState(FarmerController controller)
         {
             timefleeing = fleeDuration;
             controller.Animator.Play("Running");
         }
-        public override void Update(AI controller)
+        public override void Update(FarmerController controller)
         {
             var vectorTowardsPlayer = controller.player.transform.position - controller.transform.position;
             var direction = vectorTowardsPlayer.x < 0 ? 1 : -1;
@@ -20,7 +20,7 @@ namespace Assets.Scripts.States.EnemyStates.FarmerStates
 
             if (timefleeing <= 0)
             {
-                controller.StateMachine.TransitionState(controller.StateMachine.movingState);
+                controller.stateMachine.TransitionState(controller.stateMachine.movingState);
             }
         }
     }

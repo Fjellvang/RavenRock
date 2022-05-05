@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.CombatSystem.DamageEffects;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpriteFlash : MonoBehaviour
+public class SpriteFlash : MonoBehaviour, IDamageEffect
 {
 
     public Color flashColor;
@@ -55,4 +56,10 @@ public class SpriteFlash : MonoBehaviour
         mat.SetFloat("_FlashAmount", flashAmount);
     }
 
+    public bool CriticalOnly() => false;
+
+    public void OnTakeDamage(GameObject attacker, float damage)
+    {
+        Flash();
+    }
 }

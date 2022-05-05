@@ -16,7 +16,7 @@ namespace Assets.Scripts.CombatSystem
 			var delta = (attacked.transform.position - attacker.transform.position).normalized;
 			delta.y += 1f;
 			pc.CharacterController.m_Rigidbody2D.AddForce(delta * 1, ForceMode2D.Impulse);
-			pc.health.TakeDamage(attacker, 1);//TODO: Define damage otherwise
+			pc.health.TakeDamage(attacker, 3);//TODO: Define damage otherwise
 		}
 
 		public void OnSuccessFullAttack(GameObject attacker, GameObject attacked)
@@ -26,7 +26,7 @@ namespace Assets.Scripts.CombatSystem
 			delta.y += 1f;
 			pc.CharacterController.m_Rigidbody2D.AddForce(delta * 5, ForceMode2D.Impulse);
 			pc.StateMachine.TransitionState(PlayerBaseState.stunnedState);
-			pc.health.TakeDamage(attacker, 1);
+			pc.health.TakeDamage(attacker, 3);
 		}
 	}
 }
