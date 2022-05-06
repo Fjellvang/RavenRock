@@ -31,9 +31,25 @@ public class QuadTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var test = (d: 9999999f, node: new Node<GameObject>());
+        var test = (d: 9999999f, node: default(Node<GameObject>));
         var nearest = tree.FindNearest(ToPoint(ToCheckFrom.position), ref test, tree);
 
+        if (nearest == null)
+        {
+            Debug.Log("No nearest found");
+            return;
+        }
+
+        var test2 = (d: 9999999f, node: default(Node<GameObject>));
+        var nearRemove = tree.FindNearestMarkUsed(ToPoint(ToCheckFrom.position), ref test2, tree);
+
+        if (nearRemove == null)
+        {
+            Debug.Log("No nearest found");
+            return;
+        }
+
         Debug.DrawLine(ToCheckFrom.position, nearest.Data.transform.position);
+        Debug.DrawLine(ToCheckFrom.position, nearRemove.Data.transform.position, Color.red, 100);
     }
 }

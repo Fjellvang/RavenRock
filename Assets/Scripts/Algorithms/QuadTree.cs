@@ -16,15 +16,17 @@ namespace Assets.Scripts.Algorithms
         public int X { get; }
         public int Y { get; }
     }
-    public struct Node<T>
+    public class Node<T> // marked as class so i easily can mark them used. This might be less optimal than removing from tree. TEST
     {
         public Node(T data, Point point)
         {
             Data = data;
             Point = point;
+            Used = false;
         }
         public Point Point { get; }
         public T Data { get; }
+        public bool Used { get; set; }
     }
     public class QuadTree<T>
     {
@@ -36,7 +38,7 @@ namespace Assets.Scripts.Algorithms
         public Point TopLeft { get; }
         public Point BotRight { get; }
 
-        public Node<T>? Node { get;  private set;} // Details of the node.
+        public Node<T> Node { get;  private set;} // Details of the node.
 
         public QuadTree<T> TopLeftTree { get; private set;}
         public QuadTree<T> BotLeftTree { get; private set;}
@@ -123,6 +125,16 @@ namespace Assets.Scripts.Algorithms
             TopLeft.X <= node.Point.X && node.Point.X <= BotRight.X &&
             TopLeft.Y >= node.Point.Y && node.Point.Y >= BotRight.Y;
 
+        public Node<T> FindNearestMarkUsed(Point p, ref (float d, Node<T> node) best, QuadTree<T> quadTree)
+        {
+            var node = FindNearest(p, ref best,quadTree);
+            if (node == null)
+            {
+                return null;
+            }
+            node.Used = true;
+            return node;
+        }
         public Node<T> FindNearest(Point p, ref (float d, Node<T> node) best, QuadTree<T> quadTree)
         {
             if (p.X < quadTree.TopLeft.X - best.d ||
@@ -134,13 +146,14 @@ namespace Assets.Scripts.Algorithms
                 return best.node;
             }
 
-            if (quadTree.Node != null)
+            if (quadTree.Node != null 
+                && quadTree.Node.Used == false) // hack until we can remove nodes from trees.
             {
-                var dx = quadTree.Node.Value.Point.X - p.X;
-                var dy = quadTree.Node.Value.Point.Y - p.Y;
+                var dx = quadTree.Node.Point.X - p.X;
+                var dy = quadTree.Node.Point.Y - p.Y;
                 var delta = Mathf.Sqrt(dx * dx + dy * dy);
                 best.d = delta;
-                best.node = quadTree.Node.Value;
+                best.node = quadTree.Node;
             }
 
             //We check if the kids is on the right or left, and then recurse the most likely candidates first.
@@ -179,7 +192,7 @@ namespace Assets.Scripts.Algorithms
             var list = new List<Node<T>>();
             if (Node != null)
             {
-                list.Add(Node.Value);
+                list.Add(Node);
             }
             if (TopLeftTree != null)
             {
