@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Scripts.Algorithms
@@ -55,13 +57,14 @@ namespace Assets.Scripts.Algorithms
                 {
                     Node = node;
                 }
+                return;
             }
 
             var leftTree = (TopLeft.X + BotRight.X) / 2 >= node.Point.X;
             if (leftTree)
             {
-                var topLeft = (TopLeft.X + BotRight.Y) / 2 >= node.Point.Y;
-                if (topLeft)
+                var topLeft = (TopLeft.Y + BotRight.Y) / 2 >= node.Point.Y;
+                if (!topLeft)
                 {
                     if (TopLeftTree is null)
                     {
@@ -89,7 +92,7 @@ namespace Assets.Scripts.Algorithms
             else
             {
                 var topRight = (TopLeft.Y + BotRight.Y) / 2 >= node.Point.Y;
-                if (topRight)
+                if (!topRight)
                 {
                     if (TopRightTree is null)
                     {
@@ -118,14 +121,14 @@ namespace Assets.Scripts.Algorithms
 
         private bool InBoundary(Node<T> node) =>
             TopLeft.X <= node.Point.X && node.Point.X <= BotRight.X &&
-            TopLeft.Y <= node.Point.Y && node.Point.Y <= BotRight.Y;
+            TopLeft.Y >= node.Point.Y && node.Point.Y >= BotRight.Y;
 
-        public Node<T> FindNearest(Point p, (float d, Node<T> node) best, QuadTree<T> quadTree)
+        public Node<T> FindNearest(Point p, ref (float d, Node<T> node) best, QuadTree<T> quadTree)
         {
             if (p.X < quadTree.TopLeft.X - best.d ||
                 p.X > quadTree.BotRight.X + best.d ||
                 p.Y < quadTree.TopLeft.X - best.d ||
-                p.Y > quadTree.BotRight.Y - best.d)
+                p.Y > quadTree.BotRight.Y + best.d)
             {
                 //Exclude node if point is farther away than best distance in either axis
                 return best.node;
@@ -144,12 +147,61 @@ namespace Assets.Scripts.Algorithms
             var right = (2 * p.X > quadTree.TopLeft.X + quadTree.BotRight.X) ? 1 : 0;
             var top = (2 * p.Y > quadTree.TopLeft.Y + quadTree.BotRight.Y) ? 1 : 0;
 
-            var index0 = top * 2 + right;
-            var index1 = top * 2 + (1-right);
+            var index0 = (1 - top) * 2 + right;         // if top & right  = (1 - 1) * 2 + 1        = 1
+            var index1 = top * 2 + right;               // if top & right  = 1 * 2 + 1              = 3 // Hence on topright we will check, Topright,
+            var index2 = (1 - top) * 2 + (1 - right);   // if top & right  = (1 - 1) * 2 + (1-1)    = 0
+            var index3 = top * 2 + (1-right);           // if top  & right = 1*2 + (1-1)            = 2
+
+            if (quadTree.Trees[index0] != null)
+            {
+                best.node = FindNearest(p, ref best, quadTree.Trees[index0]);
+            }
+            if (quadTree.Trees[index1] != null)
+            {
+                best.node = FindNearest(p, ref best, quadTree.Trees[index1]);
+            }
+            if (quadTree.Trees[index2] != null)
+            {
+                best.node = FindNearest(p, ref best, quadTree.Trees[index2]);
+            }
+            if (quadTree.Trees[index3] != null)
+            {
+                best.node = FindNearest(p, ref best, quadTree.Trees[index3]);
+            }
 
             return best.node;
         }
 
         private QuadTree<T>[] Trees => new [] { TopLeftTree, TopRightTree, BotLeftTree, BotRightTree };
+
+        public List<Node<T>> GetNodes()
+        {
+            var list = new List<Node<T>>();
+            if (Node != null)
+            {
+                list.Add(Node.Value);
+            }
+            if (TopLeftTree != null)
+            {
+                 list.AddRange(TopLeftTree.GetNodes());
+            }
+
+            if (BotLeftTree != null)
+            {
+                list.AddRange(BotLeftTree.GetNodes());
+            }
+
+            if (TopRightTree != null)
+            {
+                list.AddRange(TopRightTree.GetNodes());
+            }
+
+            if (BotRightTree != null)
+            {
+                list.AddRange(BotRightTree.GetNodes());
+            }
+
+            return list;
+        }
     }
 }
