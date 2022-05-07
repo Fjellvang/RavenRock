@@ -7,6 +7,11 @@ namespace Assets.Scripts.Algorithms
 {
     public struct Point // for now keep it int, but we might have to switch to floats for more precision
     {
+        public Point(Vector3 vector3)
+        {
+            X = Mathf.RoundToInt(vector3.x);
+            Y = Mathf.RoundToInt(vector3.y);
+        }
         public Point(int x, int y)
         {
             X = x;

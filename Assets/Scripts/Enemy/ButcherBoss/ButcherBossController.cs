@@ -1,10 +1,12 @@
-﻿using Assets.Scripts.CombatSystem;
+﻿using Assets.Scripts.Algorithms;
+using Assets.Scripts.CombatSystem;
 using Assets.Scripts.States;
 using Assets.Scripts.States.EnemyStates.ButcherBossStates;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Zenject;
 
 namespace Assets.Scripts.Enemy.ButcherBoss
 {
@@ -32,8 +34,16 @@ namespace Assets.Scripts.Enemy.ButcherBoss
 		public Health meatShieldHealth;
 		public Health bossHealth;
 
+		[HideInInspector]
+		public ButcherBossPigPickup nextShield;
 
-		public List<ButcherBossPigPickup> remainingShields = new List<ButcherBossPigPickup>();
+		private PigPickupManager pigPickupManager;
+
+		[Inject]
+		public void Construct(PigPickupManager pigPickupManager)
+        {
+			this.pigPickupManager = pigPickupManager;
+        }
 
 		protected override void Awake()
 		{
@@ -42,18 +52,17 @@ namespace Assets.Scripts.Enemy.ButcherBoss
 			animator = GetComponentInChildren<Animator>();
 			spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
-			remainingShields = GameObject.FindGameObjectsWithTag("PigPickup")
-				.Select(x => x.GetComponent<ButcherBossPigPickup>())
-				.ToList();
-
 			meatShieldHealth.OnDeath += EvaluateShield;
 		}
 
 		private void EvaluateShield()
 		{
 			meatShieldHealth.gameObject.SetActive(false);
-			var shieldsRemaning = remainingShields.Count > 0;
-			if (shieldsRemaning)
+			var best = (999999f, default(Node<ButcherBossPigPickup>));
+			var next = pigPickupManager.quadTree
+				.FindNearestMarkUsed(new Algorithms.Point(this.transform.position), ref best, pigPickupManager.quadTree);
+			nextShield = next?.Data;
+			if (nextShield != null)
 			{
 				stateMachine.TransitionState(stateMachine.searchForShieldState);
 				return;

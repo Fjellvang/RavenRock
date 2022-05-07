@@ -1,3 +1,4 @@
+using Assets.Scripts.Enemy.ButcherBoss;
 using Assets.Scripts.Game;
 using Assets.Scripts.GameInput;
 using Assets.Scripts.Player;
@@ -21,6 +22,8 @@ public class ZenjectInstaller : MonoInstaller
         Container.Bind<PlayerSettings>().AsSingle();
         Container.Bind<PlayerStamina>().AsSingle();
         Container.Bind<PlayerStateDescriber>().AsSingle();
+
+        Container.Bind<PigPickupManager>().AsSingle();
 
         Container.Bind<PlayerCombatManager>().AsSingle(); //These could in theory be transient, as they should only live in the player controller?
         Container.BindInterfacesAndSelfTo<PlayerStaminaManager>().AsSingle();
