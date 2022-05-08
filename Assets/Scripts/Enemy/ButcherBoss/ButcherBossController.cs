@@ -58,9 +58,8 @@ namespace Assets.Scripts.Enemy.ButcherBoss
 		private void EvaluateShield()
 		{
 			meatShieldHealth.gameObject.SetActive(false);
-			var best = (999999f, default(Node<ButcherBossPigPickup>));
 			var next = pigPickupManager.quadTree
-				.FindNearestMarkUsed(new Algorithms.Point(this.transform.position), ref best, pigPickupManager.quadTree);
+				.FindNearestMarkUsed(new Point(this.transform.position));
 			nextShield = next?.Data;
 			if (nextShield != null)
 			{

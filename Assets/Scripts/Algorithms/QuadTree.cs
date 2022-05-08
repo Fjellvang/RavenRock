@@ -130,7 +130,16 @@ namespace Assets.Scripts.Algorithms
             TopLeft.X <= node.Point.X && node.Point.X <= BotRight.X &&
             TopLeft.Y >= node.Point.Y && node.Point.Y >= BotRight.Y;
 
-        public Node<T> FindNearestMarkUsed(Point p, ref (float d, Node<T> node) best, QuadTree<T> quadTree)
+        public Node<T> FindNearestMarkUsed(Point p)
+        {
+            var best = (float.MaxValue, default(Node<T>));
+            return FindNearestMarkUsed(p, ref best);
+        }
+        private Node<T> FindNearestMarkUsed(Point p, ref (float d, Node<T> node) best)
+        {
+            return FindNearestMarkUsed(p, ref best, this);
+        }
+        private Node<T> FindNearestMarkUsed(Point p, ref (float d, Node<T> node) best, QuadTree<T> quadTree)
         {
             var node = FindNearest(p, ref best,quadTree);
             if (node == null)
@@ -140,7 +149,16 @@ namespace Assets.Scripts.Algorithms
             node.Used = true;
             return node;
         }
-        public Node<T> FindNearest(Point p, ref (float d, Node<T> node) best, QuadTree<T> quadTree)
+        public Node<T> FindNearest(Point p)
+        {
+            var best = (float.MaxValue, default(Node<T>));
+            return FindNearest(p, ref best);
+        }
+        private Node<T> FindNearest(Point p, ref (float d, Node<T> node) best)
+        {
+            return FindNearest(p, ref best, this);
+        }
+        private Node<T> FindNearest(Point p, ref (float d, Node<T> node) best, QuadTree<T> quadTree)
         {
             if (p.X < quadTree.TopLeft.X - best.d ||
                 p.X > quadTree.BotRight.X + best.d ||
