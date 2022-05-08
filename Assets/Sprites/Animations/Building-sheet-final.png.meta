@@ -1,0 +1,601 @@
+fileFormatVersion: 2
+guid: c8c35f580d2ab29469838a19f932c21f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7586746753235002181
+    second: Building-sheet-final 0
+  - first:
+      213: -8906752126757246568
+    second: Building-sheet-final_0
+  - first:
+      213: 1908573976130691729
+    second: Building-sheet-final_1
+  - first:
+      213: 4229497163354506243
+    second: Building-sheet-final_2
+  - first:
+      213: 8751370419482529608
+    second: Building-sheet-final_3
+  - first:
+      213: -7252248782230567863
+    second: Building-sheet-final_4
+  - first:
+      213: 2038146115655183741
+    second: Building-sheet-final_5
+  - first:
+      213: -5032996420070158750
+    second: Building-sheet-final_6
+  - first:
+      213: 2430911273037483152
+    second: Building-sheet-final_7
+  - first:
+      213: -3689639598318984974
+    second: Building-sheet-final_8
+  - first:
+      213: -6374471100557030965
+    second: Building-sheet-final_9
+  - first:
+      213: -9017235877645531084
+    second: Building-sheet-final_10
+  - first:
+      213: -1483822890522354104
+    second: Building-sheet-final_11
+  - first:
+      213: 4832917399643570595
+    second: Building-sheet-final_12
+  - first:
+      213: -4851385572200942428
+    second: Building-sheet-final_13
+  - first:
+      213: -6629625848822445793
+    second: Building-sheet-final_14
+  - first:
+      213: -3674086650534988760
+    second: Building-sheet-final_15
+  - first:
+      213: 1671594903423095691
+    second: Building-sheet-final_16
+  - first:
+      213: 7018921310211055500
+    second: Building-sheet-final_17
+  - first:
+      213: -1078197752451135191
+    second: Building-sheet-final_18
+  - first:
+      213: 1373992273318969617
+    second: Building-sheet-final_19
+  - first:
+      213: -3323772512227167834
+    second: Building-sheet-final_20
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 8
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 512
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Building-sheet-final_0
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 368
+        width: 137
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 899ed26712cd46480800000000000000
+      internalID: -8906752126757246568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building-sheet-final_1
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 364
+        width: 137
+        height: 131
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19223d25bed9c7a10800000000000000
+      internalID: 1908573976130691729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building-sheet-final_2
+      rect:
+        serializedVersion: 2
+        x: 375
+        y: 364
+        width: 132
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3048440e24132ba30800000000000000
+      internalID: 4229497163354506243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building-sheet-final_3
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 220
+        width: 159
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84f0e1f970d137970800000000000000
+      internalID: 8751370419482529608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building-sheet-final_4
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 220
+        width: 150
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94443681826da5b90800000000000000
+      internalID: -7252248782230567863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building-sheet-final_5
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 220
+        width: 146
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7d28f7f713f84c10800000000000000
+      internalID: 2038146115655183741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building-sheet-final_6
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 82
+        width: 146
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26ec7e10c64372ab0800000000000000
+      internalID: -5032996420070158750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building-sheet-final_7
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 136
+        width: 56
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09c44ed5ce45cb120800000000000000
+      internalID: 2430911273037483152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building-sheet-final_8
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 136
+        width: 56
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f06bf87554cbccc0800000000000000
+      internalID: -3689639598318984974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building-sheet-final_9
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 136
+        width: 33
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc90e44be445987a0800000000000000
+      internalID: -6374471100557030965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building-sheet-final_10
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 118
+        width: 40
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 438c701aeb75cd280800000000000000
+      internalID: -9017235877645531084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building-sheet-final_11
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 123
+        width: 40
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84e52d451f6686be0800000000000000
+      internalID: -1483822890522354104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building-sheet-final_12
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 103
+        width: 31
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a14f82e4c8f11340800000000000000
+      internalID: 4832917399643570595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building-sheet-final_13
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 103
+        width: 31
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a4f18c968a6cacb0800000000000000
+      internalID: -4851385572200942428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building-sheet-final_14
+      rect:
+        serializedVersion: 2
+        x: 229
+        y: 73
+        width: 31
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f19c03f6a66def3a0800000000000000
+      internalID: -6629625848822445793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building-sheet-final_15
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 73
+        width: 31
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8247bd058a5030dc0800000000000000
+      internalID: -3674086650534988760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building-sheet-final_16
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 37
+        width: 106
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8313ea45b2b23710800000000000000
+      internalID: 1671594903423095691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building-sheet-final_17
+      rect:
+        serializedVersion: 2
+        x: 437
+        y: 39
+        width: 33
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8f9c896eb7386160800000000000000
+      internalID: 7018921310211055500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building-sheet-final_18
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 32
+        width: 65
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 929868f4bd87901f0800000000000000
+      internalID: -1078197752451135191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building-sheet-final_19
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 41
+        width: 33
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1110f4f51b6611310800000000000000
+      internalID: 1373992273318969617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Building-sheet-final_20
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 41
+        width: 33
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a1fd7e92869fd1d0800000000000000
+      internalID: -3323772512227167834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
