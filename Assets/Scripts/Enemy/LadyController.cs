@@ -12,10 +12,15 @@ namespace Assets.Scripts.Enemy
         [HideInInspector]
         public Animator Animator;
 
+        [SerializeField]
+        private LadyScriptableStates LadyScript;
+
         protected override void Awake()
         {
             base.Awake();
             Animator = GetComponentInChildren<Animator>();
+
+            Animator.runtimeAnimatorController = LadyScript.GetRandomController();
         }
 
         private void OnTriggerEnter2D(UnityEngine.Collider2D collision)
