@@ -175,8 +175,11 @@ namespace Assets.Scripts.Algorithms
                 var dx = quadTree.Node.Point.X - p.X;
                 var dy = quadTree.Node.Point.Y - p.Y;
                 var delta = Mathf.Sqrt(dx * dx + dy * dy);
-                best.d = delta;
-                best.node = quadTree.Node;
+                if (delta < best.d)
+                {
+                    best.d = delta;
+                    best.node = quadTree.Node;
+                }
             }
 
             //We check if the kids is on the right or left, and then recurse the most likely candidates first.
