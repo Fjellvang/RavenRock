@@ -26,6 +26,11 @@ namespace Assets.Scripts.Algorithms
             var dY = p.Y - Y;
             return Mathf.Sqrt(dx * dx + dY * dY);
         }
+
+        public bool LiesWithin(Point topLeft, Point bottomRight)
+        {
+            return topLeft.X <= X && X <= bottomRight.X && topLeft.Y <= Y && Y <= bottomRight.Y;
+        }
     }
     public class Node<T> // marked as class so i easily can mark them used. This might be less optimal than removing from tree. TEST
     {
@@ -135,6 +140,30 @@ namespace Assets.Scripts.Algorithms
                     trees[3].Insert(node);
                 }
             }
+        }
+
+        public List<Node<T>> FindInQuadrant(Point topLeft, Point botRight)
+        {
+            var result = new List<Node<T>>();
+
+            if (Node != null && Node.Point.LiesWithin(topLeft, botRight))
+            {
+                result.Add(Node);
+                return result;
+            }
+            var outOfBounds = !(topLeft.LiesWithin(TopLeft, BotRight) || botRight.LiesWithin(TopLeft, BotRight));
+            if (outOfBounds) // We are only out of bounds if both points are.. Right?!
+            {
+                return result;
+            }
+            for (int i = 0; i < trees.Length; i++)
+            {
+                if (trees[i] != null)
+                {
+                    result.AddRange(trees[i].FindInQuadrant(topLeft, botRight));
+                }
+            }
+            return result;
         }
 
         private bool InBoundary(Node<T> node) =>
