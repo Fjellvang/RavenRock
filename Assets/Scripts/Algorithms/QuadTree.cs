@@ -39,16 +39,12 @@ namespace Assets.Scripts.Algorithms
         {
             TopLeft = topLeft;
             BotRight = bottomRight;
+            trees = new QuadTree<T>[4];
         }
         public Point TopLeft { get; }
         public Point BotRight { get; }
 
         public Node<T> Node { get;  private set;} // Details of the node.
-
-        public QuadTree<T> TopLeftTree { get; private set;}
-        public QuadTree<T> BotLeftTree { get; private set;}
-        public QuadTree<T> TopRightTree { get; private set; }
-        public QuadTree<T> BotRightTree { get; private set;}
 
         public void Insert(Node<T> node)
         {
@@ -73,27 +69,27 @@ namespace Assets.Scripts.Algorithms
                 var topLeft = (TopLeft.Y + BotRight.Y) / 2 >= node.Point.Y;
                 if (!topLeft)
                 {
-                    if (TopLeftTree is null)
+                    if (trees[0] is null)
                     {
-                        TopLeftTree = new QuadTree<T>(
+                        trees[0] = new QuadTree<T>(
                             TopLeft,
                             new Point((TopLeft.X + BotRight.X) / 2, (TopLeft.Y + BotRight.Y) / 2)
                         );
                     }
 
-                    TopLeftTree.Insert(node);
+                    trees[0].Insert(node);
                 }
                 else
                 {
-                    if (BotLeftTree is null)
+                    if (trees[2] is null)
                     {
-                        BotLeftTree = new QuadTree<T>(
+                        trees[2] = new QuadTree<T>(
                             new Point(TopLeft.X, (TopLeft.Y + BotRight.Y) / 2),
                             new Point((TopLeft.X + BotRight.X) / 2, BotRight.Y)
                             );
                     }
 
-                    BotLeftTree.Insert(node);
+                    trees[2].Insert(node);
                 }
             }
             else
@@ -101,27 +97,27 @@ namespace Assets.Scripts.Algorithms
                 var topRight = (TopLeft.Y + BotRight.Y) / 2 >= node.Point.Y;
                 if (!topRight)
                 {
-                    if (TopRightTree is null)
+                    if (trees[1] is null)
                     {
-                        TopRightTree = new QuadTree<T>(
+                        trees[1] = new QuadTree<T>(
                             new Point((TopLeft.X + BotRight.X) / 2, TopLeft.Y),
                             new Point(BotRight.X, (TopLeft.Y + BotRight.Y) / 2)
                             );
                     }
 
-                    TopRightTree.Insert(node);
+                    trees[1].Insert(node);
                 }
                 else
                 {
-                    if (BotRightTree is null)
+                    if (trees[3] is null)
                     {
-                        BotRightTree = new QuadTree<T>(
+                        trees[3] = new QuadTree<T>(
                             new Point((TopLeft.X + BotRight.X) / 2, (TopLeft.Y + BotRight.Y) / 2),
                             BotRight
                         );
                     }
 
-                    BotRightTree.Insert(node);
+                    trees[3].Insert(node);
                 }
             }
         }
@@ -133,15 +129,15 @@ namespace Assets.Scripts.Algorithms
         public Node<T> FindNearestMarkUsed(Point p)
         {
             var best = (float.MaxValue, default(Node<T>));
-            return FindNearestMarkUsed(p, ref best);
+            return FindNearestMarkUsed(p, best);
         }
-        private Node<T> FindNearestMarkUsed(Point p, ref (float d, Node<T> node) best)
+        private Node<T> FindNearestMarkUsed(Point p, (float d, Node<T> node) best)
         {
-            return FindNearestMarkUsed(p, ref best, this);
+            return FindNearestMarkUsed(p, best, this);
         }
-        private Node<T> FindNearestMarkUsed(Point p, ref (float d, Node<T> node) best, QuadTree<T> quadTree)
+        private Node<T> FindNearestMarkUsed(Point p, (float d, Node<T> node) best, QuadTree<T> quadTree)
         {
-            var node = FindNearest(p, ref best,quadTree);
+            var node = FindNearest(p, best,quadTree);
             if (node == null)
             {
                 return null;
@@ -152,18 +148,18 @@ namespace Assets.Scripts.Algorithms
         public Node<T> FindNearest(Point p)
         {
             var best = (float.MaxValue, default(Node<T>));
-            return FindNearest(p, ref best);
+            return FindNearest(p, best);
         }
-        private Node<T> FindNearest(Point p, ref (float d, Node<T> node) best)
+        private Node<T> FindNearest(Point p, (float d, Node<T> node) best)
         {
-            return FindNearest(p, ref best, this);
+            return FindNearest(p, best, this);
         }
-        private Node<T> FindNearest(Point p, ref (float d, Node<T> node) best, QuadTree<T> quadTree)
+        private Node<T> FindNearest(Point p, (float d, Node<T> node) best, QuadTree<T> quadTree)
         {
             if (p.X < quadTree.TopLeft.X - best.d ||
                 p.X > quadTree.BotRight.X + best.d ||
-                p.Y < quadTree.TopLeft.X - best.d ||
-                p.Y > quadTree.BotRight.Y + best.d)
+                p.Y < quadTree.BotRight.Y - best.d ||
+                p.Y > quadTree.TopLeft.Y + best.d)
             {
                 //Exclude node if point is farther away than best distance in either axis
                 return best.node;
@@ -193,25 +189,25 @@ namespace Assets.Scripts.Algorithms
 
             if (quadTree.Trees[index0] != null)
             {
-                best.node = FindNearest(p, ref best, quadTree.Trees[index0]);
+                best.node = FindNearest(p, best, quadTree.Trees[index0]);
             }
             if (quadTree.Trees[index1] != null)
             {
-                best.node = FindNearest(p, ref best, quadTree.Trees[index1]);
+                best.node = FindNearest(p, best, quadTree.Trees[index1]);
             }
             if (quadTree.Trees[index2] != null)
             {
-                best.node = FindNearest(p, ref best, quadTree.Trees[index2]);
+                best.node = FindNearest(p, best, quadTree.Trees[index2]);
             }
             if (quadTree.Trees[index3] != null)
             {
-                best.node = FindNearest(p, ref best, quadTree.Trees[index3]);
+                best.node = FindNearest(p, best, quadTree.Trees[index3]);
             }
 
             return best.node;
         }
 
-        private QuadTree<T>[] Trees => new [] { TopLeftTree, TopRightTree, BotLeftTree, BotRightTree };
+        private QuadTree<T>[] trees;
 
         public List<Node<T>> GetNodes()
         {
