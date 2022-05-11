@@ -60,6 +60,10 @@ public class SpriteFlash : MonoBehaviour, IDamageEffect
 
     public void OnTakeDamage(GameObject attacker, float damage)
     {
+        if (!gameObject.activeInHierarchy)
+        {
+            return;
+        }
         Flash();
     }
 }

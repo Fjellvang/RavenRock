@@ -20,6 +20,12 @@ namespace Assets.Scripts.Algorithms
 
         public int X { get; }
         public int Y { get; }
+        public float DistanceTo(Point p)
+        {
+            var dx = p.X - X;
+            var dY = p.Y - Y;
+            return Mathf.Sqrt(dx * dx + dY * dY);
+        }
     }
     public class Node<T> // marked as class so i easily can mark them used. This might be less optimal than removing from tree. TEST
     {
@@ -135,12 +141,17 @@ namespace Assets.Scripts.Algorithms
             TopLeft.X <= node.Point.X && node.Point.X <= BotRight.X &&
             TopLeft.Y >= node.Point.Y && node.Point.Y >= BotRight.Y;
 
-        public (float d, Node<T> node) FindNearestMarkUsed(Point p)
+        /// <summary>
+        /// Finds the nearest node to <paramref name="p"/> and removes it from the tree
+        /// </summary>
+        /// <param name="p"></param>
+        /// <returns></returns>
+        public (float d, Node<T> node) PopNearest(Point p)
         {
             var best = (float.MaxValue, default(Node<T>));
-            return FindNearestMarkUsed(p, best, this);
+            return PopNearest(p, best, this);
         }
-        private (float d, Node<T> node) FindNearestMarkUsed(Point p, (float d, Node<T> node) best, QuadTree<T> quadTree)
+        private (float d, Node<T> node) PopNearest(Point p, (float d, Node<T> node) best, QuadTree<T> quadTree)
         {
             var result = FindNearest(p, best,quadTree);
             if (result.node == null)
@@ -208,9 +219,7 @@ namespace Assets.Scripts.Algorithms
 
             if (quadTree.Node != null)
             {
-                var dx = quadTree.Node.Point.X - p.X;
-                var dy = quadTree.Node.Point.Y - p.Y;
-                var delta = Mathf.Sqrt(dx * dx + dy * dy);
+                var delta = p.DistanceTo(quadTree.Node.Point);
                 if (delta < best.d)
                 {
                     best.d = delta;
