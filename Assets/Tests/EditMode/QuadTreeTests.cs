@@ -63,7 +63,7 @@ namespace Tests
         [Test]
         public void QuadTree_SearchInQuadrant()
         {
-            var ps = pointsSorted.Where(x => x.X >- 500 && x.Y >= 500).ToList(); // all points in upperRight quadrant
+            var ps = pointsSorted.Where(x => x.X > -500 && x.Y >= 500).ToList(); // all points in upperRight quadrant
 
             List<Node<int>> pointsFound = quadTree.FindInQuadrant(new Point(500, 1000), new Point(1000, 500));
 
@@ -79,7 +79,7 @@ namespace Tests
             var bottomRight = new Point(750, 250);
             var ps = pointsSorted
                 .Where(x => x.LiesWithin(topLeft, bottomRight))
-                .ToList(); 
+                .ToList();
 
             List<Node<int>> pointsFound = quadTree.FindInQuadrant(topLeft, bottomRight);
 
@@ -87,6 +87,28 @@ namespace Tests
             var result = pointsFound.OrderBy(x => x.Point.X).ThenBy(x => x.Point.Y).Select(x => x.Point).ToList();
 
             Assert.That(result, Is.All.EquivalentTo(expected));
+        }
+
+        [Test]
+        public void QuadTree_FindNearestInQuadrant()
+        {
+            var topLeft = new Point(500,1000);
+            var bottomRight = new Point(1000,500);
+
+            var centerOfQuadrant = new Point(750, 750);
+
+            var allPoints = quadTree
+                .FindInQuadrant(topLeft, bottomRight)
+                .Select(x => (x.Point, x.Point.DistanceTo(centerOfQuadrant)))
+                .OrderBy(x => x.Item2)
+                .Select(x => x.Point)
+                .ToArray();
+                ;
+
+            var expected = allPoints.First();
+            var result = quadTree.FindNearestInQuadrant(centerOfQuadrant, topLeft, bottomRight);
+
+            Assert.That(result, Is.EqualTo(expected));
         }
     }
 }

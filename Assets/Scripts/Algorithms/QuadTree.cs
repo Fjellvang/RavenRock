@@ -229,12 +229,74 @@ namespace Assets.Scripts.Algorithms
             }
             return true;
         }
+        public (float d, Node<T> node) FindNearestInQuadrant(Point toFind, Point topLeft, Point botRight)
+        {
+            return FindNearestInQuadrant(toFind, topLeft, botRight, (float.MaxValue, default(Node<T>)));
+        }
 
+        private (float d, Node<T> node) FindNearestInQuadrant(Point toFind, Point topLeft, Point botRight, (float d, Node<T> node) best)
+        {
+            if (toFind.X < TopLeft.X - best.d ||
+                toFind.X > BotRight.X + best.d ||
+                toFind.Y < BotRight.Y - best.d ||
+                toFind.Y > TopLeft.Y + best.d)
+            {
+                //Exclude node if point is farther away than best distance in either axis
+                return best;
+            }
+
+            var outOfBounds = !(topLeft.LiesWithin(TopLeft, BotRight) || botRight.LiesWithin(TopLeft, BotRight));
+            if (outOfBounds) // We are only out of bounds if both points are.. Right?!
+            {
+                return best;
+            }
+
+            if (Node != null && Node.Point.LiesWithin(topLeft, botRight))
+            {
+                var delta = toFind.DistanceTo(Node.Point);
+                if (delta < best.d)
+                {
+                    best.d = delta;
+                    best.node = Node;
+                    best.node.Tree = this;
+                }
+            }
+
+            //We check if the kids is on the right or left, and then recurse the most likely candidates first.
+            var right = (2 * toFind.X > TopLeft.X + BotRight.X) ? 1 : 0;
+            var top = (2 * toFind.Y > TopLeft.Y + BotRight.Y) ? 1 : 0;
+
+            var index0 = (1 - top) * 2 + right;         // if top & right  = (1 - 1) * 2 + 1        = 1
+            var index1 = top * 2 + right;               // if top & right  = 1 * 2 + 1              = 3 // Hence on topright we will check, Topright,
+            var index2 = (1 - top) * 2 + (1 - right);   // if top & right  = (1 - 1) * 2 + (1-1)    = 0
+            var index3 = top * 2 + (1 - right);           // if top  & right = 1*2 + (1-1)            = 2
+
+            if (trees[index0] != null)
+            {
+                best = trees[index0].FindNearestInQuadrant(toFind, topLeft, botRight, best);
+            }
+            if (trees[index1] != null)
+            {
+                best = trees[index1].FindNearestInQuadrant(toFind, topLeft, botRight, best);
+            }
+            if (trees[index2] != null)
+            {
+                best = trees[index2].FindNearestInQuadrant(toFind, topLeft, botRight, best);
+            }
+            if (trees[index3] != null)
+            {
+                best = trees[index3].FindNearestInQuadrant(toFind, topLeft, botRight, best);
+            }
+
+            return best;
+
+        }
         public (float d, Node<T> node) FindNearest(Point p)
         {
             var best = (float.MaxValue, default(Node<T>));
             return FindNearest(p, best);
         }
+
         private (float d, Node<T> node) FindNearest(Point p, (float d, Node<T> node) best)
         {
             if (p.X < TopLeft.X - best.d ||
