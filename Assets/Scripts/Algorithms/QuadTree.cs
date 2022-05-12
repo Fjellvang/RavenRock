@@ -178,11 +178,11 @@ namespace Assets.Scripts.Algorithms
         public (float d, Node<T> node) PopNearest(Point p)
         {
             var best = (float.MaxValue, default(Node<T>));
-            return PopNearest(p, best, this);
+            return PopNearest(p, best);
         }
-        private (float d, Node<T> node) PopNearest(Point p, (float d, Node<T> node) best, QuadTree<T> quadTree)
+        private (float d, Node<T> node) PopNearest(Point p, (float d, Node<T> node) best)
         {
-            var result = FindNearest(p, best,quadTree);
+            var result = FindNearest(p, best);
             if (result.node == null)
             {
                 return result;
@@ -233,54 +233,54 @@ namespace Assets.Scripts.Algorithms
         public (float d, Node<T> node) FindNearest(Point p)
         {
             var best = (float.MaxValue, default(Node<T>));
-            return FindNearest(p, best, this);
+            return FindNearest(p, best);
         }
-        private (float d, Node<T> node) FindNearest(Point p, (float d, Node<T> node) best, QuadTree<T> quadTree)
+        private (float d, Node<T> node) FindNearest(Point p, (float d, Node<T> node) best)
         {
-            if (p.X < quadTree.TopLeft.X - best.d ||
-                p.X > quadTree.BotRight.X + best.d ||
-                p.Y < quadTree.BotRight.Y - best.d ||
-                p.Y > quadTree.TopLeft.Y + best.d)
+            if (p.X < TopLeft.X - best.d ||
+                p.X > BotRight.X + best.d ||
+                p.Y < BotRight.Y - best.d ||
+                p.Y > TopLeft.Y + best.d)
             {
                 //Exclude node if point is farther away than best distance in either axis
                 return best;
             }
 
-            if (quadTree.Node != null)
+            if (Node != null)
             {
-                var delta = p.DistanceTo(quadTree.Node.Point);
+                var delta = p.DistanceTo(Node.Point);
                 if (delta < best.d)
                 {
                     best.d = delta;
-                    best.node = quadTree.Node;
-                    best.node.Tree = quadTree;
+                    best.node = Node;
+                    best.node.Tree = this;
                 }
             }
 
             //We check if the kids is on the right or left, and then recurse the most likely candidates first.
-            var right = (2 * p.X > quadTree.TopLeft.X + quadTree.BotRight.X) ? 1 : 0;
-            var top = (2 * p.Y > quadTree.TopLeft.Y + quadTree.BotRight.Y) ? 1 : 0;
+            var right = (2 * p.X > TopLeft.X + BotRight.X) ? 1 : 0;
+            var top = (2 * p.Y > TopLeft.Y + BotRight.Y) ? 1 : 0;
 
             var index0 = (1 - top) * 2 + right;         // if top & right  = (1 - 1) * 2 + 1        = 1
             var index1 = top * 2 + right;               // if top & right  = 1 * 2 + 1              = 3 // Hence on topright we will check, Topright,
             var index2 = (1 - top) * 2 + (1 - right);   // if top & right  = (1 - 1) * 2 + (1-1)    = 0
             var index3 = top * 2 + (1-right);           // if top  & right = 1*2 + (1-1)            = 2
 
-            if (quadTree.trees[index0] != null)
+            if (trees[index0] != null)
             {
-                best = FindNearest(p, best, quadTree.trees[index0]);
+                best = trees[index0].FindNearest(p, best);
             }
-            if (quadTree.trees[index1] != null)
+            if (trees[index1] != null)
             {
-                best = FindNearest(p, best, quadTree.trees[index1]);
+                best = trees[index1].FindNearest(p, best);
             }
-            if (quadTree.trees[index2] != null)
+            if (trees[index2] != null)
             {
-                best = FindNearest(p, best, quadTree.trees[index2]);
+                best = trees[index2].FindNearest(p, best);
             }
-            if (quadTree.trees[index3] != null)
+            if (trees[index3] != null)
             {
-                best = FindNearest(p, best, quadTree.trees[index3]);
+                best = trees[index3].FindNearest(p, best);
             }
 
             return best;
