@@ -16,7 +16,7 @@ namespace Tests
         [SetUp]
         public void Setup()
         {
-            quadTree = new QuadTree<int>(new Point(0, 1000), new Point(1000, 0));
+            quadTree = new QuadTree<int>(new Point(0, 10000), new Point(10000, 0));
             var points = new Dictionary<double, Point>();
             for (int i = 0; i < 1000; i++)
             {
@@ -65,7 +65,8 @@ namespace Tests
         {
             var ps = pointsSorted.Where(x => x.X >= 500 && x.Y >= 500).ToList(); // all points in upperRight quadrant
 
-            List<Node<int>> pointsFound = quadTree.FindInQuadrant(new Point(500, 1000), new Point(1000, 500));
+            var pointsFound = new List<Node<int>>();
+            quadTree.FindInQuadrant(new Point(500, 1000), new Point(1000, 500), pointsFound);
 
             var expected = ps.OrderBy(x => x.X).ThenBy(x => x.Y).ToList();
             var result = pointsFound.OrderBy(x => x.Point.X).ThenBy(x => x.Point.Y).Select(x => x.Point).ToList();
@@ -73,6 +74,7 @@ namespace Tests
             Assert.That(result, Is.EquivalentTo(expected));
             Assert.That(result, Is.Not.Empty);
         }
+
         [Test]
         public void QuadTree_SearchInQuadrant_Middle()
         {
@@ -82,7 +84,8 @@ namespace Tests
                 .Where(x => x.LiesWithin(topLeft, bottomRight))
                 .ToList();
 
-            List<Node<int>> pointsFound = quadTree.FindInQuadrant(topLeft, bottomRight);
+            var pointsFound = new List<Node<int>>();
+            quadTree.FindInQuadrant(topLeft, bottomRight, pointsFound);
 
             var expected = ps.OrderBy(x => x.X).ThenBy(x => x.Y).ToList();
             var result = pointsFound.OrderBy(x => x.Point.X).ThenBy(x => x.Point.Y).Select(x => x.Point).ToList();
@@ -99,8 +102,13 @@ namespace Tests
 
             var centerOfQuadrant = new Point(750, 750);
 
-            var allPoints = quadTree
-                .FindInQuadrant(topLeft, bottomRight)
+            var pointsFound = new List<Node<int>>();
+
+            quadTree
+                .FindInQuadrant(topLeft, bottomRight, pointsFound);
+
+            var allPoints = pointsFound
+
                 .Select(x => (x.Point, x.Point.DistanceTo(centerOfQuadrant)))
                 .OrderBy(x => x.Item2)
                 .Select(x => x.Point)

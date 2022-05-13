@@ -155,28 +155,28 @@ namespace Assets.Scripts.Algorithms
             }
         }
 
-        public List<Node<T>> FindInQuadrant(Point topLeft, Point botRight)
+        public void FindInQuadrant(Point topLeft, Point botRight, List<Node<T>> result)
         {
-            var result = new List<Node<T>>();
+            //var result = new List<Node<T>>();
 
             if (Node != null && Node.Point.LiesWithin(topLeft, botRight))
             {
                 result.Add(Node);
-                return result;
+                return;
             }
             var outOfBounds = !Point.Overlaps(TopLeft, BotRight, topLeft, botRight);
             if (outOfBounds) 
             {
-                return result;
+                return;
             }
             for (int i = 0; i < trees.Length; i++)
             {
                 if (trees[i] != null)
                 {
-                    result.AddRange(trees[i].FindInQuadrant(topLeft, botRight));
+                    trees[i].FindInQuadrant(topLeft, botRight, result);
+                    //result.AddRange(trees[i].FindInQuadrant(topLeft, botRight, result));
                 }
             }
-            return result;
         }
 
         private bool InBoundary(Node<T> node) =>
