@@ -63,14 +63,15 @@ namespace Tests
         [Test]
         public void QuadTree_SearchInQuadrant()
         {
-            var ps = pointsSorted.Where(x => x.X > -500 && x.Y >= 500).ToList(); // all points in upperRight quadrant
+            var ps = pointsSorted.Where(x => x.X >= 500 && x.Y >= 500).ToList(); // all points in upperRight quadrant
 
             List<Node<int>> pointsFound = quadTree.FindInQuadrant(new Point(500, 1000), new Point(1000, 500));
 
             var expected = ps.OrderBy(x => x.X).ThenBy(x => x.Y).ToList();
             var result = pointsFound.OrderBy(x => x.Point.X).ThenBy(x => x.Point.Y).Select(x => x.Point).ToList();
 
-            Assert.That(result, Is.All.EquivalentTo(expected));
+            Assert.That(result, Is.EquivalentTo(expected));
+            Assert.That(result, Is.Not.Empty);
         }
         [Test]
         public void QuadTree_SearchInQuadrant_Middle()
@@ -86,7 +87,8 @@ namespace Tests
             var expected = ps.OrderBy(x => x.X).ThenBy(x => x.Y).ToList();
             var result = pointsFound.OrderBy(x => x.Point.X).ThenBy(x => x.Point.Y).Select(x => x.Point).ToList();
 
-            Assert.That(result, Is.All.EquivalentTo(expected));
+            Assert.That(result, Is.Not.Empty);
+            Assert.That(result, Is.EquivalentTo(expected));
         }
 
         [Test]
@@ -108,7 +110,8 @@ namespace Tests
             var expected = allPoints.First();
             var result = quadTree.FindNearestInQuadrant(centerOfQuadrant, topLeft, bottomRight);
 
-            Assert.That(result, Is.EqualTo(expected));
+            Assert.That(result.node, Is.Not.Null);
+            Assert.That(result.node.Point, Is.EqualTo(expected));
         }
     }
 }

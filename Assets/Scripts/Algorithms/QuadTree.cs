@@ -29,7 +29,20 @@ namespace Assets.Scripts.Algorithms
 
         public bool LiesWithin(Point topLeft, Point bottomRight)
         {
-            return topLeft.X <= X && X <= bottomRight.X && topLeft.Y <= Y && Y <= bottomRight.Y;
+            return X <= bottomRight.X && topLeft.X <= X && Y <= topLeft.Y && bottomRight.Y <= Y;
+        }
+
+        /// <summary>
+        /// returns true if the rect defined by <paramref name="topleft0"/> && <paramref name="bottomRight0"/> overlaps the rect defined by <paramref name="topLeft1"/> && <paramref name="bottomRight1"/>
+        /// </summary>
+        /// <param name="topleft0"></param>
+        /// <param name="bottomRight0"></param>
+        /// <param name="topLeft1"></param>
+        /// <param name="bottomRight1"></param>
+        /// <returns></returns>
+        public static bool Overlaps(Point topleft0, Point bottomRight0, Point topLeft1, Point bottomRight1)
+        {
+            return bottomRight0.X <= topLeft1.X || bottomRight0.Y <= topLeft1.Y || bottomRight0.X >= topLeft1.X || topleft0.Y <= bottomRight1.Y;
         }
     }
     public class Node<T> // marked as class so i easily can mark them used. This might be less optimal than removing from tree. TEST
@@ -151,8 +164,8 @@ namespace Assets.Scripts.Algorithms
                 result.Add(Node);
                 return result;
             }
-            var outOfBounds = !(topLeft.LiesWithin(TopLeft, BotRight) || botRight.LiesWithin(TopLeft, BotRight));
-            if (outOfBounds) // We are only out of bounds if both points are.. Right?!
+            var outOfBounds = !Point.Overlaps(TopLeft, BotRight, topLeft, botRight);
+            if (outOfBounds) 
             {
                 return result;
             }
@@ -245,8 +258,8 @@ namespace Assets.Scripts.Algorithms
                 return best;
             }
 
-            var outOfBounds = !(topLeft.LiesWithin(TopLeft, BotRight) || botRight.LiesWithin(TopLeft, BotRight));
-            if (outOfBounds) // We are only out of bounds if both points are.. Right?!
+            var outOfBounds = !Point.Overlaps(TopLeft, BotRight, topLeft, botRight);
+            if (outOfBounds) 
             {
                 return best;
             }
