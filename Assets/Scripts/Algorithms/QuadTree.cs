@@ -40,9 +40,29 @@ namespace Assets.Scripts.Algorithms
         /// <param name="topLeft1"></param>
         /// <param name="bottomRight1"></param>
         /// <returns></returns>
-        public static bool Overlaps(Point topleft0, Point bottomRight0, Point topLeft1, Point bottomRight1)
+        public static bool Overlaps(Point topLeft0, Point bottomRight0, Point topLeft1, Point bottomRight1)
         {
-            return bottomRight0.X <= topLeft1.X || bottomRight0.Y <= topLeft1.Y || bottomRight0.X >= topLeft1.X || topleft0.Y <= bottomRight1.Y;
+            var overlapsX = !(topLeft0.X > bottomRight1.X || topLeft1.X > bottomRight0.X);
+            var overlapsY = !(bottomRight0.Y > topLeft1.Y || bottomRight1.Y > topLeft0.Y);
+
+            return overlapsX && overlapsY;
+        }
+
+        public override string ToString()
+        {
+            return $"({X};{Y})";
+        }
+        public override bool Equals(object obj)
+        {
+            if (obj is Point p)
+            {
+                return p.X == X && p.Y == Y;
+            }
+            return false;
+        }
+        public override int GetHashCode()
+        {
+            return X.GetHashCode() ^ Y.GetHashCode();
         }
     }
     public class Node<T> // marked as class so i easily can mark them used. This might be less optimal than removing from tree. TEST
@@ -155,20 +175,28 @@ namespace Assets.Scripts.Algorithms
             }
         }
 
-        public void FindInQuadrant(Point topLeft, Point botRight, List<Node<T>> result)
+        public List<Node<T>> FindInQuadrant(Point topLeft, Point botRight)
+        {
+            var result = new List<Node<T>>();
+            FindInQuadrant(topLeft, botRight, result);
+            return result;
+        }
+        private void FindInQuadrant(Point topLeft, Point botRight, List<Node<T>> result)
         {
             //var result = new List<Node<T>>();
+
+            var outOfBounds = !Point.Overlaps(TopLeft, BotRight, topLeft, botRight);
+            if (outOfBounds) 
+            {
+                return;
+            }
 
             if (Node != null && Node.Point.LiesWithin(topLeft, botRight))
             {
                 result.Add(Node);
                 return;
             }
-            var outOfBounds = !Point.Overlaps(TopLeft, BotRight, topLeft, botRight);
-            if (outOfBounds) 
-            {
-                return;
-            }
+
             for (int i = 0; i < trees.Length; i++)
             {
                 if (trees[i] != null)
