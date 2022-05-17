@@ -6,6 +6,7 @@ namespace Assets.Scripts.Enemy.ButcherBoss
 {
     public class ButcherScenePickupManager : MonoBehaviour
     {
+        [ExposedScriptableObject]
 		public QuadtreeBoundary boundary;
 
 		[Inject]
