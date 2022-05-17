@@ -6,21 +6,26 @@ namespace Assets.Scripts.Enemy.ButcherBoss
 {
     public class ButcherScenePickupManager : MonoBehaviour
     {
-		public Transform TopLeft;
-		public Transform BottomRight;
+		public QuadtreeBoundary boundary;
 
 		[Inject]
 		public void Construct(PigPickupManager settings)
         {
-            if (TopLeft == null || BottomRight == null)
+            if (boundary == null)
             {
 				Debug.LogWarning("Quadsrettings will not be initialized correcly!");
             }
 
 			//initializing a singleton from a constructor is probably not that cool...
-			var topLeft = new Point(Mathf.RoundToInt(TopLeft.position.x), Mathf.RoundToInt(TopLeft.position.y));
-			var bottomRight = new Point(Mathf.RoundToInt(BottomRight.position.x), Mathf.RoundToInt(BottomRight.position.y));
+			var topLeft = new Point(Mathf.RoundToInt(boundary.TopLeft.x), Mathf.RoundToInt(boundary.TopLeft.y));
+			var bottomRight = new Point(Mathf.RoundToInt(boundary.BottomRight.x), Mathf.RoundToInt(boundary.BottomRight.y));
 			settings.quadTree = new QuadTree<ButcherBossPigPickup>(topLeft, bottomRight);	
         }
-	}
+
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.DrawSphere(boundary.TopLeft, 2);
+            Gizmos.DrawSphere(boundary.BottomRight, 2);
+        }
+    }
 }
