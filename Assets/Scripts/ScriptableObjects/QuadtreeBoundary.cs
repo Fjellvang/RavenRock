@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
-namespace Assets.Scripts.Algorithms
+namespace Assets.Scripts.ScriptableObjects
 {
     [CreateAssetMenu(fileName = "QuadtreeBoundary", menuName = "ScriptableObjects/QuadtreeBoundary", order = 1)]
     public class QuadtreeBoundary : ScriptableObject

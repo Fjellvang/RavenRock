@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Algorithms;
+using Assets.Scripts.ScriptableObjects;
 using UnityEngine;
 using Zenject;
 

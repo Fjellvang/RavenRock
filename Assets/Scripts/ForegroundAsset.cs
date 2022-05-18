@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,12 +16,28 @@ public class ForegroundAsset : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-        Debug.Log($"Ontrigger enter: {collision.name}", this);
+        //spriteRenderer.color = new Color(1, 1, 1, .5f);
+        StopAllCoroutines();
+        StartCoroutine(LerpCorotine(0.1f, x => Mathf.Lerp(spriteRenderer.color.a, 0.5f, x)));
         spriteRenderer.material.SetFloat("_Alpha", 0.5f);
 	}
 	private void OnTriggerExit2D(Collider2D collision)
 	{
-        Debug.Log($"Ontrigger exit: {collision.name}", this);
+        StopAllCoroutines();
+        StartCoroutine(LerpCorotine(0.1f, x => Mathf.Lerp(spriteRenderer.color.a, 1, x)));
         spriteRenderer.material.SetFloat("_Alpha", 1);
 	}
+
+    IEnumerator LerpCorotine(float seconds, Func<float, float> lerp)
+    {
+        var inc = 0f;
+        float value;
+        do
+        {
+            yield return new WaitForSeconds(seconds);
+            inc += seconds;
+            value = lerp(inc);
+            spriteRenderer.color = new Color(1,1,1, value);
+        } while (value > 0.5f);
+    }
 }

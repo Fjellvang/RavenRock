@@ -4,8 +4,9 @@ using Assets.Scripts.States;
 using Assets.Scripts.States.EnemyStates.FarmerStates;
 using System;
 using UnityEngine;
+using Zenject;
 
-
+[RequireComponent(typeof(Health))]
 public class FarmerController : NPCControllerBase<FarmerStateMachine, EnemyBaseState, FarmerController>,
     IAttacker, IAttackable, IStunnable {
 
@@ -21,8 +22,8 @@ public class FarmerController : NPCControllerBase<FarmerStateMachine, EnemyBaseS
 
     [HideInInspector]
     public SpriteRenderer SpriteRenderer;
-
     public override Func<FarmerStateMachine> ConstructStatemachine => () => new FarmerStateMachine(this);
+
 
     protected override void Awake()
 	{
