@@ -1,6 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
+#if UNITY_EDITOR
 [CustomPropertyDrawer(typeof(ExposedScriptableObjectAttribute), true)]
 public class ExposedScriptableObjectAttributeDrawer : PropertyDrawer
 {
@@ -35,3 +36,4 @@ public class ExposedScriptableObjectAttributeDrawer : PropertyDrawer
         }
     }
 }
+#endif
