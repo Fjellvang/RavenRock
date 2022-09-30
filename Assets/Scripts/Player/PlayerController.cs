@@ -34,6 +34,9 @@ public class PlayerController : MonoBehaviour, IAttacker, IAttackable {
 	public float staminaFightingMultiplier = 0.5f;
 	[Range(0, 1f)]
 	public float staminaBlockingMultiplier = 0f;
+	[Header("Visuals")] //TODO: Refactor to own component
+	public Material[] noHeavyAttackReady;
+	public Material[] HeavyAttackReady;
 
 	public PlayerStateMachine StateMachine;
 	[HideInInspector]
@@ -112,7 +115,7 @@ public class PlayerController : MonoBehaviour, IAttacker, IAttackable {
     }
 	// Update is called once per frame
 	void Update() {
-        if (gameState.IsPaused)
+        if (gameState != null && gameState.IsPaused)
         {
 			return;
         }

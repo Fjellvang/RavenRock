@@ -26,6 +26,14 @@ namespace Assets.Scripts.States.PlayerStates
 		{
 			controller.playerState.IsGrounded = controller.CharacterController.Grounded;
 			inputAxis = controller.inputState.HorizontalMovement;
+            if (controller.combatManager.IsHeavyAttackAvailable)
+            {
+				controller.playerRenderer.materials = controller.HeavyAttackReady;
+            }
+            else
+            {
+				controller.playerRenderer.materials = controller.noHeavyAttackReady;
+            }
         }
 
 		public override void OnTakeDamage(PlayerController controller, GameObject attacker, IAttackEffect[] attackEffects)

@@ -36,7 +36,7 @@ public class CameraFollow : MonoBehaviour {
 
 	private void UpdatePosition()
 	{
-        if (gameState.IsPaused)
+        if (gameState != null && gameState.IsPaused)
         {
 			return;
         }

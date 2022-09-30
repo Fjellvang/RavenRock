@@ -19,7 +19,7 @@ namespace Assets.Scripts.Enemy.ButcherBoss
 		}
         private void Start()
         {
-            if (pickupManager.quadTree == null)
+            if (pickupManager == null || pickupManager.quadTree == null)
             {
 				Debug.LogWarning("QUADTREE HAST NOT BEEN INITIALZED FOR PICKUP");
 				return;

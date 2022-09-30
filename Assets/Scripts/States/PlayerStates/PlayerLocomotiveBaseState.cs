@@ -35,6 +35,8 @@ namespace Assets.Scripts.States.PlayerStates
 				jump = true;
 				controller.StateMachine.TransitionState(jumpingState);
 			}
+
+
 		}
 		public override void FixedUpdate(PlayerController controller)
 		{
