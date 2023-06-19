@@ -28,11 +28,11 @@ namespace Assets.Scripts.States.PlayerStates
 			inputAxis = controller.inputState.HorizontalMovement;
             if (controller.combatManager.IsHeavyAttackAvailable)
             {
-				controller.playerRenderer.materials = controller.HeavyAttackReady;
+				//controller.playerRenderer.materials = controller.HeavyAttackReady;
             }
             else
             {
-				controller.playerRenderer.materials = controller.noHeavyAttackReady;
+				//controller.playerRenderer.materials = controller.noHeavyAttackReady;
             }
         }
 
